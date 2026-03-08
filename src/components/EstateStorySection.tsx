@@ -191,6 +191,7 @@ export default function EstateStorySection() {
                 src={panel.image}
                 alt={panel.headline}
                 fill
+                priority={i === 0}
                 style={{
                   objectFit: 'cover',
                   filter: 'saturate(0.75) contrast(1.05)',

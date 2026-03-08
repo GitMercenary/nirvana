@@ -14,6 +14,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <link rel="preload" as="image" href="/images/hero-bg.png" />
+      </head>
       <body>{children}</body>
     </html>
   )
