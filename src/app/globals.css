@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Zilla+Slab:wght@400;600&family=DM+Sans:wght@300;400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Core palette */
+  --cn-black:        #0a0a0a;
+  --cn-dark:         #0e0e0e;
+  --cn-cream:        #f2f2f3;
+  --cn-warm-white:   #f0ece6;
+  --cn-red-primary:  #da2233;
+  --cn-red-accent:   #b82026;
+  --cn-gray:         #a4a2a2;
+
+  /* Section background variants — break monotony on scroll */
+  --cn-dark-warm:    #100e0b;   /* very warm near-black — TraceabilitySection */
+  --cn-dark-alt:     #0b0b0f;   /* very cool near-black — LotNavigator */
+
+  /* Atmosphere selector colours — felt not seen, always near-black */
+  --cn-atm-washed:    #0a140a;
+  --cn-atm-natural:   #140f0a;
+  --cn-atm-honey:     #0f0f14;
+  --cn-atm-monsooned: #0a0e14;
+
+  /* Typography */
+  --cn-font-display: 'Playfair Display', Georgia, serif;
+  --cn-font-slab:    'Zilla Slab', Georgia, serif;
+  --cn-font-body:    'DM Sans', system-ui, sans-serif;
+
+  /* Spacing — 8pt grid */
+  --cn-space-xs:  8px;
+  --cn-space-sm:  16px;
+  --cn-space-md:  32px;
+  --cn-space-lg:  64px;
+  --cn-space-xl:  128px;
+  --cn-space-2xl: 200px;
+}
+
+/* Base resets */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--cn-dark);
+  color: var(--cn-cream);
+  font-family: var(--cn-font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background: var(--cn-red-primary);
+  color: var(--cn-cream);
+}
+
+/* Global grain overlay */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  opacity: 0.035;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* Utility: font families */
+.font-display { font-family: var(--cn-font-display); }
+.font-slab    { font-family: var(--cn-font-slab); }
+.font-body    { font-family: var(--cn-font-body); }
+
+/* Utility: hide scrollbar for horizontal scroll containers */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }

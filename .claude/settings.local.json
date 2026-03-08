@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(file \"/c/Users/LENOVO/Documents/Caffeine_Nirvana\"/*)",
+      "Bash(npx create-next-app@latest . --typescript --tailwind --eslint --app --src-dir --import-alias \"@/*\" --no-git --yes)",
+      "Bash(npx create-next-app@latest . --typescript --tailwind --eslint --app --src-dir --import-alias \"@/*\" --no-git --yes --name caffeine-nirvana)",
+      "Bash(npm install next@latest react@latest react-dom@latest)",
+      "Bash(npm install framer-motion gsap @gsap/react lucide-react react-hook-form)"
+    ]
+  }
+}
