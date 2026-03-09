@@ -173,8 +173,8 @@ export default function Footer() {
     <footer
       style={{
         background: '#0a0a0a',
-        paddingTop: '48px',
-        paddingBottom: '24px',
+        paddingTop: '32px',
+        paddingBottom: '16px',
       }}
     >
       <div
@@ -190,9 +190,9 @@ export default function Footer() {
             display: 'flex',
             justifyContent: 'space-between',
             alignItems: 'flex-start',
-            marginBottom: '24px',
+            marginBottom: '12px',
             flexWrap: 'wrap',
-            gap: '24px',
+            gap: '12px',
           }}
         >
           <div
@@ -224,9 +224,9 @@ export default function Footer() {
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
             gap: isMobile ? '32px' : '48px',
-            marginBottom: '16px',
+            marginBottom: '8px',
             borderTop: '1px solid rgba(242,242,243,0.06)',
-            paddingTop: '32px',
+            paddingTop: '20px',
           }}
         >
           {/* Col 1: Direct Export */}
