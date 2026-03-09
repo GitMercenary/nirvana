@@ -130,7 +130,7 @@ export default function AtmosphereSelector({ onSampleRequest }: AtmosphereSelect
         style={{
           position: 'absolute',
           inset: 0,
-          background: `radial-gradient(ellipse 80% 70% at 50% 40%, ${activeLot.accent}26 0%, transparent 65%)`,
+          background: `radial-gradient(ellipse 80% 70% at 50% 40%, ${activeLot.accent}0f 0%, transparent 65%)`,
           transition: 'background 900ms cubic-bezier(0.25, 0.46, 0.45, 0.94)',
           pointerEvents: 'none',
         }}
