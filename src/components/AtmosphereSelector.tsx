@@ -112,8 +112,6 @@ export default function AtmosphereSelector({ onSampleRequest }: AtmosphereSelect
         overflow: 'hidden',
       }}
     >
-      <TopographicBackground />
-
       {/* Coffee branch background image */}
       <div
         style={{
