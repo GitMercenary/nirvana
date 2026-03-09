@@ -173,8 +173,8 @@ export default function Footer() {
     <footer
       style={{
         background: '#0a0a0a',
-        paddingTop: '80px',
-        paddingBottom: '40px',
+        paddingTop: '48px',
+        paddingBottom: '24px',
       }}
     >
       <div
@@ -190,7 +190,7 @@ export default function Footer() {
             display: 'flex',
             justifyContent: 'space-between',
             alignItems: 'flex-start',
-            marginBottom: '64px',
+            marginBottom: '24px',
             flexWrap: 'wrap',
             gap: '24px',
           }}
@@ -224,9 +224,9 @@ export default function Footer() {
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
             gap: isMobile ? '32px' : '48px',
-            marginBottom: '32px',
+            marginBottom: '16px',
             borderTop: '1px solid rgba(242,242,243,0.06)',
-            paddingTop: '48px',
+            paddingTop: '32px',
           }}
         >
           {/* Col 1: Direct Export */}
@@ -291,7 +291,7 @@ export default function Footer() {
         </div>
 
         {/* Brushstroke mark — centered */}
-        <div style={{ textAlign: 'center', marginBottom: '16px' }}>
+        <div style={{ textAlign: 'center', marginBottom: '8px' }}>
           <BrushstrokeMark />
         </div>
 
