@@ -57,7 +57,18 @@ export default function LotNavigator({ onSampleRequest }: LotNavigatorProps) {
         borderTop: '1px solid rgba(218,34,51,0.2)',
       }}
     >
-      <TopographicBackground />
+      {/* Smoke background image */}
+      <div
+        style={{
+          position: 'absolute',
+          inset: 0,
+          backgroundImage: 'url(/images/bg-smoke.png)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          opacity: 0.18,
+          pointerEvents: 'none',
+        }}
+      />
 
       {/* Ambient radial bloom */}
       <div

@@ -106,6 +106,9 @@ export default function EstateStorySection() {
           justifyContent: 'center',
           padding: isMobile ? '56px 24px 48px' : '80px 64px',
           background: 'var(--cn-dark)',
+          backgroundImage: 'url(/images/bg-topo.png)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
           position: 'relative',
           zIndex: 2,
         }}

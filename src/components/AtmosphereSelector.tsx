@@ -114,6 +114,19 @@ export default function AtmosphereSelector({ onSampleRequest }: AtmosphereSelect
     >
       <TopographicBackground />
 
+      {/* Coffee branch background image */}
+      <div
+        style={{
+          position: 'absolute',
+          inset: 0,
+          backgroundImage: 'url(/images/bg-coffee-branch.png)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          opacity: 0.12,
+          pointerEvents: 'none',
+        }}
+      />
+
       {/* Accent bloom overlay — changes per selected lot */}
       <div
         style={{
