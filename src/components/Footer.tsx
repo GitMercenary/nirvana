@@ -224,7 +224,7 @@ export default function Footer() {
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
             gap: isMobile ? '32px' : '48px',
-            marginBottom: '64px',
+            marginBottom: '32px',
             borderTop: '1px solid rgba(242,242,243,0.06)',
             paddingTop: '48px',
           }}
@@ -291,7 +291,7 @@ export default function Footer() {
         </div>
 
         {/* Brushstroke mark — centered */}
-        <div style={{ textAlign: 'center', marginBottom: '40px' }}>
+        <div style={{ textAlign: 'center', marginBottom: '16px' }}>
           <BrushstrokeMark />
         </div>
 
