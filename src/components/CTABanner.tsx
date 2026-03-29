@@ -3,12 +3,10 @@
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 import { useIsMobile } from '@/hooks/useIsMobile'
+import { useFormContext } from '@/context/FormContext'
 
-interface CTABannerProps {
-  onSourceClick: () => void
-}
-
-export default function CTABanner({ onSourceClick }: CTABannerProps) {
+export default function CTABanner() {
+  const { openSourceForm: onSourceClick } = useFormContext()
   const ref = useRef<HTMLDivElement>(null)
   const inView = useInView(ref, { once: true, margin: '-10% 0px' })
   const isMobile = useIsMobile()
@@ -86,6 +84,7 @@ export default function CTABanner({ onSourceClick }: CTABannerProps) {
               textTransform: 'uppercase',
               cursor: 'pointer',
               transition: 'background 300ms ease, color 300ms ease',
+              borderRadius: 'var(--cn-radius-sm)',
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.background = '#f2f2f3'

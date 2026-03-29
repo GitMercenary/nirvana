@@ -36,6 +36,10 @@
   --cn-space-lg:  64px;
   --cn-space-xl:  128px;
   --cn-space-2xl: 200px;
+
+  /* Border radius */
+  --cn-radius:    12px;
+  --cn-radius-sm: 8px;
 }
 
 /* Base resets */

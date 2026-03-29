@@ -136,7 +136,7 @@ export default function LearnTheOriginForm({ isOpen, onClose }: Props) {
                 lineHeight: 1.5,
               }}
             >
-              Visit Zoya Estate. Walk the farm. Cup the coffee at source.
+              Visit our estates. Walk the farm. Cup the coffee at source.
             </p>
 
             {status === 'success' ? (
@@ -236,7 +236,7 @@ export default function LearnTheOriginForm({ isOpen, onClose }: Props) {
                   <textarea
                     {...register('message')}
                     rows={4}
-                    placeholder="Tell us what you'd like to experience at Zoya Estate..."
+                    placeholder="Tell us what you'd like to experience at our estates..."
                     style={{ ...inputStyle, resize: 'vertical' }}
                     onFocus={(e) => (e.currentTarget.style.borderColor = '#da2233')}
                     onBlur={(e) => (e.currentTarget.style.borderColor = 'rgba(242,242,243,0.12)')}

@@ -4,19 +4,17 @@ import { useEffect, useState } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { ChevronDown } from 'lucide-react'
 import { useIsMobile } from '@/hooks/useIsMobile'
+import { useFormContext } from '@/context/FormContext'
+import Image from 'next/image'
 
-interface HeroSectionProps {
-  onSourceClick: () => void
-  onLearnClick: () => void
-}
+const headline = ['Specialty Coffee', 'From Origin.']
 
-const headline = ['Single-Estate', 'Specialty Coffee', 'From Origin.']
-
-export default function HeroSection({ onSourceClick, onLearnClick }: HeroSectionProps) {
+export default function HeroSection() {
   const { scrollY } = useScroll()
   const [showScroll, setShowScroll] = useState(true)
   const bgY = useTransform(scrollY, [0, 600], [0, -180])
   const isMobile = useIsMobile()
+  const { openSourceForm, openLearnForm } = useFormContext()
 
   useEffect(() => {
     const unsub = scrollY.on('change', (v) => setShowScroll(v < 100))
@@ -73,38 +71,28 @@ export default function HeroSection({ onSourceClick, onLearnClick }: HeroSection
           paddingBottom: '80px',
         }}
       >
-        {/* Step 1: Brushstroke SVG */}
+        {/* Step 1: Enzo Logo */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.3 }}
-          style={{ marginBottom: '32px', width: '120px', height: '120px' }}
+          transition={{ duration: 0.8 }}
+          style={{ marginBottom: '32px', width: '100px', height: '100px' }}
         >
-          <svg
-            width="120"
-            height="120"
-            viewBox="0 0 120 120"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <motion.path
-              d="M20 100 C20 60, 40 20, 60 20 C80 20, 100 40, 100 60 C100 80, 80 100, 60 90 C40 80, 30 50, 50 40"
-              stroke="#da2233"
-              strokeWidth="3"
-              strokeLinecap="round"
-              fill="none"
-              initial={{ pathLength: 0 }}
-              animate={{ pathLength: 1 }}
-              transition={{ duration: 1.8, ease: 'easeInOut' }}
-            />
-          </svg>
+          <Image
+            src="/images/logo-enzo.png"
+            alt="Caffeine Nirvana"
+            width={100}
+            height={100}
+            style={{ objectFit: 'contain' }}
+            priority
+          />
         </motion.div>
 
         {/* Step 2: Coordinates */}
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 1.8 }}
+          transition={{ duration: 0.8, delay: 0.6 }}
           style={{
             fontFamily: 'DM Sans, system-ui, sans-serif',
             fontSize: '11px',
@@ -114,7 +102,7 @@ export default function HeroSection({ onSourceClick, onLearnClick }: HeroSection
             marginBottom: '24px',
           }}
         >
-          Zoya Estate · Keserke Village · 1,100M · Chikmagalur, Karnataka
+          Keserke, Chikmagalur · 13.2189°N, 75.7817°E
         </motion.p>
 
         {/* Step 3: Headline — word by word */}
@@ -141,7 +129,7 @@ export default function HeroSection({ onSourceClick, onLearnClick }: HeroSection
                     animate={{ opacity: 1, y: 0 }}
                     transition={{
                       duration: 0.9,
-                      delay: 2.0 + globalIdx * 0.1,
+                      delay: 1.0 + globalIdx * 0.1,
                       ease: [0.16, 1, 0.3, 1],
                     }}
                     style={{ display: 'inline-block', marginRight: '0.25em' }}
@@ -154,17 +142,18 @@ export default function HeroSection({ onSourceClick, onLearnClick }: HeroSection
           ))}
         </h1>
 
-        {/* Step 4: Subheading */}
+        {/* Step 4: Subheading — made bigger per owner request */}
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.7, delay: 2.8 }}
+          transition={{ duration: 0.7, delay: 1.6 }}
           style={{
             fontFamily: 'Zilla Slab, Georgia, serif',
-            fontWeight: 400,
-            fontSize: '20px',
-            color: '#a4a2a2',
+            fontWeight: 600,
+            fontSize: 'clamp(26px, 3.5vw, 38px)',
+            color: '#f2f2f3',
             marginBottom: '48px',
+            letterSpacing: '0.02em',
           }}
         >
           Traceable. Transparent. Direct.
@@ -174,11 +163,11 @@ export default function HeroSection({ onSourceClick, onLearnClick }: HeroSection
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 3.2 }}
+          transition={{ duration: 0.8, delay: 2.0 }}
           style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}
         >
           <button
-            onClick={onSourceClick}
+            onClick={openSourceForm}
             style={{
               background: '#da2233',
               color: '#f2f2f3',
@@ -190,6 +179,7 @@ export default function HeroSection({ onSourceClick, onLearnClick }: HeroSection
               textTransform: 'uppercase',
               cursor: 'pointer',
               transition: 'background 250ms ease',
+              borderRadius: 'var(--cn-radius-sm)',
             }}
             onMouseEnter={(e) => (e.currentTarget.style.background = '#b82026')}
             onMouseLeave={(e) => (e.currentTarget.style.background = '#da2233')}
@@ -197,7 +187,7 @@ export default function HeroSection({ onSourceClick, onLearnClick }: HeroSection
             Source From Origin
           </button>
           <button
-            onClick={onLearnClick}
+            onClick={openLearnForm}
             style={{
               background: 'transparent',
               color: '#a4a2a2',
@@ -209,6 +199,7 @@ export default function HeroSection({ onSourceClick, onLearnClick }: HeroSection
               textTransform: 'uppercase',
               cursor: 'pointer',
               transition: 'border-color 300ms ease, color 300ms ease',
+              borderRadius: 'var(--cn-radius-sm)',
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.borderColor = '#f2f2f3'
@@ -228,7 +219,7 @@ export default function HeroSection({ onSourceClick, onLearnClick }: HeroSection
       <motion.div
         initial={{ scale: 0.7, opacity: 0 }}
         animate={{ scale: 1, opacity: 0.5 }}
-        transition={{ duration: 0.8, delay: 3.6, type: 'spring', stiffness: 150, damping: 20 }}
+        transition={{ duration: 0.8, delay: 2.4, type: 'spring', stiffness: 150, damping: 20 }}
         style={{
           position: 'absolute',
           bottom: isMobile ? '120px' : '60px',
@@ -254,7 +245,7 @@ export default function HeroSection({ onSourceClick, onLearnClick }: HeroSection
               textAnchor="middle"
             >
               <textPath href="#stamp-circle" startOffset="12.5%">
-                PRODUCE OF INDIA · ZOYA ESTATE · CHIKMAGALUR · INDIA ·
+                PRODUCE OF INDIA · CAFFEINE NIRVANA · CHIKMAGALUR ·
               </textPath>
             </text>
             <defs>

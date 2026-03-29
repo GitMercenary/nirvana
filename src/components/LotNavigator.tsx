@@ -4,6 +4,7 @@ import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 import { LOTS } from './AtmosphereSelector'
 import { useIsMobile } from '@/hooks/useIsMobile'
+import { useFormContext } from '@/context/FormContext'
 
 function TopographicBackground() {
   return (
@@ -37,11 +38,8 @@ function TopographicBackground() {
   )
 }
 
-interface LotNavigatorProps {
-  onSampleRequest: (lotName: string) => void
-}
-
-export default function LotNavigator({ onSampleRequest }: LotNavigatorProps) {
+export default function LotNavigator() {
+  const { openSampleForm: onSampleRequest } = useFormContext()
   const sectionRef = useRef<HTMLDivElement>(null)
   const inView = useInView(sectionRef, { once: true, margin: '-5% 0px' })
   const isMobile = useIsMobile()
@@ -163,6 +161,7 @@ export default function LotNavigator({ onSampleRequest }: LotNavigatorProps) {
                 padding: '40px',
                 cursor: 'default',
                 position: 'relative',
+                borderRadius: 'var(--cn-radius)',
               }}
               onHoverStart={(e) => {
                 const el = e.target as HTMLElement
@@ -212,7 +211,7 @@ export default function LotNavigator({ onSampleRequest }: LotNavigatorProps) {
                     border: '1px solid rgba(218,34,51,0.3)',
                     color: '#da2233',
                     padding: '4px 12px',
-                    borderRadius: '2px',
+                    borderRadius: 'var(--cn-radius-sm)',
                     whiteSpace: 'nowrap',
                   }}
                 >
@@ -290,6 +289,7 @@ export default function LotNavigator({ onSampleRequest }: LotNavigatorProps) {
                     textTransform: 'uppercase',
                     cursor: 'pointer',
                     transition: 'background 250ms ease, color 250ms ease',
+                    borderRadius: 'var(--cn-radius-sm)',
                   }}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.background = '#da2233'
@@ -314,6 +314,7 @@ export default function LotNavigator({ onSampleRequest }: LotNavigatorProps) {
                     textTransform: 'uppercase',
                     cursor: 'pointer',
                     transition: 'border-color 250ms ease, color 250ms ease',
+                    borderRadius: 'var(--cn-radius-sm)',
                   }}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.borderColor = 'rgba(164,162,162,0.8)'

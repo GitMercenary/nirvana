@@ -5,6 +5,7 @@ import { motion, useInView } from 'framer-motion'
 
 const credentials = [
   { text: 'Ernesto Illy Award 2020', highlight: true },
+  { text: 'Listed on TYPICA', highlight: false },
   { text: 'Produce of India', highlight: false },
   { text: 'Direct Export — No Middlemen', highlight: false },
   { text: 'Fully Traceable to Farm', highlight: false },

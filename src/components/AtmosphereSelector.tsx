@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useIsMobile } from '@/hooks/useIsMobile'
+import { useFormContext } from '@/context/FormContext'
 export const LOTS = [
   {
     id: 'washed',
@@ -92,11 +93,8 @@ function TopographicBackground() {
   )
 }
 
-interface AtmosphereSelectorProps {
-  onSampleRequest: (lotName: string) => void
-}
-
-export default function AtmosphereSelector({ onSampleRequest }: AtmosphereSelectorProps) {
+export default function AtmosphereSelector() {
+  const { openSampleForm: onSampleRequest } = useFormContext()
   const [activeId, setActiveId] = useState('washed')
   const activeLot = LOTS.find((l) => l.id === activeId)!
   const isMobile = useIsMobile()
@@ -156,7 +154,7 @@ export default function AtmosphereSelector({ onSampleRequest }: AtmosphereSelect
             marginBottom: '12px',
           }}
         >
-          Select a Lot
+          Current Offerings
         </p>
         <h2
           style={{
@@ -167,7 +165,7 @@ export default function AtmosphereSelector({ onSampleRequest }: AtmosphereSelect
             marginBottom: '56px',
           }}
         >
-          Zoya Estate — Current Harvest
+          Current Harvest
         </h2>
 
         {/* Cards */}
@@ -195,6 +193,7 @@ export default function AtmosphereSelector({ onSampleRequest }: AtmosphereSelect
                     : 'none',
                   padding: '32px',
                   cursor: 'pointer',
+                  borderRadius: 'var(--cn-radius)',
                   transform: isActive ? 'translateY(-2px)' : 'translateY(0)',
                   transition: 'transform 300ms ease, border-color 300ms ease, background 300ms ease, box-shadow 300ms ease',
                 }}
@@ -310,6 +309,7 @@ export default function AtmosphereSelector({ onSampleRequest }: AtmosphereSelect
               border: '1px solid rgba(242,242,243,0.08)',
               padding: '40px',
               background: 'rgba(255,255,255,0.02)',
+              borderRadius: 'var(--cn-radius)',
             }}
           >
             <div
@@ -406,6 +406,7 @@ export default function AtmosphereSelector({ onSampleRequest }: AtmosphereSelect
                     textTransform: 'uppercase',
                     cursor: 'pointer',
                     transition: 'background 250ms ease, color 250ms ease',
+                    borderRadius: 'var(--cn-radius-sm)',
                   }}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.background = '#da2233'

@@ -4,27 +4,7 @@ import { useState } from 'react'
 import { submitToEmail } from '@/utils/submitForm'
 import { Linkedin, Instagram } from 'lucide-react'
 import { useIsMobile } from '@/hooks/useIsMobile'
-
-// Brushstroke SVG mark
-function BrushstrokeMark() {
-  return (
-    <svg
-      width="60"
-      height="60"
-      viewBox="0 0 120 120"
-      fill="none"
-      style={{ opacity: 0.6 }}
-    >
-      <path
-        d="M20 100 C20 60, 40 20, 60 20 C80 20, 100 40, 100 60 C100 80, 80 100, 60 90 C40 80, 30 50, 50 40"
-        stroke="#da2233"
-        strokeWidth="3"
-        strokeLinecap="round"
-        fill="none"
-      />
-    </svg>
-  )
-}
+import Image from 'next/image'
 
 // Inline quick contact form
 function FooterQuickContactForm() {
@@ -69,6 +49,7 @@ function FooterQuickContactForm() {
     outline: 'none',
     marginBottom: '10px',
     transition: 'border-color 200ms ease',
+    borderRadius: 'var(--cn-radius-sm)',
   }
 
   return (
@@ -130,6 +111,7 @@ function FooterQuickContactForm() {
           cursor: status === 'submitting' ? 'not-allowed' : 'pointer',
           transition: 'background 250ms ease, color 250ms ease',
           opacity: status === 'submitting' ? 0.6 : 1,
+          borderRadius: 'var(--cn-radius-sm)',
         }}
         onMouseEnter={(e) => {
           if (status !== 'submitting') {
@@ -197,13 +179,28 @@ export default function Footer() {
         >
           <div
             style={{
-              fontFamily: 'Playfair Display, Georgia, serif',
-              fontWeight: 700,
-              fontSize: '24px',
-              color: '#f2f2f3',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '10px',
             }}
           >
-            Caffeine Nirvana
+            <Image
+              src="/images/logo-enzo.png"
+              alt=""
+              width={28}
+              height={28}
+              style={{ objectFit: 'contain' }}
+            />
+            <span
+              style={{
+                fontFamily: 'Playfair Display, Georgia, serif',
+                fontWeight: 700,
+                fontSize: '24px',
+                color: '#f2f2f3',
+              }}
+            >
+              Caffeine Nirvana
+            </span>
           </div>
           <p
             style={{
@@ -214,7 +211,7 @@ export default function Footer() {
               color: '#a4a2a2',
             }}
           >
-            Zoya Estate · Keserke Village · 12.4200°N, 75.7824°E
+            Keserke, Chikmagalur · 13.2189°N, 75.7817°E
           </p>
         </div>
 
@@ -290,9 +287,15 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Brushstroke mark — centered */}
+        {/* Logo mark — centered */}
         <div style={{ textAlign: 'center', marginBottom: '8px' }}>
-          <BrushstrokeMark />
+          <Image
+            src="/images/logo-enzo.png"
+            alt=""
+            width={48}
+            height={48}
+            style={{ objectFit: 'contain', opacity: 0.6, display: 'inline-block' }}
+          />
         </div>
 
         {/* Bottom row */}
@@ -314,7 +317,7 @@ export default function Footer() {
               color: 'rgba(164,162,162,0.5)',
             }}
           >
-            © 2025 Caffeine Nirvana. Zoya Estate, Keserke Village, Chikmagalur 577101, Karnataka, India.
+            © 2026 Caffeine Nirvana. Keserke, Chikmagalur 577101, Karnataka, India.
           </p>
           <div style={{ display: 'flex', gap: '20px' }}>
             {['Privacy Policy', 'Terms'].map((item) => (

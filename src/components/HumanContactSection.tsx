@@ -1,10 +1,11 @@
+'use client'
+
 import { useIsMobile } from '@/hooks/useIsMobile'
 import Image from 'next/image'
-interface HumanContactSectionProps {
-  onSourceClick: () => void
-}
+import { useFormContext } from '@/context/FormContext'
 
-export default function HumanContactSection({ onSourceClick }: HumanContactSectionProps) {
+export default function HumanContactSection() {
+  const { openSourceForm: onSourceClick } = useFormContext()
   const isMobile = useIsMobile()
 
   return (
@@ -38,14 +39,14 @@ export default function HumanContactSection({ onSourceClick }: HumanContactSecti
               marginBottom: '24px',
             }}
           >
-            The Person Behind the Coffee
+            Get in Touch
           </p>
 
           <h2
             style={{
               fontFamily: 'Playfair Display, Georgia, serif',
               fontWeight: 900,
-              fontSize: 'clamp(40px, 5vw, 56px)',
+              fontSize: 'clamp(28px, 3.5vw, 40px)',
               color: '#f2f2f3',
               marginBottom: '40px',
               lineHeight: 1.1,
@@ -91,7 +92,7 @@ export default function HumanContactSection({ onSourceClick }: HumanContactSecti
               marginBottom: '48px',
             }}
           >
-            — Danish Ali, Director, Zoya Estate
+            — Danish Ali, Director, Caffeine Nirvana
           </p>
 
           {/* Contact block */}
@@ -161,7 +162,7 @@ export default function HumanContactSection({ onSourceClick }: HumanContactSecti
         >
           <Image
             src="/images/pillar-direct-export(1).png"
-            alt="Danish Ali, Director, Zoya Estate"
+            alt="Danish Ali, Director, Caffeine Nirvana"
             fill
             style={{
               objectFit: 'cover',

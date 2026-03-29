@@ -7,7 +7,7 @@ import { useIsMobile } from '@/hooks/useIsMobile'
 const steps = [
   {
     title: 'Farm',
-    location: 'Zoya Estate, Keserke Village',
+    location: 'Partner Estates, Keserke',
     body: 'Hand-picked at peak ripeness. Zero mechanised harvest.',
   },
   {

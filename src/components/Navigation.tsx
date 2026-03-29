@@ -1,13 +1,21 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
+import { motion, useScroll, AnimatePresence } from 'framer-motion'
+import { useFormContext } from '@/context/FormContext'
+import Image from 'next/image'
+import Link from 'next/link'
 
-interface NavigationProps {
-  onSourceClick: () => void
-}
+const NAV_ITEMS = [
+  { label: 'Offerings', href: '/offerings' },
+  { label: 'Our Story', href: '/about' },
+  { label: 'Estates', href: '/estates' },
+  { label: 'Roasted Supply', href: '/roasted-supply' },
+  { label: 'Contact', href: '/contact' },
+]
 
-export default function Navigation({ onSourceClick }: NavigationProps) {
+export default function Navigation() {
+  const { openSourceForm: onSourceClick } = useFormContext()
   const { scrollY } = useScroll()
   const [scrolled, setScrolled] = useState(false)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -18,8 +26,6 @@ export default function Navigation({ onSourceClick }: NavigationProps) {
     })
     return unsubscribe
   }, [scrollY])
-
-  const navLinks = ['Our Coffee', 'The Estate', 'Traceability', 'Contact']
 
   return (
     <>
@@ -36,42 +42,62 @@ export default function Navigation({ onSourceClick }: NavigationProps) {
           borderBottom: scrolled ? '1px solid rgba(242,242,243,0.06)' : 'none',
         }}
       >
-        {/* Wordmark */}
-        <a
+        {/* Wordmark with Enzo logo */}
+        <Link
           href="/"
           style={{
-            fontFamily: 'Playfair Display, Georgia, serif',
-            fontWeight: 700,
-            fontSize: '20px',
-            color: '#f2f2f3',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '10px',
             textDecoration: 'none',
-            letterSpacing: '0.02em',
           }}
         >
-          Caffeine Nirvana
-        </a>
+          <Image
+            src="/images/logo-enzo.png"
+            alt=""
+            width={32}
+            height={32}
+            style={{ objectFit: 'contain' }}
+          />
+          <span
+            style={{
+              fontFamily: 'Playfair Display, Georgia, serif',
+              fontWeight: 700,
+              fontSize: '20px',
+              color: '#f2f2f3',
+              letterSpacing: '0.02em',
+            }}
+          >
+            Caffeine Nirvana
+          </span>
+        </Link>
 
         {/* Nav links + CTA — desktop only */}
         <div className="hidden md:flex items-center gap-8">
-          {navLinks.map((link) => (
-            <a
-              key={link}
-              href={`#${link.toLowerCase().replace(' ', '-')}`}
-              style={{
-                fontFamily: 'DM Sans, system-ui, sans-serif',
-                fontSize: '13px',
-                letterSpacing: '0.12em',
-                textTransform: 'uppercase',
-                color: '#a4a2a2',
-                textDecoration: 'none',
-                transition: 'color 300ms ease',
-              }}
-              onMouseEnter={(e) => (e.currentTarget.style.color = '#f2f2f3')}
-              onMouseLeave={(e) => (e.currentTarget.style.color = '#a4a2a2')}
-            >
-              {link}
-            </a>
-          ))}
+          {NAV_ITEMS.map((item) => {
+            const isExternal = !item.href.startsWith('/')
+            const isAnchor = item.href.includes('#')
+            return (
+              <Link
+                key={item.label}
+                href={item.href}
+                {...(isExternal ? { target: '_blank', rel: 'noopener' } : {})}
+                style={{
+                  fontFamily: 'DM Sans, system-ui, sans-serif',
+                  fontSize: '13px',
+                  letterSpacing: '0.12em',
+                  textTransform: 'uppercase',
+                  color: '#a4a2a2',
+                  textDecoration: 'none',
+                  transition: 'color 300ms ease',
+                }}
+                onMouseEnter={(e) => (e.currentTarget.style.color = '#f2f2f3')}
+                onMouseLeave={(e) => (e.currentTarget.style.color = '#a4a2a2')}
+              >
+                {item.label}
+              </Link>
+            )
+          })}
 
           {/* Ghost CTA with SVG border trace animation */}
           <NavCTAButton onClick={onSourceClick} />
@@ -145,10 +171,10 @@ export default function Navigation({ onSourceClick }: NavigationProps) {
 
             {/* Nav links */}
             <nav style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: '8px' }}>
-              {navLinks.map((link, i) => (
+              {NAV_ITEMS.map((item, i) => (
                 <motion.a
-                  key={link}
-                  href={`#${link.toLowerCase().replace(' ', '-')}`}
+                  key={item.label}
+                  href={item.href}
                   initial={{ opacity: 0, x: 24 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1], delay: 0.05 + i * 0.07 }}
@@ -165,7 +191,7 @@ export default function Navigation({ onSourceClick }: NavigationProps) {
                   onMouseEnter={(e) => (e.currentTarget.style.color = '#da2233')}
                   onMouseLeave={(e) => (e.currentTarget.style.color = '#f2f2f3')}
                 >
-                  {link}
+                  {item.label}
                 </motion.a>
               ))}
             </nav>
@@ -191,6 +217,7 @@ export default function Navigation({ onSourceClick }: NavigationProps) {
                 cursor: 'pointer',
                 transition: 'background 250ms ease, color 250ms ease',
                 alignSelf: 'flex-start',
+                borderRadius: 'var(--cn-radius-sm)',
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.background = '#da2233'
@@ -229,6 +256,7 @@ function NavCTAButton({ onClick }: { onClick: () => void }) {
         background: 'transparent',
         border: 'none',
         cursor: 'pointer',
+        borderRadius: 'var(--cn-radius-sm)',
       }}
     >
       {/* SVG border that traces itself on hover */}
@@ -247,6 +275,8 @@ function NavCTAButton({ onClick }: { onClick: () => void }) {
           y="0.5"
           width="calc(100% - 1px)"
           height="calc(100% - 1px)"
+          rx="8"
+          ry="8"
           fill="none"
           stroke="#da2233"
           strokeWidth="1"
@@ -263,6 +293,7 @@ function NavCTAButton({ onClick }: { onClick: () => void }) {
           position: 'absolute',
           inset: 0,
           border: '1px solid #da2233',
+          borderRadius: 'var(--cn-radius-sm)',
           opacity: hovered ? 0 : 1,
           transition: 'opacity 100ms ease',
           pointerEvents: 'none',
