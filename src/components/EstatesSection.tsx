@@ -5,43 +5,46 @@ import { motion, useInView } from 'framer-motion'
 import { useIsMobile } from '@/hooks/useIsMobile'
 
 /* ------------------------------------------------------------------ */
-/*  Placeholder estate data — CONTENT: Owner to provide               */
+/*  Estate data                                                       */
 /* ------------------------------------------------------------------ */
 const ESTATES = [
   {
-    name: 'Boothangudi Estate',
-    location: 'Chikmagalur',
-    altitude: '1,050 masl',
-    varietals: 'SLN 5B, Chandragiri',
-    description: 'Semi-anaerobic and washed process specialist.',
+    name: 'Zoya Estate',
+    location: 'Chikmagalur · Flagship',
+    altitude: '3,850–4,180 ft',
+    varietals: 'Native Arabica',
+    description:
+      'Our flagship estate under a dense canopy of native fig and forest trees. Specialty-focused, with tailored processing that honours the terroir.',
   },
   {
-    name: 'Estate 2',
+    name: 'Sheethal Estate',
+    location: 'Chikmagalur',
+    altitude: 'High-elevation, lakeside',
+    varietals: 'Heirloom Arabica',
+    description:
+      'Lakeside estate guided by traditional, organic practices — including Panchgavya — under the stewardship of Achinth Gowda.',
+  },
+  {
+    name: 'Kardigandi Estate',
+    location: 'Aldur, Chikmagalur',
+    altitude: 'Goldilocks zone',
+    varietals: 'Arabica',
+    description:
+      'Rainforest Alliance Certified estate stewarded by fifth-generation planter Kashif Asghar. Sustainability foundational from soil to community.',
+  },
+  {
+    name: 'New Partner Estate',
     location: 'Chikmagalur',
     altitude: 'TBD',
     varietals: 'TBD',
-    description: 'Details coming soon.',
+    description: 'A new partner estate joining the Caffeine Nirvana family. Details coming soon.',
   },
   {
-    name: 'Estate 3',
+    name: 'New Partner Estate',
     location: 'Chikmagalur',
     altitude: 'TBD',
     varietals: 'TBD',
-    description: 'Details coming soon.',
-  },
-  {
-    name: 'Estate 4',
-    location: 'Chikmagalur',
-    altitude: 'TBD',
-    varietals: 'TBD',
-    description: 'Details coming soon.',
-  },
-  {
-    name: 'Estate 5',
-    location: 'Chikmagalur',
-    altitude: 'TBD',
-    varietals: 'TBD',
-    description: 'Details coming soon.',
+    description: 'A new partner estate joining the Caffeine Nirvana family. Details coming soon.',
   },
 ]
 

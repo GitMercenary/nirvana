@@ -71,15 +71,15 @@ export default function HeroSection() {
           paddingBottom: '80px',
         }}
       >
-        {/* Step 1: Enzo Logo */}
+        {/* Step 1: Enzo Logo — fade and scale in */}
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8 }}
+          initial={{ opacity: 0, scale: 0.85 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
           style={{ marginBottom: '32px', width: '100px', height: '100px' }}
         >
           <Image
-            src="/images/logo-enzo.png"
+            src="/images/logo-enzo-WOB.png"
             alt="Caffeine Nirvana"
             width={100}
             height={100}

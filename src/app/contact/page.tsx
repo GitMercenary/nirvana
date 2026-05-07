@@ -236,20 +236,14 @@ export default function ContactPage() {
 
             <div style={{ marginBottom: 32 }}>
               <ContactLink
-                href="mailto:danish.888.ali@gmail.com"
-                label="danish.888.ali@gmail.com"
+                href="mailto:danish@caffeinenirvana.co"
+                label="danish@caffeinenirvana.co"
                 color="var(--cn-red-primary)"
               />
               <ContactLink
-                href="tel:+918073728811"
-                label="+91 80 7372 8811"
+                href="mailto:ayesha@caffeinenirvana.co"
+                label="ayesha@caffeinenirvana.co"
                 color="var(--cn-red-primary)"
-              />
-              <ContactLink
-                href="https://caffeinenirvana.net"
-                label="caffeinenirvana.net"
-                color="var(--cn-gray)"
-                external
               />
             </div>
 

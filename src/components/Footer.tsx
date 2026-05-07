@@ -93,7 +93,7 @@ function FooterQuickContactForm() {
             marginBottom: '10px',
           }}
         >
-          Something went wrong. Email danish.888.ali@gmail.com directly.
+          Something went wrong. Email danish@caffeinenirvana.co directly.
         </p>
       )}
       <button
@@ -177,31 +177,13 @@ export default function Footer() {
             gap: '12px',
           }}
         >
-          <div
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '10px',
-            }}
-          >
-            <Image
-              src="/images/logo-enzo.png"
-              alt=""
-              width={28}
-              height={28}
-              style={{ objectFit: 'contain' }}
-            />
-            <span
-              style={{
-                fontFamily: 'Playfair Display, Georgia, serif',
-                fontWeight: 700,
-                fontSize: '24px',
-                color: '#f2f2f3',
-              }}
-            >
-              Caffeine Nirvana
-            </span>
-          </div>
+          <Image
+            src="/images/logo-bw.jpg"
+            alt="Caffeine Nirvana"
+            width={812}
+            height={449}
+            style={{ height: '36px', width: 'auto', objectFit: 'contain' }}
+          />
           <p
             style={{
               fontFamily: 'DM Sans, system-ui, sans-serif',
@@ -229,27 +211,50 @@ export default function Footer() {
           {/* Col 1: Direct Export */}
           <div>
             <p style={labelStyle}>Direct Export</p>
-            <a href="mailto:danish.888.ali@gmail.com" style={linkStyle}
+            <a href="mailto:danish@caffeinenirvana.co" style={linkStyle}
               onMouseEnter={(e) => (e.currentTarget.style.color = '#f2f2f3')}
               onMouseLeave={(e) => (e.currentTarget.style.color = '#a4a2a2')}
             >
-              danish.888.ali@gmail.com
+              danish@caffeinenirvana.co
             </a>
-            <a href="tel:+918073728811" style={linkStyle}
+            <a href="mailto:ayesha@caffeinenirvana.co" style={linkStyle}
               onMouseEnter={(e) => (e.currentTarget.style.color = '#f2f2f3')}
               onMouseLeave={(e) => (e.currentTarget.style.color = '#a4a2a2')}
             >
-              +91 80 7372 8811
-            </a>
-            <a href="https://caffeinenirvana.net" style={linkStyle}
-              onMouseEnter={(e) => (e.currentTarget.style.color = '#f2f2f3')}
-              onMouseLeave={(e) => (e.currentTarget.style.color = '#a4a2a2')}
-            >
-              caffeinenirvana.net
+              ayesha@caffeinenirvana.co
             </a>
           </div>
 
-          {/* Col 2: Office Hours */}
+          {/* Col 2: Explore */}
+          <div>
+            <p style={labelStyle}>Explore</p>
+            <a href="/about/team" style={linkStyle}
+              onMouseEnter={(e) => (e.currentTarget.style.color = '#f2f2f3')}
+              onMouseLeave={(e) => (e.currentTarget.style.color = '#a4a2a2')}
+            >
+              Team
+            </a>
+            <a href="/about/chikmagalur" style={linkStyle}
+              onMouseEnter={(e) => (e.currentTarget.style.color = '#f2f2f3')}
+              onMouseLeave={(e) => (e.currentTarget.style.color = '#a4a2a2')}
+            >
+              Chikmagalur
+            </a>
+            <a href="/about/coffee-101" style={linkStyle}
+              onMouseEnter={(e) => (e.currentTarget.style.color = '#f2f2f3')}
+              onMouseLeave={(e) => (e.currentTarget.style.color = '#a4a2a2')}
+            >
+              Get to Know Your Coffee
+            </a>
+            <a href="/why-us" style={linkStyle}
+              onMouseEnter={(e) => (e.currentTarget.style.color = '#f2f2f3')}
+              onMouseLeave={(e) => (e.currentTarget.style.color = '#a4a2a2')}
+            >
+              Why Us
+            </a>
+          </div>
+
+          {/* Col 3: Office Hours */}
           <div>
             <p style={labelStyle}>Office Hours</p>
             <p style={{ ...linkStyle, cursor: 'default' }}>EU/UK: 9AM–6PM IST</p>
@@ -320,10 +325,13 @@ export default function Footer() {
             © 2026 Caffeine Nirvana. Keserke, Chikmagalur 577101, Karnataka, India.
           </p>
           <div style={{ display: 'flex', gap: '20px' }}>
-            {['Privacy Policy', 'Terms'].map((item) => (
+            {[
+              { label: 'Privacy Policy', href: '/privacy' },
+              { label: 'Terms', href: '/terms' },
+            ].map((item) => (
               <a
-                key={item}
-                href="#"
+                key={item.label}
+                href={item.href}
                 style={{
                   fontFamily: 'DM Sans, system-ui, sans-serif',
                   fontSize: '11px',
@@ -334,7 +342,7 @@ export default function Footer() {
                 onMouseEnter={(e) => (e.currentTarget.style.color = '#a4a2a2')}
                 onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(164,162,162,0.5)')}
               >
-                {item}
+                {item.label}
               </a>
             ))}
           </div>

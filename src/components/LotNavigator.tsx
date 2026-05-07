@@ -229,6 +229,7 @@ export default function LotNavigator() {
                 }}
               >
                 {[
+                  { label: 'Estate', value: lot.estate },
                   { label: 'Varietal', value: lot.varietal },
                   { label: 'Process', value: lot.process },
                   { label: 'Altitude', value: lot.altitude },

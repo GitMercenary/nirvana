@@ -3,8 +3,8 @@ export default function StructuredData() {
     '@context': 'https://schema.org',
     '@type': 'Organization',
     name: 'Caffeine Nirvana',
-    url: 'https://caffeinenirvana.net',
-    logo: 'https://caffeinenirvana.net/images/logo-full.jpg',
+    url: 'https://caffeinenirvana.co',
+    logo: 'https://caffeinenirvana.co/images/logo-full.jpg',
     description:
       'Specialty green coffee exporter from Chikmagalur, India. Direct trade, traceable lots scoring 86-88 SCA.',
     address: {
@@ -16,8 +16,7 @@ export default function StructuredData() {
     },
     contactPoint: {
       '@type': 'ContactPoint',
-      email: 'danish.888.ali@gmail.com',
-      telephone: '+918073728811',
+      email: 'danish@caffeinenirvana.co',
       contactType: 'sales',
     },
     sameAs: [

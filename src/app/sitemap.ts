@@ -3,40 +3,76 @@ import type { MetadataRoute } from 'next'
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
-      url: 'https://caffeinenirvana.net',
+      url: 'https://caffeinenirvana.co',
       lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: 1,
     },
     {
-      url: 'https://caffeinenirvana.net/offerings',
+      url: 'https://caffeinenirvana.co/offerings',
       lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: 0.9,
     },
     {
-      url: 'https://caffeinenirvana.net/about',
+      url: 'https://caffeinenirvana.co/about',
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.8,
     },
     {
-      url: 'https://caffeinenirvana.net/estates',
+      url: 'https://caffeinenirvana.co/estates',
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.8,
     },
     {
-      url: 'https://caffeinenirvana.net/roasted-supply',
+      url: 'https://caffeinenirvana.co/roasted-supply',
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.7,
     },
     {
-      url: 'https://caffeinenirvana.net/contact',
+      url: 'https://caffeinenirvana.co/contact',
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.7,
+    },
+    {
+      url: 'https://caffeinenirvana.co/why-us',
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: 'https://caffeinenirvana.co/about/team',
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
+    {
+      url: 'https://caffeinenirvana.co/about/chikmagalur',
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.6,
+    },
+    {
+      url: 'https://caffeinenirvana.co/about/coffee-101',
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.6,
+    },
+    {
+      url: 'https://caffeinenirvana.co/privacy',
+      lastModified: new Date(),
+      changeFrequency: 'yearly',
+      priority: 0.3,
+    },
+    {
+      url: 'https://caffeinenirvana.co/terms',
+      lastModified: new Date(),
+      changeFrequency: 'yearly',
+      priority: 0.3,
     },
   ]
 }

@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: '*',
       allow: '/',
     },
-    sitemap: 'https://caffeinenirvana.net/sitemap.xml',
+    sitemap: 'https://caffeinenirvana.co/sitemap.xml',
   }
 }

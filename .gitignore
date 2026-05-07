@@ -5,3 +5,6 @@ node_modules/
 .env*.local
 *.log
 .DS_Store
+
+# Source photos staged for curation — keep raw imports out of git
+Public/images/from-photos/

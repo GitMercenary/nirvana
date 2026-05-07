@@ -8,7 +8,7 @@
 export const EMAIL_CONFIG = {
 
   // Primary recipient — client inbox
-  PRIMARY: 'danish.888.ali@gmail.com',
+  PRIMARY: 'danish@caffeinenirvana.co',
 
   // CC recipient — agency monitoring all leads
   CC: 'mohamed.jaffar@blackarrowtechnologies.com',

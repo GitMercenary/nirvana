@@ -6,7 +6,7 @@ import Footer from '@/components/Footer'
 import StructuredData from '@/components/StructuredData'
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://caffeinenirvana.net'),
+  metadataBase: new URL('https://caffeinenirvana.co'),
   title: {
     default: 'Caffeine Nirvana — Specialty Green Coffee from India | Direct Trade',
     template: '%s | Caffeine Nirvana',
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://caffeinenirvana.net',
+    url: 'https://caffeinenirvana.co',
     siteName: 'Caffeine Nirvana',
     title: 'Caffeine Nirvana — Specialty Green Coffee from India',
     description:
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
     follow: true,
   },
   alternates: {
-    canonical: 'https://caffeinenirvana.net',
+    canonical: 'https://caffeinenirvana.co',
   },
 }
 

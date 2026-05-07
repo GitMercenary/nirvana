@@ -7,54 +7,56 @@ import { useIsMobile } from '@/hooks/useIsMobile'
 import { useFormContext } from '@/context/FormContext'
 
 /* ------------------------------------------------------------------ */
-/*  Estate data — placeholder content                                  */
+/*  Estate data                                                        */
 /* ------------------------------------------------------------------ */
 
 const ESTATES = [
   {
-    name: 'Boothangudi Estate',
-    location: 'Chikmagalur',
-    altitude: '1,050 masl',
-    varietals: 'SLN 5B, Chandragiri',
-    process: 'Semi-Anaerobic, Washed',
+    name: 'Zoya Estate',
+    location: 'Chikmagalur · Flagship',
+    altitude: '3,850–4,180 ft',
+    varietals: 'Native Arabica',
+    process: 'Specialty washed, natural & experimental',
     description:
-      'Semi-anaerobic and washed process specialist. Known for complex cup profiles with tropical fruit notes.',
-    image: '/images/carousel/export-sack.jpg',
+      'Our flagship estate, Zoya Estate, sits under a dense canopy of native fig and forest trees that create ideal conditions for exceptional coffee. Every aspect of cultivation is dedicated to producing coffees that are expressive, distinctive, and true to their origin — with a thoughtful, tailored approach to processing that highlights the inherent character of the terroir.',
+    image: '/images/estate-zoya.png',
   },
   {
-    name: 'Estate 2',
+    name: 'Sheethal Estate',
     location: 'Chikmagalur',
-    altitude: 'TBD',
-    varietals: 'TBD',
-    process: 'TBD',
-    description: 'Details coming soon. Content will be provided by the owner.',
-    image: '/images/carousel/drying-beds.jpg',
-  },
-  {
-    name: 'Estate 3',
-    location: 'Chikmagalur',
-    altitude: 'TBD',
-    varietals: 'TBD',
-    process: 'TBD',
-    description: 'Details coming soon. Content will be provided by the owner.',
+    altitude: 'High-elevation, lakeside',
+    varietals: 'Heirloom Arabica',
+    process: 'Traditional & organic',
+    description:
+      'Nestled beside a serene lake and encircled by mountains, Sheethal Estate is where nature sets the rhythm. Guided by Achinth Gowda, the estate uses ancient agricultural practices — including Panchgavya, a traditional blend of five sacred cow-derived components — to nourish the soil and sustain the ecosystem. Heritage meets a forward-thinking approach to agroforestry.',
     image: '/images/carousel/cherries-ripe.jpg',
   },
   {
-    name: 'Estate 4',
+    name: 'Kardigandi Estate',
+    location: 'Aldur, Chikmagalur',
+    altitude: 'Goldilocks zone',
+    varietals: 'Arabica',
+    process: 'Rainforest Alliance Certified',
+    description:
+      'Nestled in the Aldur region — a true "Goldilocks zone" for coffee cultivation — Kardigandi Estate is stewarded by Kashif Asghar, a fifth-generation planter. A Rainforest Alliance Certified estate, Kardigandi is firmly committed to environmentally and socially responsible practices. Sustainability is foundational here, from nurturing the soil to supporting the people who cultivate it.',
+    image: '/images/carousel/drying-beds.jpg',
+  },
+  {
+    name: 'New Partner Estate',
     location: 'Chikmagalur',
     altitude: 'TBD',
     varietals: 'TBD',
     process: 'TBD',
-    description: 'Details coming soon. Content will be provided by the owner.',
+    description: 'A new partner estate joining the Caffeine Nirvana family. Details coming soon.',
     image: '/images/carousel/drying-cherries.jpg',
   },
   {
-    name: 'Estate 5',
+    name: 'New Partner Estate',
     location: 'Chikmagalur',
     altitude: 'TBD',
     varietals: 'TBD',
     process: 'TBD',
-    description: 'Details coming soon. Content will be provided by the owner.',
+    description: 'A new partner estate joining the Caffeine Nirvana family. Details coming soon.',
     image: '/images/carousel/beans-floor.jpg',
   },
 ]

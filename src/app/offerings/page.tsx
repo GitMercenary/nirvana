@@ -34,10 +34,10 @@ function LotCard({ lot, index }: { lot: (typeof LOTS)[number]; index: number }) 
   const inView = useInView(ref, { once: true, margin: '-40px' })
 
   const dataFields = [
+    { label: 'Estate', value: lot.estate },
     { label: 'Varietal', value: lot.varietal },
     { label: 'Process', value: lot.process },
     { label: 'Altitude', value: lot.altitude },
-    { label: 'Harvest', value: lot.harvest },
   ]
 
   return (

@@ -65,9 +65,10 @@ export default function HumanContactSection() {
               marginBottom: '16px',
             }}
           >
-            &ldquo;I started exporting because I wanted the people who roast our coffee to know
-            exactly where it comes from. Not a broker&apos;s description. Not a cupping report.
-            The actual place, the actual process, and the person responsible for it.
+            Hailing from a family with over 250 years of coffee-growing heritage in
+            Chikmagalur, Danish Ali is a producer, exporter, and passionate coffee
+            craftsman dedicated to elevating Indian specialty coffee on the global
+            stage.
           </p>
           <p
             style={{
@@ -79,8 +80,10 @@ export default function HumanContactSection() {
               marginBottom: '12px',
             }}
           >
-            If you&apos;re a roaster looking for something genuinely different from India — I&apos;d
-            like to hear from you.&rdquo;
+            Raised at the 150-year-old Zoya Estates, his journey in coffee is rooted
+            in generations of tradition — combining heritage, innovation, and a deep
+            understanding of cultivation and processing to create coffees with
+            exceptional character and quality.
           </p>
           <p
             style={{
@@ -92,15 +95,13 @@ export default function HumanContactSection() {
               marginBottom: '48px',
             }}
           >
-            — Danish Ali, Director, Caffeine Nirvana
+            — Danish Ali, Founder, Caffeine Nirvana
           </p>
 
           {/* Contact block */}
           <div style={{ marginBottom: '40px' }}>
             {[
-              { text: 'danish.888.ali@gmail.com', href: 'mailto:danish.888.ali@gmail.com', red: true },
-              { text: '+91 80 7372 8811', href: 'tel:+918073728811', red: true },
-              { text: 'caffeinenirvana.net', href: 'https://caffeinenirvana.net', red: false },
+              { text: 'danish@caffeinenirvana.co', href: 'mailto:danish@caffeinenirvana.co', red: true },
             ].map(({ text, href, red }) => (
               <a
                 key={text}

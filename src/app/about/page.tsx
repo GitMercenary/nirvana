@@ -3,39 +3,33 @@
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 import Image from 'next/image'
+import Link from 'next/link'
 import { useFormContext } from '@/context/FormContext'
 import { useIsMobile } from '@/hooks/useIsMobile'
 
 const ease = [0.16, 1, 0.3, 1] as const
 
-const pillars = [
+const exploreCards = [
   {
-    number: '01',
-    title: 'Sourcing & Processing',
-    body: 'We source coffee from countless small farmers across Chikmagalur and process it at the Caffeine Nirvana Washing Station. Shade-grown under biodiverse canopy with a focus on soil health.',
-    detail:
-      'Our washing station is equipped to handle diverse processing methods, ensuring each lot is treated according to its unique characteristics and the farmer\u2019s growing conditions.',
+    eyebrow: 'The People',
+    title: 'Team',
+    body: 'The producers, directors, and roasters behind Caffeine Nirvana \u2014 and the heritage they carry.',
+    href: '/about/team',
+    image: '/images/estate-zoya.png',
   },
   {
-    number: '02',
-    title: 'Quality First',
-    body: 'High scoring lots with 86\u201388 SCA cupping scores. Our shift from quantity to cup quality drives everything we do.',
-    detail:
-      'Processing innovations including anaerobic, semi-anaerobic, washed, and natural methods allow us to unlock each lot\u2019s full potential and deliver exceptional specialty coffee.',
+    eyebrow: 'The Region',
+    title: 'Chikmagalur',
+    body: 'The mist-covered hills where coffee in India began, and where every Caffeine Nirvana lot is grown.',
+    href: '/about/chikmagalur',
+    image: '/images/carousel/cherries-ripe.jpg',
   },
   {
-    number: '03',
-    title: 'Inclusion & Grassroots',
-    body: 'Working with farmers at the grassroots level \u2014 from plant varietal selection to growing practices and nutrition.',
-    detail:
-      'We share knowledge with regional growers, helping them adopt better varietals, improve soil management, and increase yields while maintaining quality.',
-  },
-  {
-    number: '04',
-    title: 'Sustainable & Transparent',
-    body: 'We pay among the highest prices to our farmers and focus on building a sustainable coffee ecosystem.',
-    detail:
-      'Climate-conscious growing and processing methods, transparent pricing, and long-term partnerships ensure that every link in the chain benefits \u2014 from the soil to the cup.',
+    eyebrow: 'The Craft',
+    title: 'Get to Know Your Coffee',
+    body: 'Coffee as a way of life \u2014 our philosophy on ethical growth, longevity, and protecting what we love.',
+    href: '/about/coffee-101',
+    image: '/images/carousel/cupping-lab.jpg',
   },
 ]
 
@@ -145,7 +139,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ──────────────────── SECTION 2: THE PILLARS (WHAT WE DO) ─────────────────── */}
+      {/* ──────────────────── SECTION 2: WHY NIRVANA (NAME ORIGIN) ─────────────────── */}
       <section
         ref={pillarsRef}
         style={{
@@ -155,12 +149,11 @@ export default function AboutPage() {
       >
         <div
           style={{
-            maxWidth: '1200px',
+            maxWidth: '780px',
             margin: '0 auto',
-            padding: isMobile ? '0 20px' : '0 32px',
+            padding: isMobile ? '0 24px' : '0 32px',
           }}
         >
-          {/* Eyebrow */}
           <motion.p
             initial={{ opacity: 0, y: 16 }}
             animate={pillarsInView ? { opacity: 1, y: 0 } : {}}
@@ -174,10 +167,9 @@ export default function AboutPage() {
               marginBottom: '16px',
             }}
           >
-            What We Do
+            The Story Behind the Name
           </motion.p>
 
-          {/* Headline */}
           <motion.h2
             initial={{ opacity: 0, y: 24 }}
             animate={pillarsInView ? { opacity: 1, y: 0 } : {}}
@@ -185,103 +177,36 @@ export default function AboutPage() {
             style={{
               fontFamily: 'Playfair Display, Georgia, serif',
               fontWeight: 700,
-              fontSize: 'clamp(36px, 5vw, 48px)',
+              fontSize: 'clamp(36px, 5vw, 56px)',
               color: 'var(--cn-cream, #f2f2f3)',
-              marginBottom: '64px',
+              marginBottom: '36px',
+              lineHeight: 1.15,
             }}
           >
-            The Four Pillars
+            Why we named it Caffeine Nirvana.
           </motion.h2>
 
-          {/* CONTENT: Owner to provide final copy */}
-
-          {/* 2x2 Grid */}
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: isMobile ? '1fr' : 'repeat(2, 1fr)',
-              gap: '24px',
-            }}
-          >
-            {pillars.map((pillar, i) => (
-              <motion.div
-                key={pillar.number}
-                initial={{ opacity: 0, y: 32 }}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
+            {[
+              'The word Nirvana represents a state of perfect harmony, liberation, and the ultimate realisation of one’s potential. To us, coffee is more than a stimulant — it is a catalyst for that moment of total clarity.',
+              'We chose the name Caffeine Nirvana because we aim to bridge the gap between the frantic energy of the daily grind and the serene focus required to conquer it. It’s that precise, blissful point where the world goes quiet, your senses awaken, and everything feels possible.',
+              'We don’t just sell coffee; we sell the peak moment of your day.',
+            ].map((p, i) => (
+              <motion.p
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
                 animate={pillarsInView ? { opacity: 1, y: 0 } : {}}
-                transition={{
-                  duration: 0.7,
-                  ease,
-                  delay: 0.2 + i * 0.1,
-                }}
+                transition={{ duration: 0.7, ease, delay: 0.16 + i * 0.08 }}
                 style={{
-                  background: 'rgba(255, 255, 255, 0.03)',
-                  border: '1px solid rgba(242, 242, 243, 0.06)',
-                  borderRadius: 'var(--cn-radius, 12px)',
-                  padding: '32px',
-                  position: 'relative',
-                  overflow: 'hidden',
+                  fontFamily: 'Zilla Slab, Georgia, serif',
+                  fontSize: 'clamp(17px, 2vw, 19px)',
+                  lineHeight: 1.75,
+                  color: 'var(--cn-cream, #f2f2f3)',
+                  margin: 0,
                 }}
               >
-                {/* Ghost number */}
-                <span
-                  style={{
-                    fontFamily: 'Playfair Display, Georgia, serif',
-                    fontSize: '72px',
-                    fontWeight: 700,
-                    color: 'var(--cn-red-primary, #da2233)',
-                    opacity: 0.15,
-                    position: 'absolute',
-                    top: '12px',
-                    right: '24px',
-                    lineHeight: 1,
-                    userSelect: 'none',
-                    pointerEvents: 'none',
-                  }}
-                >
-                  {pillar.number}
-                </span>
-
-                {/* Title */}
-                <h3
-                  style={{
-                    fontFamily: 'Zilla Slab, Georgia, serif',
-                    fontSize: '20px',
-                    fontWeight: 600,
-                    color: 'var(--cn-cream, #f2f2f3)',
-                    marginBottom: '12px',
-                    position: 'relative',
-                  }}
-                >
-                  {pillar.title}
-                </h3>
-
-                {/* Body */}
-                <p
-                  style={{
-                    fontFamily: 'DM Sans, system-ui, sans-serif',
-                    fontSize: '15px',
-                    lineHeight: 1.65,
-                    color: 'var(--cn-gray, #a4a2a2)',
-                    position: 'relative',
-                    marginBottom: '14px',
-                  }}
-                >
-                  {pillar.body}
-                </p>
-
-                {/* Detail paragraph */}
-                <p
-                  style={{
-                    fontFamily: 'DM Sans, system-ui, sans-serif',
-                    fontSize: '13px',
-                    lineHeight: 1.6,
-                    color: 'rgba(164, 162, 162, 0.7)',
-                    position: 'relative',
-                  }}
-                >
-                  {pillar.detail}
-                </p>
-              </motion.div>
+                {p}
+              </motion.p>
             ))}
           </div>
         </div>
@@ -377,10 +302,10 @@ export default function AboutPage() {
                 marginBottom: '28px',
               }}
             >
-              &mdash; Danish Ali, Director, Caffeine Nirvana
+              &mdash; Danish Ali, Founder, Caffeine Nirvana
             </motion.p>
 
-            {/* Bio placeholder */}
+            {/* Short bio + link to /about/team */}
             <motion.p
               initial={{ opacity: 0, y: 16 }}
               animate={storyInView ? { opacity: 1, y: 0 } : {}}
@@ -390,15 +315,37 @@ export default function AboutPage() {
                 fontSize: '15px',
                 lineHeight: 1.7,
                 color: 'var(--cn-gray, #a4a2a2)',
+                marginBottom: '20px',
               }}
             >
-              Danish Ali grew up on a coffee estate in Chikmagalur and spent years
-              learning every step of the journey from cherry to cup. His vision for
-              Caffeine Nirvana is built on three pillars he presented at the Typica
-              conference: sustainability, inclusion, and spirituality. He believes
-              that great coffee is as much about the people who grow it as the
-              methods used to process it.
+              Hailing from a family with over 250 years of coffee-growing heritage in
+              Chikmagalur, Danish is a producer, exporter, and passionate coffee
+              craftsman dedicated to elevating Indian specialty coffee on the global
+              stage. He leads Caffeine Nirvana alongside Ayesha Naseer (Director) and
+              Harsh Jain (Roasting Head).
             </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              animate={storyInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, ease, delay: 0.4 }}
+            >
+              <Link
+                href="/about/team"
+                style={{
+                  fontFamily: 'DM Sans, system-ui, sans-serif',
+                  fontSize: '13px',
+                  letterSpacing: '0.12em',
+                  textTransform: 'uppercase',
+                  color: 'var(--cn-red-primary, #da2233)',
+                  textDecoration: 'none',
+                  borderBottom: '1px solid var(--cn-red-primary, #da2233)',
+                  paddingBottom: 2,
+                }}
+              >
+                Meet the team →
+              </Link>
+            </motion.div>
           </div>
 
           {/* Image column */}
@@ -424,6 +371,9 @@ export default function AboutPage() {
           </motion.div>
         </div>
       </section>
+
+      {/* ──────────────────── SECTION 3.5: EXPLORE OUR STORY ──────────────────────── */}
+      <ExploreSection />
 
       {/* ──────────────────── SECTION 4: OUR PRACTICES ────────────────────────────── */}
       <section
@@ -635,5 +585,155 @@ export default function AboutPage() {
         </div>
       </section>
     </main>
+  )
+}
+
+function ExploreSection() {
+  const isMobile = useIsMobile()
+  const ref = useRef<HTMLDivElement>(null)
+  const inView = useInView(ref, { once: true, margin: '-10% 0px' })
+
+  return (
+    <section
+      ref={ref}
+      style={{
+        background: 'var(--cn-black, #0a0a0a)',
+        padding: isMobile ? '80px 0' : '120px 0',
+      }}
+    >
+      <div
+        style={{
+          maxWidth: '1200px',
+          margin: '0 auto',
+          padding: isMobile ? '0 20px' : '0 32px',
+        }}
+      >
+        <motion.p
+          initial={{ opacity: 0, y: 16 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, ease }}
+          style={{
+            fontFamily: 'DM Sans, system-ui, sans-serif',
+            fontSize: '11px',
+            letterSpacing: '0.25em',
+            textTransform: 'uppercase',
+            color: 'var(--cn-gray, #a4a2a2)',
+            marginBottom: '16px',
+          }}
+        >
+          Explore
+        </motion.p>
+
+        <motion.h2
+          initial={{ opacity: 0, y: 24 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7, ease, delay: 0.08 }}
+          style={{
+            fontFamily: 'Playfair Display, Georgia, serif',
+            fontWeight: 700,
+            fontSize: 'clamp(32px, 4.5vw, 44px)',
+            color: 'var(--cn-cream, #f2f2f3)',
+            marginBottom: '48px',
+            lineHeight: 1.15,
+          }}
+        >
+          Our Story, in three threads.
+        </motion.h2>
+
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: isMobile ? '1fr' : 'repeat(3, 1fr)',
+            gap: '24px',
+          }}
+        >
+          {exploreCards.map((card, i) => (
+            <motion.div
+              key={card.href}
+              initial={{ opacity: 0, y: 32 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.7, ease, delay: 0.16 + i * 0.1 }}
+            >
+              <Link
+                href={card.href}
+                style={{
+                  display: 'block',
+                  textDecoration: 'none',
+                  background: 'rgba(255, 255, 255, 0.03)',
+                  border: '1px solid rgba(242, 242, 243, 0.06)',
+                  borderRadius: 'var(--cn-radius, 12px)',
+                  overflow: 'hidden',
+                  height: '100%',
+                  transition: 'transform 300ms ease, border-color 300ms ease',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.borderColor = 'rgba(218, 34, 51, 0.5)'
+                  e.currentTarget.style.transform = 'translateY(-4px)'
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.borderColor = 'rgba(242, 242, 243, 0.06)'
+                  e.currentTarget.style.transform = 'translateY(0)'
+                }}
+              >
+                <div
+                  style={{
+                    position: 'relative',
+                    width: '100%',
+                    aspectRatio: '3 / 2',
+                    overflow: 'hidden',
+                  }}
+                >
+                  <Image
+                    src={card.image}
+                    alt={card.title}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                    style={{ objectFit: 'cover', filter: 'saturate(0.85)' }}
+                  />
+                </div>
+                <div style={{ padding: '24px' }}>
+                  <p
+                    style={{
+                      fontFamily: 'DM Sans, system-ui, sans-serif',
+                      fontSize: '11px',
+                      letterSpacing: '0.2em',
+                      textTransform: 'uppercase',
+                      color: 'var(--cn-red-primary, #da2233)',
+                      marginBottom: '10px',
+                      margin: 0,
+                    }}
+                  >
+                    {card.eyebrow}
+                  </p>
+                  <h3
+                    style={{
+                      fontFamily: 'Playfair Display, Georgia, serif',
+                      fontWeight: 700,
+                      fontSize: '24px',
+                      color: 'var(--cn-cream, #f2f2f3)',
+                      margin: '8px 0 12px 0',
+                      lineHeight: 1.2,
+                    }}
+                  >
+                    {card.title}
+                  </h3>
+                  <p
+                    style={{
+                      fontFamily: 'DM Sans, system-ui, sans-serif',
+                      fontSize: '14px',
+                      lineHeight: 1.6,
+                      color: 'var(--cn-gray, #a4a2a2)',
+                      margin: 0,
+                    }}
+                  >
+                    {card.body}
+                  </p>
+                </div>
+              </Link>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
   )
 }

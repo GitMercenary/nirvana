@@ -6,11 +6,24 @@ import { useFormContext } from '@/context/FormContext'
 import Image from 'next/image'
 import Link from 'next/link'
 
-const NAV_ITEMS = [
+type NavChild = { label: string; href: string }
+type NavItem = { label: string; href: string; children?: NavChild[] }
+
+const NAV_ITEMS: NavItem[] = [
   { label: 'Offerings', href: '/offerings' },
-  { label: 'Our Story', href: '/about' },
+  {
+    label: 'Our Story',
+    href: '/about',
+    children: [
+      { label: 'About Us', href: '/about' },
+      { label: 'Team', href: '/about/team' },
+      { label: 'Chikmagalur', href: '/about/chikmagalur' },
+      { label: 'Get to Know Your Coffee', href: '/about/coffee-101' },
+    ],
+  },
   { label: 'Estates', href: '/estates' },
   { label: 'Roasted Supply', href: '/roasted-supply' },
+  { label: 'Why Us', href: '/why-us' },
   { label: 'Contact', href: '/contact' },
 ]
 
@@ -42,62 +55,31 @@ export default function Navigation() {
           borderBottom: scrolled ? '1px solid rgba(242,242,243,0.06)' : 'none',
         }}
       >
-        {/* Wordmark with Enzo logo */}
+        {/* Brand mark — full BW logo */}
         <Link
           href="/"
           style={{
             display: 'flex',
             alignItems: 'center',
-            gap: '10px',
+            height: '44px',
             textDecoration: 'none',
           }}
         >
           <Image
-            src="/images/logo-enzo.png"
-            alt=""
-            width={32}
-            height={32}
-            style={{ objectFit: 'contain' }}
+            src="/images/logo-bw.jpg"
+            alt="Caffeine Nirvana"
+            width={812}
+            height={449}
+            priority
+            style={{ height: '100%', width: 'auto', maxWidth: '200px', objectFit: 'contain' }}
           />
-          <span
-            style={{
-              fontFamily: 'Playfair Display, Georgia, serif',
-              fontWeight: 700,
-              fontSize: '20px',
-              color: '#f2f2f3',
-              letterSpacing: '0.02em',
-            }}
-          >
-            Caffeine Nirvana
-          </span>
         </Link>
 
         {/* Nav links + CTA — desktop only */}
         <div className="hidden md:flex items-center gap-8">
-          {NAV_ITEMS.map((item) => {
-            const isExternal = !item.href.startsWith('/')
-            const isAnchor = item.href.includes('#')
-            return (
-              <Link
-                key={item.label}
-                href={item.href}
-                {...(isExternal ? { target: '_blank', rel: 'noopener' } : {})}
-                style={{
-                  fontFamily: 'DM Sans, system-ui, sans-serif',
-                  fontSize: '13px',
-                  letterSpacing: '0.12em',
-                  textTransform: 'uppercase',
-                  color: '#a4a2a2',
-                  textDecoration: 'none',
-                  transition: 'color 300ms ease',
-                }}
-                onMouseEnter={(e) => (e.currentTarget.style.color = '#f2f2f3')}
-                onMouseLeave={(e) => (e.currentTarget.style.color = '#a4a2a2')}
-              >
-                {item.label}
-              </Link>
-            )
-          })}
+          {NAV_ITEMS.map((item) => (
+            <DesktopNavLink key={item.label} item={item} />
+          ))}
 
           {/* Ghost CTA with SVG border trace animation */}
           <NavCTAButton onClick={onSourceClick} />
@@ -170,29 +152,57 @@ export default function Navigation() {
             </button>
 
             {/* Nav links */}
-            <nav style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: '8px' }}>
+            <nav style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: '8px', overflowY: 'auto' }}>
               {NAV_ITEMS.map((item, i) => (
-                <motion.a
-                  key={item.label}
-                  href={item.href}
-                  initial={{ opacity: 0, x: 24 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1], delay: 0.05 + i * 0.07 }}
-                  onClick={() => setIsMenuOpen(false)}
-                  style={{
-                    fontFamily: 'Playfair Display, Georgia, serif',
-                    fontWeight: 700,
-                    fontSize: '36px',
-                    color: '#f2f2f3',
-                    textDecoration: 'none',
-                    lineHeight: 1.3,
-                    display: 'block',
-                  }}
-                  onMouseEnter={(e) => (e.currentTarget.style.color = '#da2233')}
-                  onMouseLeave={(e) => (e.currentTarget.style.color = '#f2f2f3')}
-                >
-                  {item.label}
-                </motion.a>
+                <div key={item.label} style={{ display: 'flex', flexDirection: 'column' }}>
+                  <motion.a
+                    href={item.href}
+                    initial={{ opacity: 0, x: 24 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1], delay: 0.05 + i * 0.07 }}
+                    onClick={() => setIsMenuOpen(false)}
+                    style={{
+                      fontFamily: 'Playfair Display, Georgia, serif',
+                      fontWeight: 700,
+                      fontSize: '32px',
+                      color: '#f2f2f3',
+                      textDecoration: 'none',
+                      lineHeight: 1.3,
+                      display: 'block',
+                    }}
+                    onMouseEnter={(e) => (e.currentTarget.style.color = '#da2233')}
+                    onMouseLeave={(e) => (e.currentTarget.style.color = '#f2f2f3')}
+                  >
+                    {item.label}
+                  </motion.a>
+                  {item.children && (
+                    <div style={{ display: 'flex', flexDirection: 'column', marginTop: 6, marginBottom: 6, paddingLeft: 16, gap: 4 }}>
+                      {item.children.map((child, ci) => (
+                        <motion.a
+                          key={child.href}
+                          href={child.href}
+                          initial={{ opacity: 0, x: 16 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1], delay: 0.1 + i * 0.07 + ci * 0.04 }}
+                          onClick={() => setIsMenuOpen(false)}
+                          style={{
+                            fontFamily: 'DM Sans, system-ui, sans-serif',
+                            fontSize: '14px',
+                            letterSpacing: '0.08em',
+                            textTransform: 'uppercase',
+                            color: '#a4a2a2',
+                            textDecoration: 'none',
+                            display: 'block',
+                          }}
+                          onMouseEnter={(e) => (e.currentTarget.style.color = '#f2f2f3')}
+                          onMouseLeave={(e) => (e.currentTarget.style.color = '#a4a2a2')}
+                        >
+                          {child.label}
+                        </motion.a>
+                      ))}
+                    </div>
+                  )}
+                </div>
               ))}
             </nav>
 
@@ -234,6 +244,109 @@ export default function Navigation() {
         )}
       </AnimatePresence>
     </>
+  )
+}
+
+function DesktopNavLink({ item }: { item: NavItem }) {
+  const [open, setOpen] = useState(false)
+
+  if (!item.children) {
+    return (
+      <Link
+        href={item.href}
+        style={{
+          fontFamily: 'DM Sans, system-ui, sans-serif',
+          fontSize: '13px',
+          letterSpacing: '0.12em',
+          textTransform: 'uppercase',
+          color: '#a4a2a2',
+          textDecoration: 'none',
+          transition: 'color 300ms ease',
+        }}
+        onMouseEnter={(e) => (e.currentTarget.style.color = '#f2f2f3')}
+        onMouseLeave={(e) => (e.currentTarget.style.color = '#a4a2a2')}
+      >
+        {item.label}
+      </Link>
+    )
+  }
+
+  return (
+    <div
+      style={{ position: 'relative' }}
+      onMouseEnter={() => setOpen(true)}
+      onMouseLeave={() => setOpen(false)}
+    >
+      <Link
+        href={item.href}
+        style={{
+          fontFamily: 'DM Sans, system-ui, sans-serif',
+          fontSize: '13px',
+          letterSpacing: '0.12em',
+          textTransform: 'uppercase',
+          color: open ? '#f2f2f3' : '#a4a2a2',
+          textDecoration: 'none',
+          transition: 'color 300ms ease',
+          display: 'inline-block',
+          paddingBottom: 4,
+        }}
+      >
+        {item.label}
+      </Link>
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ opacity: 0, y: -6 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -6 }}
+            transition={{ duration: 0.2, ease: 'easeOut' }}
+            style={{
+              position: 'absolute',
+              top: 'calc(100% + 14px)',
+              left: '50%',
+              transform: 'translateX(-50%)',
+              minWidth: 220,
+              background: 'rgba(16,14,11,0.97)',
+              backdropFilter: 'blur(12px)',
+              border: '1px solid rgba(242,242,243,0.08)',
+              borderRadius: 'var(--cn-radius-sm, 8px)',
+              padding: '10px 0',
+              display: 'flex',
+              flexDirection: 'column',
+              boxShadow: '0 10px 30px rgba(0,0,0,0.35)',
+            }}
+          >
+            {item.children.map((child) => (
+              <Link
+                key={child.href}
+                href={child.href}
+                style={{
+                  fontFamily: 'DM Sans, system-ui, sans-serif',
+                  fontSize: '13px',
+                  letterSpacing: '0.08em',
+                  textTransform: 'uppercase',
+                  color: '#a4a2a2',
+                  textDecoration: 'none',
+                  padding: '10px 20px',
+                  whiteSpace: 'nowrap',
+                  transition: 'color 200ms ease, background 200ms ease',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.color = '#f2f2f3'
+                  e.currentTarget.style.background = 'rgba(218,34,51,0.08)'
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.color = '#a4a2a2'
+                  e.currentTarget.style.background = 'transparent'
+                }}
+              >
+                {child.label}
+              </Link>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
   )
 }
 

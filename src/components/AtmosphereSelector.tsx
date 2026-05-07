@@ -6,54 +6,58 @@ import { useIsMobile } from '@/hooks/useIsMobile'
 import { useFormContext } from '@/context/FormContext'
 export const LOTS = [
   {
-    id: 'washed',
-    name: '5B Washed',
-    varietal: '5B',
-    process: 'Washed',
-    altitude: '1,100 masl',
+    id: '5b-naturals',
+    name: '5B Naturals',
+    estate: 'Zoya Estate',
+    varietal: 'SL 5B',
+    process: '48 hr Anaerobic',
+    altitude: '4,180 ft msl',
     sca_score: '86.75',
-    tasting_notes: 'Bright citrus, black tea, clean floral close',
+    tasting_notes: 'Bright citrus, black tea, floral close',
     atmosphere: '#0a140a',
-    accent: '#2d5a27',
-    harvest: '2024',
-    volume: 'Available — Enquire for allocation',
-  },
-  {
-    id: 'natural',
-    name: '5B Natural',
-    varietal: '5B',
-    process: 'Natural',
-    altitude: '1,100 masl',
-    sca_score: '87.25',
-    tasting_notes: 'Ripe tropical fruit, brown sugar, jasmine finish',
-    atmosphere: '#140f0a',
     accent: '#b8860b',
     harvest: '2024',
     volume: 'Available — Enquire for allocation',
   },
   {
-    id: 'chandragiri',
+    id: 'chandragiri-washed',
     name: 'Chandragiri Washed',
+    estate: 'Sheethal Estate',
     varietal: 'Chandragiri',
-    process: 'Washed',
-    altitude: '1,050 masl',
+    process: '24 hr Classic Washed',
+    altitude: '3,870 ft msl',
     sca_score: '85.50',
     tasting_notes: 'Milk chocolate, dried apricot, soft caramel',
-    atmosphere: '#0f0f14',
-    accent: '#4a4a7a',
+    atmosphere: '#140f0a',
+    accent: '#a07050',
     harvest: '2024',
     volume: 'Available — Enquire for allocation',
   },
   {
-    id: 'monsooned',
-    name: 'Monsooned Malabar',
-    varietal: 'Monsooned Malabar',
-    process: 'Monsooned',
-    altitude: '900 masl',
-    sca_score: '86.00',
-    tasting_notes: 'Dark spice, aged wood, full body, low acidity',
-    atmosphere: '#0a0e14',
-    accent: '#2a3a5a',
+    id: 'supernatural',
+    name: 'Supernatural Process',
+    estate: 'Zoya Estate',
+    varietal: 'SL 5B',
+    process: 'Triple Supernatural',
+    altitude: '4,180 ft msl',
+    sca_score: '87.75',
+    tasting_notes: 'Stonefruit, peach, floral',
+    atmosphere: '#140a14',
+    accent: '#d49b6a',
+    harvest: '2024',
+    volume: 'Available — Enquire for allocation',
+  },
+  {
+    id: 'lactic-sequential-naturals',
+    name: 'Lactic Sequential Naturals',
+    estate: 'Caffeine Nirvana Washing Station',
+    varietal: 'SL 796, Chandragiri',
+    process: 'Three Stage Aerobic + Anaerobic Naturals',
+    altitude: '4,350 ft msl',
+    sca_score: '87.00',
+    tasting_notes: 'Strawberry milkshake, wildberries',
+    atmosphere: '#1a0a14',
+    accent: '#b03050',
     harvest: '2024',
     volume: 'Available — Enquire for allocation',
   },
@@ -95,8 +99,8 @@ function TopographicBackground() {
 
 export default function AtmosphereSelector() {
   const { openSampleForm: onSampleRequest } = useFormContext()
-  const [activeId, setActiveId] = useState('washed')
-  const activeLot = LOTS.find((l) => l.id === activeId)!
+  const [activeId, setActiveId] = useState(LOTS[0].id)
+  const activeLot = LOTS.find((l) => l.id === activeId) ?? LOTS[0]
   const isMobile = useIsMobile()
 
   return (
@@ -210,17 +214,30 @@ export default function AtmosphereSelector() {
                   }
                 }}
               >
-                {/* Lot name */}
-                <div
-                  style={{
-                    fontFamily: 'Playfair Display, Georgia, serif',
-                    fontWeight: 700,
-                    fontSize: '22px',
-                    color: '#f2f2f3',
-                    marginBottom: '24px',
-                  }}
-                >
-                  {lot.name}
+                {/* Lot name + estate */}
+                <div style={{ marginBottom: '24px' }}>
+                  <div
+                    style={{
+                      fontFamily: 'Playfair Display, Georgia, serif',
+                      fontWeight: 700,
+                      fontSize: '22px',
+                      color: '#f2f2f3',
+                      marginBottom: '4px',
+                    }}
+                  >
+                    {lot.name}
+                  </div>
+                  <div
+                    style={{
+                      fontFamily: 'DM Sans, system-ui, sans-serif',
+                      fontSize: '11px',
+                      letterSpacing: '0.15em',
+                      textTransform: 'uppercase',
+                      color: lot.accent,
+                    }}
+                  >
+                    {lot.estate}
+                  </div>
                 </div>
 
                 {/* Data grid */}

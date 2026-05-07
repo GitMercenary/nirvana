@@ -13,10 +13,10 @@ interface Props {
 }
 
 const LOTS_OPTIONS = [
-  '5B Natural',
-  '5B Washed',
-  'Chandragiri Washed',
-  'Monsooned Malabar',
+  '5B Naturals — Zoya Estate',
+  'Chandragiri Washed — Sheethal Estate',
+  'Supernatural Process — Zoya Estate',
+  'Lactic Sequential Naturals — Caffeine Nirvana Washing Station',
   'All Available',
 ]
 
@@ -294,7 +294,7 @@ export default function SourceFromOriginForm({ isOpen, onClose }: Props) {
                         marginBottom: '16px',
                       }}
                     >
-                      Something went wrong. Please email danish.888.ali@gmail.com directly.
+                      Something went wrong. Please email danish@caffeinenirvana.co directly.
                     </p>
                   )}
 
