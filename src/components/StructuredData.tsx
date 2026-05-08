@@ -20,9 +20,8 @@ export default function StructuredData() {
       contactType: 'sales',
     },
     sameAs: [
-      'https://linkedin.com/company/caffeine-nirvana',
-      'https://instagram.com/caffeinenirvana',
       'https://typica.coffee/en/producers/caffeine-nirvana',
+      // Add when active: 'https://www.instagram.com/caffeine_nirvana/'
     ],
   }
 
@@ -32,7 +31,7 @@ export default function StructuredData() {
     name: 'Specialty Green Coffee — Chikmagalur, India',
     brand: { '@type': 'Brand', name: 'Caffeine Nirvana' },
     description:
-      'High-scoring specialty green coffee lots (86-88 SCA) from small farmers in Chikmagalur, India. Washed, natural, and monsooned process.',
+      'High-scoring specialty green coffee lots (85.5–87.75 SCA) from Chikmagalur, India. Washed, natural, and experimental anaerobic processes.',
     category: 'Green Coffee Beans',
     countryOfOrigin: 'India',
     offers: {
@@ -41,6 +40,68 @@ export default function StructuredData() {
       priceCurrency: 'USD',
       eligibleRegion: 'Worldwide',
     },
+  }
+
+  // FAQ schema — surfaces directly in Google + AI answer engines (ChatGPT, Perplexity, Claude).
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'Where is Caffeine Nirvana coffee grown?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text:
+            'All Caffeine Nirvana coffee is grown in Chikmagalur, Karnataka, India — the birthplace of Indian coffee. We work with three partner estates: Zoya Estate (our flagship, at 4,180 ft msl), Sheethal Estate (lakeside, organic, Panchgavya practices), and Kardigandi Estate (Aldur, Rainforest Alliance Certified).',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'What SCA scores do Caffeine Nirvana coffees achieve?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text:
+            'Our current lots score between SCA 85.5 and SCA 87.75. The Supernatural Process Triple from Zoya Estate is our highest-scoring lot at 87.75. All cup scores are independently verified.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'How do I request a sample?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text:
+            'Use the Request Sample button on any lot in our Offerings page, or email Danish directly at danish@caffeinenirvana.co. We offer 1kg samples per lot to qualified trade buyers. Shipping is at the buyer’s cost unless agreed otherwise.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'What Incoterms does Caffeine Nirvana ship under?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text:
+            'Standard FOB Mangalore. CIF terms are available on request. Lot documentation, ICO marks, certificates of origin, and quality certifications are shared as applicable to each shipment.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Who runs Caffeine Nirvana?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text:
+            'Danish Ali (Founder) — 150-year family coffee-growing heritage in Chikmagalur, runs the producer / export side from Zoya Estate. Ayesha Naseer (Director) — Bengaluru-based, founder of the Café Azzure chain, leads market and customer relationships. Harsh Jain (Roasting Head) — Chikmagalur-born, headquartered in Gujarat, runs the roasted-bean and white-label division.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Does Caffeine Nirvana also supply roasted coffee?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text:
+            'Yes. We supply roasted single-origin beans wholesale to cafés and retailers, develop custom roast profiles for partner brands, and run white-label programmes. See /roasted-supply for details, or contact danish@caffeinenirvana.co.',
+        },
+      },
+    ],
   }
 
   return (
@@ -52,6 +113,10 @@ export default function StructuredData() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
     </>
   )

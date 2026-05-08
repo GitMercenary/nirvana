@@ -24,7 +24,14 @@ const NAV_ITEMS: NavItem[] = [
   },
   { label: 'Estates', href: '/estates' },
   { label: 'Roasted Supply', href: '/roasted-supply' },
-  { label: 'Why Us', href: '/why-us' },
+  {
+    label: 'Why Us',
+    href: '/why-us',
+    children: [
+      { label: 'Why Us', href: '/why-us' },
+      { label: 'Mission & Vision', href: '/why-us/mission-vision' },
+    ],
+  },
   { label: 'Contact', href: '/contact' },
 ]
 

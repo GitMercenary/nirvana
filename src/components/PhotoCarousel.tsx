@@ -65,13 +65,48 @@ export default function PhotoCarousel() {
     <section
       style={{
         background: 'var(--cn-black)',
-        padding: '80px 0',
+        padding: isMobile ? '64px 0 72px' : '96px 0 100px',
         overflow: 'hidden',
         width: '100%',
       }}
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
+      {/* Section header */}
+      <div
+        style={{
+          maxWidth: '1200px',
+          margin: '0 auto',
+          padding: isMobile ? '0 20px 36px' : '0 32px 56px',
+        }}
+      >
+        <p
+          style={{
+            fontFamily: 'DM Sans, system-ui, sans-serif',
+            fontSize: '11px',
+            letterSpacing: '0.25em',
+            textTransform: 'uppercase',
+            color: 'var(--cn-gray, #a4a2a2)',
+            marginBottom: '14px',
+          }}
+        >
+          From the Estates
+        </p>
+        <h2
+          style={{
+            fontFamily: 'Playfair Display, Georgia, serif',
+            fontWeight: 700,
+            fontSize: 'clamp(30px, 4vw, 44px)',
+            color: 'var(--cn-cream, #f2f2f3)',
+            lineHeight: 1.15,
+            margin: 0,
+            maxWidth: '720px',
+          }}
+        >
+          A year of harvests, processing, and quiet hours at origin.
+        </h2>
+      </div>
+
       <motion.div
         ref={scrollRef}
         drag="x"

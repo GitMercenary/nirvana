@@ -20,7 +20,7 @@ const ESTATES = [
     process: 'Specialty washed, natural & experimental',
     description:
       'Our flagship estate, Zoya Estate, sits under a dense canopy of native fig and forest trees that create ideal conditions for exceptional coffee. Every aspect of cultivation is dedicated to producing coffees that are expressive, distinctive, and true to their origin — with a thoughtful, tailored approach to processing that highlights the inherent character of the terroir.',
-    image: '/images/estate-zoya-hero.jpg',
+    image: '/images/estate-zoya-hero.png',
   },
   {
     name: 'Sheethal Estate',
@@ -248,7 +248,7 @@ export default function EstatesPage() {
           overflow: 'hidden',
         }}
       >
-        <HeroBackdrop src="/images/estate-zoya-hero.jpg" opacity={0.18} />
+        <HeroBackdrop src="/images/estate-zoya-hero.png" opacity={0.18} />
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}

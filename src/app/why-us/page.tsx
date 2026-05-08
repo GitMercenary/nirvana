@@ -8,21 +8,6 @@ import HeroBackdrop from '@/components/HeroBackdrop'
 
 const ease = [0.16, 1, 0.3, 1] as const
 
-const PILLARS = [
-  {
-    title: 'Soil',
-    body: 'The unique terroir of Chikmagalur, celebrated. Shade-grown under native canopy, regenerative practices, soil-health analysis on every partner farm. The land is the first ingredient — and we treat it that way.',
-  },
-  {
-    title: 'Soul',
-    body: 'Empowering small-holder farmers through direct trade. We don’t just buy the harvest; we invest in the hands that grow it — running workshops on nutrient management and helping families move from commodity to specialty.',
-  },
-  {
-    title: 'Science',
-    body: 'Meticulous processing and roasting that unlock each bean’s hidden potential. From triple thermal shock and sequential anoxic-anaerobic to native-yeast propagation and precision thermal profiling — we push what’s possible in every cup.',
-  },
-]
-
 const SETS_APART = [
   {
     title: 'Radical Transparency',
@@ -46,13 +31,11 @@ export default function WhyUsPage() {
   const isMobile = useIsMobile()
   const heroRef = useRef<HTMLDivElement>(null)
   const missionRef = useRef<HTMLDivElement>(null)
-  const visionRef = useRef<HTMLDivElement>(null)
   const apartRef = useRef<HTMLDivElement>(null)
   const pactRef = useRef<HTMLDivElement>(null)
 
   const heroInView = useInView(heroRef, { once: true, margin: '-10% 0px' })
   const missionInView = useInView(missionRef, { once: true, margin: '-10% 0px' })
-  const visionInView = useInView(visionRef, { once: true, margin: '-10% 0px' })
   const apartInView = useInView(apartRef, { once: true, margin: '-10% 0px' })
   const pactInView = useInView(pactRef, { once: true, margin: '-10% 0px' })
 
@@ -126,7 +109,7 @@ export default function WhyUsPage() {
         </div>
       </section>
 
-      {/* Mission — 3-pillar Soil / Soul / Science */}
+      {/* Mission & Vision teaser — full content lives on /why-us/mission-vision */}
       <section
         ref={missionRef}
         style={{
@@ -136,7 +119,6 @@ export default function WhyUsPage() {
           overflow: 'hidden',
         }}
       >
-        {/* Atmospheric backdrop — single coffee plant + valley */}
         <div
           style={{
             position: 'absolute',
@@ -161,9 +143,10 @@ export default function WhyUsPage() {
           style={{
             position: 'relative',
             zIndex: 1,
-            maxWidth: '1200px',
+            maxWidth: '780px',
             margin: '0 auto',
-            padding: isMobile ? '0 20px' : '0 32px',
+            padding: isMobile ? '0 24px' : '0 32px',
+            textAlign: 'center',
           }}
         >
           <motion.p
@@ -179,7 +162,7 @@ export default function WhyUsPage() {
               marginBottom: '16px',
             }}
           >
-            Our Mission
+            Mission &amp; Vision
           </motion.p>
 
           <motion.h2
@@ -189,14 +172,13 @@ export default function WhyUsPage() {
             style={{
               fontFamily: 'Playfair Display, Georgia, serif',
               fontWeight: 700,
-              fontSize: 'clamp(32px, 4.5vw, 44px)',
+              fontSize: 'clamp(32px, 4.5vw, 48px)',
               color: 'var(--cn-cream, #f2f2f3)',
-              marginBottom: '24px',
+              marginBottom: '20px',
               lineHeight: 1.15,
-              maxWidth: 760,
             }}
           >
-            A three-pillar model — soil, soul, and science.
+            Soil. Soul. Science.
           </motion.h2>
 
           <motion.p
@@ -205,138 +187,49 @@ export default function WhyUsPage() {
             transition={{ duration: 0.7, ease, delay: 0.14 }}
             style={{
               fontFamily: 'Zilla Slab, Georgia, serif',
-              fontSize: 'clamp(17px, 2vw, 19px)',
+              fontSize: 'clamp(17px, 2vw, 20px)',
               lineHeight: 1.7,
               color: 'var(--cn-cream, #f2f2f3)',
-              marginBottom: 56,
-              maxWidth: 760,
+              marginBottom: 32,
             }}
           >
-            Our business is an amalgamation of three forces: the soil — where the
-            unique terroir of Chikmagalur is celebrated; the soul — where we
-            empower small-holder farmers through direct trade; and the science —
-            where meticulous processing and roasting unlock each bean’s hidden
-            potential.
+            A three-pillar mission — celebrating the terroir, empowering the
+            farmer, and unlocking the bean. A vision to pioneer specialty coffee
+            in nascent regions while honouring the heritage that built ours.
           </motion.p>
 
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: isMobile ? '1fr' : 'repeat(3, 1fr)',
-              gap: '24px',
-            }}
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={missionInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, ease, delay: 0.22 }}
           >
-            {PILLARS.map((p, i) => (
-              <motion.div
-                key={p.title}
-                initial={{ opacity: 0, y: 32 }}
-                animate={missionInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.7, ease, delay: 0.2 + i * 0.1 }}
-                style={{
-                  background: 'rgba(255, 255, 255, 0.03)',
-                  border: '1px solid rgba(242, 242, 243, 0.06)',
-                  borderRadius: 'var(--cn-radius, 12px)',
-                  padding: '32px',
-                }}
-              >
-                <h3
-                  style={{
-                    fontFamily: 'Playfair Display, Georgia, serif',
-                    fontWeight: 700,
-                    fontSize: '32px',
-                    color: 'var(--cn-red-primary, #da2233)',
-                    margin: '0 0 16px 0',
-                  }}
-                >
-                  {p.title}
-                </h3>
-                <p
-                  style={{
-                    fontFamily: 'DM Sans, system-ui, sans-serif',
-                    fontSize: '15px',
-                    lineHeight: 1.7,
-                    color: 'var(--cn-gray, #a4a2a2)',
-                    margin: 0,
-                  }}
-                >
-                  {p.body}
-                </p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Vision */}
-      <section
-        ref={visionRef}
-        style={{
-          background: 'var(--cn-black, #0a0a0a)',
-          padding: isMobile ? '80px 0' : '120px 0',
-        }}
-      >
-        <div
-          style={{
-            maxWidth: '780px',
-            margin: '0 auto',
-            padding: isMobile ? '0 24px' : '0 32px',
-          }}
-        >
-          <motion.p
-            initial={{ opacity: 0, y: 16 }}
-            animate={visionInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, ease }}
-            style={{
-              fontFamily: 'DM Sans, system-ui, sans-serif',
-              fontSize: '11px',
-              letterSpacing: '0.25em',
-              textTransform: 'uppercase',
-              color: 'var(--cn-gray, #a4a2a2)',
-              marginBottom: '16px',
-            }}
-          >
-            Our Vision
-          </motion.p>
-
-          <motion.h2
-            initial={{ opacity: 0, y: 24 }}
-            animate={visionInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.7, ease, delay: 0.08 }}
-            style={{
-              fontFamily: 'Playfair Display, Georgia, serif',
-              fontWeight: 700,
-              fontSize: 'clamp(32px, 4.5vw, 44px)',
-              color: 'var(--cn-cream, #f2f2f3)',
-              marginBottom: '32px',
-              lineHeight: 1.2,
-            }}
-          >
-            A world where every sip is a collective act of conservation.
-          </motion.h2>
-
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 22 }}>
-            {[
-              'We see ourselves as the global bridge between the untouched potential of the land and the untapped curiosity of the world’s emerging palates. We are pioneers introducing the ritual and depth of specialty coffee to virgin and nascent regions where the true beauty of the bean has yet to be discovered.',
-              'This mission is fuelled by a profound sense of stewardship. We leverage our multi-generational wealth of knowledge to inspire and anchor a new generation of producers — making the production space a place of pride and profitability, where the heritage of our ancestors meets the aspirations of the next generation.',
-              'We are not just participants in the global coffee trade; we are its architects — using innovation to protect the craft, elevate the producer, and bring the transcendent experience of the perfect cup to every corner of the globe.',
-            ].map((p, i) => (
-              <motion.p
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                animate={visionInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.7, ease, delay: 0.16 + i * 0.08 }}
-                style={{
-                  fontFamily: 'Zilla Slab, Georgia, serif',
-                  fontSize: 'clamp(17px, 2vw, 19px)',
-                  lineHeight: 1.75,
-                  color: 'var(--cn-cream, #f2f2f3)',
-                  margin: 0,
-                }}
-              >
-                {p}
-              </motion.p>
-            ))}
-          </div>
+            <a
+              href="/why-us/mission-vision"
+              style={{
+                display: 'inline-block',
+                fontFamily: 'DM Sans, system-ui, sans-serif',
+                fontSize: '13px',
+                letterSpacing: '0.12em',
+                textTransform: 'uppercase',
+                color: 'var(--cn-cream, #f2f2f3)',
+                textDecoration: 'none',
+                border: '1px solid rgba(242,242,243,0.4)',
+                borderRadius: 'var(--cn-radius-sm)',
+                padding: '14px 36px',
+                transition: 'background 250ms ease, border-color 250ms ease',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = 'var(--cn-red-primary, #da2233)'
+                e.currentTarget.style.borderColor = 'var(--cn-red-primary, #da2233)'
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = 'transparent'
+                e.currentTarget.style.borderColor = 'rgba(242,242,243,0.4)'
+              }}
+            >
+              Read our Mission &amp; Vision →
+            </a>
+          </motion.div>
         </div>
       </section>
 
@@ -450,11 +343,11 @@ export default function WhyUsPage() {
         </div>
       </section>
 
-      {/* Pact / Promise — full-bleed red */}
+      {/* Pact / Promise — muted red (alpha) so it sits between Sets-Apart and the bright CTABanner */}
       <section
         ref={pactRef}
         style={{
-          background: 'var(--cn-red-primary, #da2233)',
+          background: '#da22336b',
           padding: isMobile ? '80px 24px' : '140px 32px',
           textAlign: 'center',
           position: 'relative',

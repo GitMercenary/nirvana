@@ -46,9 +46,31 @@ export const metadata: Metadata = {
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+      'max-video-preview': -1,
+    },
   },
   alternates: {
     canonical: 'https://caffeinenirvana.co',
+  },
+  // Geo-targeting meta + verification placeholders.
+  // Replace 'PASTE_GOOGLE_TOKEN_HERE' once Google Search Console gives you a token.
+  // Replace 'PASTE_BING_TOKEN_HERE' likewise from Bing Webmaster Tools.
+  verification: {
+    google: 'PASTE_GOOGLE_TOKEN_HERE',
+    other: {
+      'msvalidate.01': 'PASTE_BING_TOKEN_HERE',
+    },
+  },
+  other: {
+    'geo.region': 'IN-KA',
+    'geo.placename': 'Chikmagalur, Karnataka',
+    'geo.position': '13.2189;75.7817',
+    'ICBM': '13.2189, 75.7817',
   },
 }
 

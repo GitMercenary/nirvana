@@ -1,6 +1,5 @@
 'use client'
 
-import { Linkedin, Instagram } from 'lucide-react'
 import { useIsMobile } from '@/hooks/useIsMobile'
 import Image from 'next/image'
 
@@ -136,27 +135,34 @@ export default function Footer() {
             <p style={{ ...linkStyle, cursor: 'default' }}>Middle East: 10AM–7PM GST</p>
           </div>
 
-          {/* Col 3: Social */}
+          {/* Col 3: Find Us — Typica only for now; LinkedIn + Instagram intentionally hidden */}
           <div>
-            <p style={labelStyle}>Follow Along</p>
+            <p style={labelStyle}>Find Us</p>
             <a
-              href="https://linkedin.com/company/caffeine-nirvana"
-              style={{ ...linkStyle, display: 'flex', alignItems: 'center', gap: '8px' }}
+              href="https://typica.coffee/en/producers/caffeine-nirvana"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={linkStyle}
               onMouseEnter={(e) => (e.currentTarget.style.color = '#f2f2f3')}
               onMouseLeave={(e) => (e.currentTarget.style.color = '#a4a2a2')}
             >
-              <Linkedin size={14} />
-              LinkedIn
+              Typica Producer Profile
             </a>
-            <a
-              href="https://instagram.com/caffeinenirvana"
-              style={{ ...linkStyle, display: 'flex', alignItems: 'center', gap: '8px' }}
-              onMouseEnter={(e) => (e.currentTarget.style.color = '#f2f2f3')}
-              onMouseLeave={(e) => (e.currentTarget.style.color = '#a4a2a2')}
-            >
-              <Instagram size={14} />
-              Instagram
-            </a>
+            {/*
+              Hidden socials — preserved here for when the channels are active.
+              Instagram URL updated to the canonical handle (@caffeine_nirvana).
+              LinkedIn has no active company page yet.
+
+              <a
+                href="https://www.instagram.com/caffeine_nirvana/"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ ...linkStyle, display: 'flex', alignItems: 'center', gap: '8px' }}
+              >
+                <Instagram size={14} />
+                Instagram
+              </a>
+            */}
           </div>
 
         </div>
