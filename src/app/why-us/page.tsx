@@ -126,12 +126,37 @@ export default function WhyUsPage() {
       <section
         ref={missionRef}
         style={{
+          position: 'relative',
           background: 'var(--cn-dark-warm, #100e0b)',
           padding: isMobile ? '80px 0' : '120px 0',
+          overflow: 'hidden',
         }}
       >
+        {/* Atmospheric backdrop — single coffee plant + valley */}
         <div
           style={{
+            position: 'absolute',
+            inset: 0,
+            backgroundImage: 'url(/images/landscape-why-us.jpg)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            opacity: 0.18,
+            pointerEvents: 'none',
+          }}
+        />
+        <div
+          style={{
+            position: 'absolute',
+            inset: 0,
+            background:
+              'linear-gradient(180deg, rgba(16,14,11,0.85) 0%, rgba(16,14,11,0.6) 50%, rgba(16,14,11,0.92) 100%)',
+            pointerEvents: 'none',
+          }}
+        />
+        <div
+          style={{
+            position: 'relative',
+            zIndex: 1,
             maxWidth: '1200px',
             margin: '0 auto',
             padding: isMobile ? '0 20px' : '0 32px',

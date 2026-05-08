@@ -8,3 +8,4 @@ node_modules/
 
 # Source photos staged for curation — keep raw imports out of git
 Public/images/from-photos/
+Public/images/ai photos/

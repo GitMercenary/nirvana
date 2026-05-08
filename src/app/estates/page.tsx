@@ -19,7 +19,7 @@ const ESTATES = [
     process: 'Specialty washed, natural & experimental',
     description:
       'Our flagship estate, Zoya Estate, sits under a dense canopy of native fig and forest trees that create ideal conditions for exceptional coffee. Every aspect of cultivation is dedicated to producing coffees that are expressive, distinctive, and true to their origin — with a thoughtful, tailored approach to processing that highlights the inherent character of the terroir.',
-    image: '/images/estate-zoya.png',
+    image: '/images/estate-zoya-hero.jpg',
   },
   {
     name: 'Sheethal Estate',
@@ -29,7 +29,7 @@ const ESTATES = [
     process: 'Traditional & organic',
     description:
       'Nestled beside a serene lake and encircled by mountains, Sheethal Estate is where nature sets the rhythm. Guided by Achinth Gowda, the estate uses ancient agricultural practices — including Panchgavya, a traditional blend of five sacred cow-derived components — to nourish the soil and sustain the ecosystem. Heritage meets a forward-thinking approach to agroforestry.',
-    image: '/images/carousel/cherries-ripe.jpg',
+    image: '/images/estate-sheethal.png',
   },
   {
     name: 'Kardigandi Estate',
@@ -39,7 +39,7 @@ const ESTATES = [
     process: 'Rainforest Alliance Certified',
     description:
       'Nestled in the Aldur region — a true "Goldilocks zone" for coffee cultivation — Kardigandi Estate is stewarded by Kashif Asghar, a fifth-generation planter. A Rainforest Alliance Certified estate, Kardigandi is firmly committed to environmentally and socially responsible practices. Sustainability is foundational here, from nurturing the soil to supporting the people who cultivate it.',
-    image: '/images/carousel/drying-beds.jpg',
+    image: '/images/estate-kardigandi.png',
   },
   {
     name: 'New Partner Estate',

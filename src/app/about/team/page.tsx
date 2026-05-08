@@ -13,7 +13,7 @@ const FOUNDERS = [
     name: 'Danish Ali',
     role: 'Founder',
     location: 'Chikmagalur, Karnataka',
-    image: '/images/estate-zoya.png',
+    image: '/images/estate-zoya-hero.jpg',
     paragraphs: [
       'Born into a family whose roots in coffee cultivation stretch back over 250 years, Danish Ali represents a legacy deeply intertwined with the rich coffee-growing heritage of Chikmagalur. As a producer, exporter, and passionate coffee craftsman, he carries forward generations of knowledge while embracing a modern vision for specialty coffee.',
       'At the heart of this legacy lies Zoya Estates, the family’s 150-year-old estate nestled in the lush highlands of Chikmagalur, where some of the finest Arabica coffees are cultivated under ideal climatic conditions. Raised amidst coffee blossoms, harvest seasons, and the art of careful processing, Danish inherited not just a business, but a lifelong devotion to coffee.',

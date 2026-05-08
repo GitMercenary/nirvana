@@ -132,8 +132,8 @@ export default function ChikmagalurPage() {
             }}
           >
             <Image
-              src="/images/carousel/cherries-ripe.jpg"
-              alt="Coffee cherries in Chikmagalur"
+              src="/images/landscape-chikmagalur.jpg"
+              alt="Mist-covered ridges of Chikmagalur at sunrise"
               fill
               sizes="(max-width: 768px) 100vw, 780px"
               style={{ objectFit: 'cover' }}
