@@ -158,10 +158,13 @@ export default function LotNavigator() {
               style={{
                 border: '1px solid rgba(242,242,243,0.08)',
                 borderTop: `1px solid rgba(242,242,243,0.08)`,
-                padding: '40px',
+                padding: '32px',
                 cursor: 'default',
                 position: 'relative',
                 borderRadius: 'var(--cn-radius)',
+                display: 'flex',
+                flexDirection: 'column',
+                height: '100%',
               }}
               onHoverStart={(e) => {
                 const el = e.target as HTMLElement
@@ -219,11 +222,11 @@ export default function LotNavigator() {
                 </span>
               </div>
 
-              {/* Data grid */}
+              {/* Data grid — fixed 2x2 so every card has the same layout */}
               <div
                 style={{
                   display: 'grid',
-                  gridTemplateColumns: isMobile ? '1fr' : 'repeat(auto-fit, minmax(80px, 1fr))',
+                  gridTemplateColumns: 'repeat(2, 1fr)',
                   gap: '16px',
                   marginBottom: '20px',
                 }}
@@ -269,14 +272,14 @@ export default function LotNavigator() {
                   letterSpacing: '0.12em',
                   textTransform: 'uppercase',
                   color: '#6a6a6a',
-                  marginBottom: '28px',
+                  marginBottom: '20px',
                 }}
               >
                 FOB Mangalore · CIF Available
               </p>
 
-              {/* Actions */}
-              <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
+              {/* Actions — pinned to the bottom for uniform card heights */}
+              <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', marginTop: 'auto' }}>
                 <button
                   onClick={() => onSampleRequest(lot.name)}
                   style={{
@@ -302,31 +305,6 @@ export default function LotNavigator() {
                   }}
                 >
                   Request Sample
-                </button>
-                <button
-                  style={{
-                    background: 'transparent',
-                    border: '1px solid rgba(164,162,162,0.4)',
-                    color: '#a4a2a2',
-                    padding: '10px 24px',
-                    fontFamily: 'DM Sans, system-ui, sans-serif',
-                    fontSize: '12px',
-                    letterSpacing: '0.1em',
-                    textTransform: 'uppercase',
-                    cursor: 'pointer',
-                    transition: 'border-color 250ms ease, color 250ms ease',
-                    borderRadius: 'var(--cn-radius-sm)',
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.borderColor = 'rgba(164,162,162,0.8)'
-                    e.currentTarget.style.color = '#f2f2f3'
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.borderColor = 'rgba(164,162,162,0.4)'
-                    e.currentTarget.style.color = '#a4a2a2'
-                  }}
-                >
-                  Download Spec
                 </button>
               </div>
             </motion.div>

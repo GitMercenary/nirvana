@@ -17,22 +17,22 @@ const inputStyle: React.CSSProperties = {
   background: 'rgba(255,255,255,0.04)',
   border: '1px solid rgba(242,242,243,0.12)',
   color: '#f2f2f3',
-  padding: '14px 16px',
+  padding: '8px 10px',
   fontFamily: 'DM Sans, system-ui, sans-serif',
-  fontSize: '14px',
+  fontSize: '13px',
   outline: 'none',
   transition: 'border-color 300ms ease',
-  marginBottom: '4px',
+  marginBottom: 0,
 }
 
 const labelStyle: React.CSSProperties = {
   display: 'block',
   fontFamily: 'DM Sans, system-ui, sans-serif',
-  fontSize: '11px',
+  fontSize: '9px',
   letterSpacing: '0.15em',
   textTransform: 'uppercase',
   color: '#a4a2a2',
-  marginBottom: '6px',
+  marginBottom: '3px',
 }
 
 export default function SampleRequestForm({ lotName, onClose }: Props) {
@@ -129,9 +129,9 @@ export default function SampleRequestForm({ lotName, onClose }: Props) {
             <div
               style={{
                 width: '100%',
-                maxWidth: '480px',
+                maxWidth: '460px',
                 position: 'relative',
-                padding: 'clamp(28px, 5vw, 56px) clamp(20px, 4vw, 40px)',
+                padding: 'clamp(20px, 3vw, 28px) clamp(18px, 3vw, 32px)',
                 background: 'rgba(14,14,14,0.95)',
                 border: '1px solid rgba(242,242,243,0.08)',
               }}
@@ -143,9 +143,9 @@ export default function SampleRequestForm({ lotName, onClose }: Props) {
                 style={{
                   fontFamily: 'Zilla Slab, Georgia, serif',
                   fontWeight: 600,
-                  fontSize: '18px',
+                  fontSize: '15px',
                   color: '#da2233',
-                  marginBottom: '24px',
+                  marginBottom: '14px',
                   letterSpacing: '0.02em',
                 }}
               >
@@ -223,28 +223,30 @@ export default function SampleRequestForm({ lotName, onClose }: Props) {
                 </div>
               ) : (
                 <form onSubmit={handleSubmit(onSubmit)}>
-                  {[
-                    { field: 'name', label: 'Full Name', type: 'text', required: true },
-                    { field: 'company', label: 'Company', type: 'text', required: true },
-                    { field: 'email', label: 'Email Address', type: 'email', required: true },
-                    { field: 'country', label: 'Country', type: 'text', required: true },
-                  ].map(({ field, label, type, required }) => (
-                    <div key={field} style={{ marginBottom: '14px' }}>
-                      <label style={labelStyle}>{label} *</label>
-                      <input
-                        {...register(field as string, { required })}
-                        type={type}
-                        style={{
-                          ...inputStyle,
-                          borderColor: errors[field] ? '#da2233' : 'rgba(242,242,243,0.12)',
-                        }}
-                        onFocus={(e) => (e.currentTarget.style.borderColor = '#da2233')}
-                        onBlur={(e) => (e.currentTarget.style.borderColor = errors[field] ? '#da2233' : 'rgba(242,242,243,0.12)')}
-                      />
-                    </div>
-                  ))}
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px', marginBottom: '10px' }}>
+                    {[
+                      { field: 'name', label: 'Full Name', type: 'text', required: true },
+                      { field: 'company', label: 'Company', type: 'text', required: true },
+                      { field: 'email', label: 'Email Address', type: 'email', required: true },
+                      { field: 'country', label: 'Country', type: 'text', required: true },
+                    ].map(({ field, label, type, required }) => (
+                      <div key={field}>
+                        <label style={labelStyle}>{label} *</label>
+                        <input
+                          {...register(field as string, { required })}
+                          type={type}
+                          style={{
+                            ...inputStyle,
+                            borderColor: errors[field] ? '#da2233' : 'rgba(242,242,243,0.12)',
+                          }}
+                          onFocus={(e) => (e.currentTarget.style.borderColor = '#da2233')}
+                          onBlur={(e) => (e.currentTarget.style.borderColor = errors[field] ? '#da2233' : 'rgba(242,242,243,0.12)')}
+                        />
+                      </div>
+                    ))}
+                  </div>
 
-                  <div style={{ marginBottom: '14px' }}>
+                  <div style={{ marginBottom: '10px' }}>
                     <label style={labelStyle}>Sample Quantity</label>
                     <select
                       {...register('quantity')}
@@ -259,11 +261,11 @@ export default function SampleRequestForm({ lotName, onClose }: Props) {
                     </select>
                   </div>
 
-                  <div style={{ marginBottom: '24px' }}>
+                  <div style={{ marginBottom: '14px' }}>
                     <label style={labelStyle}>Message (optional)</label>
                     <textarea
                       {...register('message')}
-                      rows={3}
+                      rows={2}
                       placeholder="Any specific requirements or questions about this lot?"
                       style={{ ...inputStyle, resize: 'vertical' }}
                       onFocus={(e) => (e.currentTarget.style.borderColor = '#da2233')}
@@ -272,7 +274,7 @@ export default function SampleRequestForm({ lotName, onClose }: Props) {
                   </div>
 
                   {status === 'error' && (
-                    <p style={{ fontFamily: 'DM Sans, system-ui, sans-serif', fontSize: '13px', color: '#da2233', marginBottom: '16px' }}>
+                    <p style={{ fontFamily: 'DM Sans, system-ui, sans-serif', fontSize: '12px', color: '#da2233', marginBottom: '12px' }}>
                       Something went wrong. Please email danish@caffeinenirvana.co directly.
                     </p>
                   )}
@@ -285,9 +287,9 @@ export default function SampleRequestForm({ lotName, onClose }: Props) {
                       background: '#da2233',
                       color: '#f2f2f3',
                       border: 'none',
-                      padding: '18px',
+                      padding: '11px',
                       fontFamily: 'DM Sans, system-ui, sans-serif',
-                      fontSize: '14px',
+                      fontSize: '12px',
                       letterSpacing: '0.12em',
                       textTransform: 'uppercase',
                       cursor: status === 'submitting' ? 'not-allowed' : 'pointer',

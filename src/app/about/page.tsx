@@ -366,7 +366,7 @@ export default function AboutPage() {
             }}
           >
             <Image
-              src="/images/pillar-direct-export(1).png"
+              src="/images/danish-founder.png"
               alt="Danish Ali in the cupping lab at Caffeine Nirvana"
               fill
               style={{ objectFit: 'cover' }}

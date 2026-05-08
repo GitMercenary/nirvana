@@ -25,22 +25,22 @@ const inputStyle: React.CSSProperties = {
   background: 'rgba(255,255,255,0.04)',
   border: '1px solid rgba(242,242,243,0.12)',
   color: '#f2f2f3',
-  padding: '10px 12px',
+  padding: '8px 10px',
   fontFamily: 'DM Sans, system-ui, sans-serif',
-  fontSize: '14px',
+  fontSize: '13px',
   outline: 'none',
   transition: 'border-color 300ms ease',
-  marginBottom: '2px',
+  marginBottom: 0,
 }
 
 const labelStyle: React.CSSProperties = {
   display: 'block',
   fontFamily: 'DM Sans, system-ui, sans-serif',
-  fontSize: '10px',
+  fontSize: '9px',
   letterSpacing: '0.15em',
   textTransform: 'uppercase',
   color: '#a4a2a2',
-  marginBottom: '4px',
+  marginBottom: '3px',
 }
 
 export default function SourceFromOriginForm({ isOpen, onClose }: Props) {
@@ -133,9 +133,9 @@ export default function SourceFromOriginForm({ isOpen, onClose }: Props) {
             <div
               style={{
                 width: '100%',
-                maxWidth: '560px',
+                maxWidth: '500px',
                 position: 'relative',
-                padding: 'clamp(24px, 4vw, 36px) clamp(20px, 3.5vw, 36px)',
+                padding: 'clamp(20px, 3vw, 28px) clamp(18px, 3vw, 32px)',
                 background: 'rgba(14,14,14,0.92)',
                 border: '1px solid rgba(242,242,243,0.08)',
               }}
@@ -147,9 +147,10 @@ export default function SourceFromOriginForm({ isOpen, onClose }: Props) {
                 style={{
                   fontFamily: 'Playfair Display, Georgia, serif',
                   fontWeight: 700,
-                  fontSize: '22px',
+                  fontSize: '18px',
                   color: '#f2f2f3',
-                  marginBottom: '4px',
+                  marginBottom: '2px',
+                  lineHeight: 1.2,
                 }}
               >
                 Source From Origin
@@ -157,9 +158,9 @@ export default function SourceFromOriginForm({ isOpen, onClose }: Props) {
               <p
                 style={{
                   fontFamily: 'DM Sans, system-ui, sans-serif',
-                  fontSize: '13px',
+                  fontSize: '12px',
                   color: '#a4a2a2',
-                  marginBottom: '20px',
+                  marginBottom: '14px',
                 }}
               >
                 Your enquiry reaches Danish directly. Response within 24 hours.
@@ -238,7 +239,7 @@ export default function SourceFromOriginForm({ isOpen, onClose }: Props) {
                 </div>
               ) : (
                 <form onSubmit={handleSubmit(onSubmit)}>
-                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px' }}>
                     <div>
                       <label style={labelStyle}>Full Name *</label>
                       <input
@@ -292,9 +293,9 @@ export default function SourceFromOriginForm({ isOpen, onClose }: Props) {
                   </div>
 
                   {/* Lots checkboxes */}
-                  <div style={{ marginTop: '12px', marginBottom: '12px' }}>
+                  <div style={{ marginTop: '10px', marginBottom: '10px' }}>
                     <label style={labelStyle}>Lots of Interest</label>
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '6px 10px' }}>
+                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4px 10px' }}>
                       {LOTS_OPTIONS.map((lot) => (
                         <label
                           key={lot}
@@ -303,17 +304,17 @@ export default function SourceFromOriginForm({ isOpen, onClose }: Props) {
                             alignItems: 'center',
                             gap: '6px',
                             fontFamily: 'DM Sans, system-ui, sans-serif',
-                            fontSize: '12px',
+                            fontSize: '11px',
                             color: '#a4a2a2',
                             cursor: 'pointer',
-                            lineHeight: 1.3,
+                            lineHeight: 1.25,
                           }}
                         >
                           <input
                             type="checkbox"
                             value={lot}
                             {...register('lots')}
-                            style={{ accentColor: '#da2233', flexShrink: 0 }}
+                            style={{ accentColor: '#da2233', flexShrink: 0, width: 14, height: 14 }}
                           />
                           {lot}
                         </label>
@@ -321,38 +322,38 @@ export default function SourceFromOriginForm({ isOpen, onClose }: Props) {
                     </div>
                   </div>
 
-                  {/* Monthly volume */}
-                  <div style={{ marginBottom: '12px' }}>
-                    <label style={labelStyle}>Monthly Volume</label>
-                    <select
-                      {...register('volume')}
-                      style={{
-                        ...inputStyle,
-                        cursor: 'pointer',
-                      }}
-                      onFocus={(e) => (e.currentTarget.style.borderColor = '#da2233')}
-                      onBlur={(e) => (e.currentTarget.style.borderColor = 'rgba(242,242,243,0.12)')}
-                    >
-                      <option value="">Select...</option>
-                      <option value="<100kg">&lt;100kg</option>
-                      <option value="100-500kg">100–500kg</option>
-                      <option value="500kg-1MT">500kg–1MT</option>
-                      <option value="1MT+">1MT+</option>
-                      <option value="not-sure">Not sure yet</option>
-                    </select>
-                  </div>
-
-                  {/* Message */}
-                  <div style={{ marginBottom: '16px' }}>
-                    <label style={labelStyle}>Message</label>
-                    <textarea
-                      {...register('message')}
-                      rows={3}
-                      placeholder="Tell us about your roastery and what you're looking for..."
-                      style={{ ...inputStyle, resize: 'vertical' }}
-                      onFocus={(e) => (e.currentTarget.style.borderColor = '#da2233')}
-                      onBlur={(e) => (e.currentTarget.style.borderColor = 'rgba(242,242,243,0.12)')}
-                    />
+                  {/* Monthly volume + Message side-by-side on wider screens */}
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '10px', marginBottom: '12px' }}>
+                    <div>
+                      <label style={labelStyle}>Monthly Volume</label>
+                      <select
+                        {...register('volume')}
+                        style={{
+                          ...inputStyle,
+                          cursor: 'pointer',
+                        }}
+                        onFocus={(e) => (e.currentTarget.style.borderColor = '#da2233')}
+                        onBlur={(e) => (e.currentTarget.style.borderColor = 'rgba(242,242,243,0.12)')}
+                      >
+                        <option value="">Select...</option>
+                        <option value="<100kg">&lt;100kg</option>
+                        <option value="100-500kg">100–500kg</option>
+                        <option value="500kg-1MT">500kg–1MT</option>
+                        <option value="1MT+">1MT+</option>
+                        <option value="not-sure">Not sure yet</option>
+                      </select>
+                    </div>
+                    <div>
+                      <label style={labelStyle}>Message</label>
+                      <textarea
+                        {...register('message')}
+                        rows={2}
+                        placeholder="Tell us about your roastery and what you're looking for..."
+                        style={{ ...inputStyle, resize: 'vertical' }}
+                        onFocus={(e) => (e.currentTarget.style.borderColor = '#da2233')}
+                        onBlur={(e) => (e.currentTarget.style.borderColor = 'rgba(242,242,243,0.12)')}
+                      />
+                    </div>
                   </div>
 
                   {status === 'error' && (
@@ -376,9 +377,9 @@ export default function SourceFromOriginForm({ isOpen, onClose }: Props) {
                       background: '#da2233',
                       color: '#f2f2f3',
                       border: 'none',
-                      padding: '14px',
+                      padding: '11px',
                       fontFamily: 'DM Sans, system-ui, sans-serif',
-                      fontSize: '13px',
+                      fontSize: '12px',
                       letterSpacing: '0.12em',
                       textTransform: 'uppercase',
                       cursor: status === 'submitting' ? 'not-allowed' : 'pointer',

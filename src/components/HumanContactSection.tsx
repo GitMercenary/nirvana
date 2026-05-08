@@ -162,8 +162,8 @@ export default function HumanContactSection() {
           }}
         >
           <Image
-            src="/images/pillar-direct-export(1).png"
-            alt="Danish Ali, Director, Caffeine Nirvana"
+            src="/images/danish-founder.png"
+            alt="Danish Ali, Founder, Caffeine Nirvana"
             fill
             style={{
               objectFit: 'cover',

@@ -207,30 +207,6 @@ function LotCard({ lot, index }: { lot: (typeof LOTS)[number]; index: number }) 
           >
             Request Sample
           </button>
-          <button
-            style={{
-              border: '1px solid var(--cn-gray)',
-              borderRadius: 'var(--cn-radius-sm)',
-              background: 'transparent',
-              color: 'var(--cn-gray)',
-              fontFamily: 'var(--font-dm)',
-              fontSize: 14,
-              fontWeight: 500,
-              padding: '10px 24px',
-              cursor: 'pointer',
-              transition: 'all 0.3s ease',
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.borderColor = 'var(--cn-cream)'
-              e.currentTarget.style.color = 'var(--cn-cream)'
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.borderColor = 'var(--cn-gray)'
-              e.currentTarget.style.color = 'var(--cn-gray)'
-            }}
-          >
-            Download Spec Sheet
-          </button>
         </div>
       </div>
     </motion.div>

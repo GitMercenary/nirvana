@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { motion, useScroll, useTransform } from 'framer-motion'
+import { motion, useScroll } from 'framer-motion'
 import { ChevronDown } from 'lucide-react'
 import { useIsMobile } from '@/hooks/useIsMobile'
 import { useFormContext } from '@/context/FormContext'
@@ -12,7 +12,6 @@ const headline = ['Specialty Coffee', 'From Origin.']
 export default function HeroSection() {
   const { scrollY } = useScroll()
   const [showScroll, setShowScroll] = useState(true)
-  const bgY = useTransform(scrollY, [0, 600], [0, -180])
   const isMobile = useIsMobile()
   const { openSourceForm, openLearnForm } = useFormContext()
 
@@ -44,17 +43,17 @@ export default function HeroSection() {
         }}
       />
 
-      {/* Hero image overlay — parallax */}
-      <motion.div
+      {/* Hero image overlay — static (parallax removed) */}
+      <div
+        aria-hidden
         style={{
           position: 'absolute',
-          inset: '-10% 0',
+          inset: 0,
           backgroundImage: 'url(/images/hero-bg.png)',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           opacity: 0.15,
           pointerEvents: 'none',
-          y: bgY,
         }}
       />
 

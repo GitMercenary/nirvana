@@ -10,8 +10,8 @@ export const EMAIL_CONFIG = {
   // Primary recipient — client inbox
   PRIMARY: 'danish@caffeinenirvana.co',
 
-  // CC recipient — agency monitoring all leads
-  CC: 'mohamed.jaffar@blackarrowtechnologies.com',
+  // CC recipient — admin inbox monitoring all leads
+  CC: 'admin@caffeinenirvana.co',
 
   // Web3Forms access key — get free key at https://web3forms.com
   // Replace the placeholder below with the real key before going live

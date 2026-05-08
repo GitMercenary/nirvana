@@ -1,134 +1,8 @@
 'use client'
 
-import { useState } from 'react'
-import { submitToEmail } from '@/utils/submitForm'
 import { Linkedin, Instagram } from 'lucide-react'
 import { useIsMobile } from '@/hooks/useIsMobile'
 import Image from 'next/image'
-
-// Inline quick contact form
-function FooterQuickContactForm() {
-  // Email routing — see /src/config/email.config.js to change recipients
-  const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle')
-  const [form, setForm] = useState({ name: '', email: '', message: '' })
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setStatus('submitting')
-    try {
-      await submitToEmail(form, 'FOOTER_QUICK')
-      setStatus('success')
-    } catch {
-      setStatus('error')
-    }
-  }
-
-  if (status === 'success') {
-    return (
-      <p
-        style={{
-          fontFamily: 'DM Sans, system-ui, sans-serif',
-          fontSize: '14px',
-          color: '#a4a2a2',
-          lineHeight: 1.6,
-        }}
-      >
-        Message sent. Danish will respond shortly.
-      </p>
-    )
-  }
-
-  const inputStyle: React.CSSProperties = {
-    width: '100%',
-    background: 'rgba(255,255,255,0.03)',
-    border: '1px solid rgba(242,242,243,0.08)',
-    color: '#f2f2f3',
-    padding: '12px 14px',
-    fontFamily: 'DM Sans, system-ui, sans-serif',
-    fontSize: '14px',
-    outline: 'none',
-    marginBottom: '10px',
-    transition: 'border-color 200ms ease',
-    borderRadius: 'var(--cn-radius-sm)',
-  }
-
-  return (
-    <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        placeholder="Your name"
-        required
-        value={form.name}
-        onChange={(e) => setForm({ ...form, name: e.target.value })}
-        style={inputStyle}
-        onFocus={(e) => (e.currentTarget.style.borderColor = '#da2233')}
-        onBlur={(e) => (e.currentTarget.style.borderColor = 'rgba(242,242,243,0.08)')}
-      />
-      <input
-        type="email"
-        placeholder="your@email.com"
-        required
-        value={form.email}
-        onChange={(e) => setForm({ ...form, email: e.target.value })}
-        style={inputStyle}
-        onFocus={(e) => (e.currentTarget.style.borderColor = '#da2233')}
-        onBlur={(e) => (e.currentTarget.style.borderColor = 'rgba(242,242,243,0.08)')}
-      />
-      <textarea
-        placeholder="Your message to Danish Ali..."
-        required
-        rows={3}
-        value={form.message}
-        onChange={(e) => setForm({ ...form, message: e.target.value })}
-        style={{ ...inputStyle, resize: 'vertical', marginBottom: '14px' }}
-        onFocus={(e) => (e.currentTarget.style.borderColor = '#da2233')}
-        onBlur={(e) => (e.currentTarget.style.borderColor = 'rgba(242,242,243,0.08)')}
-      />
-      {status === 'error' && (
-        <p
-          style={{
-            fontFamily: 'DM Sans, system-ui, sans-serif',
-            fontSize: '12px',
-            color: '#da2233',
-            marginBottom: '10px',
-          }}
-        >
-          Something went wrong. Email danish@caffeinenirvana.co directly.
-        </p>
-      )}
-      <button
-        type="submit"
-        disabled={status === 'submitting'}
-        style={{
-          background: 'transparent',
-          border: '1px solid #da2233',
-          color: '#da2233',
-          padding: '10px 24px',
-          fontFamily: 'DM Sans, system-ui, sans-serif',
-          fontSize: '12px',
-          letterSpacing: '0.1em',
-          textTransform: 'uppercase',
-          cursor: status === 'submitting' ? 'not-allowed' : 'pointer',
-          transition: 'background 250ms ease, color 250ms ease',
-          opacity: status === 'submitting' ? 0.6 : 1,
-          borderRadius: 'var(--cn-radius-sm)',
-        }}
-        onMouseEnter={(e) => {
-          if (status !== 'submitting') {
-            e.currentTarget.style.background = '#da2233'
-            e.currentTarget.style.color = '#f2f2f3'
-          }
-        }}
-        onMouseLeave={(e) => {
-          e.currentTarget.style.background = 'transparent'
-          e.currentTarget.style.color = '#da2233'
-        }}
-      >
-        {status === 'submitting' ? 'Sending...' : 'Send Message'}
-      </button>
-    </form>
-  )
-}
 
 export default function Footer() {
   const isMobile = useIsMobile()
@@ -285,11 +159,6 @@ export default function Footer() {
             </a>
           </div>
 
-          {/* Col 4: Quick Contact */}
-          <div>
-            <p style={labelStyle}>Send a Message</p>
-            <FooterQuickContactForm />
-          </div>
         </div>
 
         {/* Logo mark — centered */}
