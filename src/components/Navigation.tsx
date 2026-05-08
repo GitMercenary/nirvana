@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { motion, useScroll, AnimatePresence } from 'framer-motion'
+import { ChevronDown } from 'lucide-react'
 import { useFormContext } from '@/context/FormContext'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -66,7 +67,7 @@ export default function Navigation() {
           }}
         >
           <Image
-            src="/images/logo-bw.jpg"
+            src="/images/logo-bw.png"
             alt="Caffeine Nirvana"
             width={812}
             height={449}
@@ -85,12 +86,20 @@ export default function Navigation() {
           <NavCTAButton onClick={onSourceClick} />
         </div>
 
-        {/* Mobile hamburger */}
+        {/* Mobile hamburger / close — toggles */}
         <button
           className="md:hidden flex flex-col gap-1.5"
-          onClick={() => setIsMenuOpen(true)}
-          aria-label="Open menu"
-          style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '4px' }}
+          onClick={() => setIsMenuOpen((prev) => !prev)}
+          aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
+          aria-expanded={isMenuOpen}
+          style={{
+            background: 'none',
+            border: 'none',
+            cursor: 'pointer',
+            padding: '12px',
+            position: 'relative',
+            zIndex: 60,
+          }}
         >
           {[
             { transform: isMenuOpen ? 'rotate(45deg) translateY(7px)' : 'none' },
@@ -131,78 +140,15 @@ export default function Navigation() {
               padding: '80px 32px 48px',
             }}
           >
-            {/* Close button */}
-            <button
-              onClick={() => setIsMenuOpen(false)}
-              aria-label="Close menu"
-              style={{
-                position: 'absolute',
-                top: '20px',
-                right: '28px',
-                background: 'none',
-                border: 'none',
-                cursor: 'pointer',
-                color: '#f2f2f3',
-                fontSize: '28px',
-                lineHeight: 1,
-                padding: '4px',
-              }}
-            >
-              ×
-            </button>
-
             {/* Nav links */}
             <nav style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: '8px', overflowY: 'auto' }}>
               {NAV_ITEMS.map((item, i) => (
-                <div key={item.label} style={{ display: 'flex', flexDirection: 'column' }}>
-                  <motion.a
-                    href={item.href}
-                    initial={{ opacity: 0, x: 24 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1], delay: 0.05 + i * 0.07 }}
-                    onClick={() => setIsMenuOpen(false)}
-                    style={{
-                      fontFamily: 'Playfair Display, Georgia, serif',
-                      fontWeight: 700,
-                      fontSize: '32px',
-                      color: '#f2f2f3',
-                      textDecoration: 'none',
-                      lineHeight: 1.3,
-                      display: 'block',
-                    }}
-                    onMouseEnter={(e) => (e.currentTarget.style.color = '#da2233')}
-                    onMouseLeave={(e) => (e.currentTarget.style.color = '#f2f2f3')}
-                  >
-                    {item.label}
-                  </motion.a>
-                  {item.children && (
-                    <div style={{ display: 'flex', flexDirection: 'column', marginTop: 6, marginBottom: 6, paddingLeft: 16, gap: 4 }}>
-                      {item.children.map((child, ci) => (
-                        <motion.a
-                          key={child.href}
-                          href={child.href}
-                          initial={{ opacity: 0, x: 16 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1], delay: 0.1 + i * 0.07 + ci * 0.04 }}
-                          onClick={() => setIsMenuOpen(false)}
-                          style={{
-                            fontFamily: 'DM Sans, system-ui, sans-serif',
-                            fontSize: '14px',
-                            letterSpacing: '0.08em',
-                            textTransform: 'uppercase',
-                            color: '#a4a2a2',
-                            textDecoration: 'none',
-                            display: 'block',
-                          }}
-                          onMouseEnter={(e) => (e.currentTarget.style.color = '#f2f2f3')}
-                          onMouseLeave={(e) => (e.currentTarget.style.color = '#a4a2a2')}
-                        >
-                          {child.label}
-                        </motion.a>
-                      ))}
-                    </div>
-                  )}
-                </div>
+                <MobileNavItem
+                  key={item.label}
+                  item={item}
+                  index={i}
+                  closeMenu={() => setIsMenuOpen(false)}
+                />
               ))}
             </nav>
 
@@ -244,6 +190,123 @@ export default function Navigation() {
         )}
       </AnimatePresence>
     </>
+  )
+}
+
+function MobileNavItem({
+  item,
+  index,
+  closeMenu,
+}: {
+  item: NavItem
+  index: number
+  closeMenu: () => void
+}) {
+  const [expanded, setExpanded] = useState(false)
+  const hasChildren = !!item.children?.length
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, x: 24 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1], delay: 0.05 + index * 0.07 }}
+      style={{ display: 'flex', flexDirection: 'column' }}
+    >
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12 }}>
+        <a
+          href={item.href}
+          onClick={closeMenu}
+          style={{
+            fontFamily: 'Playfair Display, Georgia, serif',
+            fontWeight: 700,
+            fontSize: '32px',
+            color: '#f2f2f3',
+            textDecoration: 'none',
+            lineHeight: 1.3,
+            display: 'block',
+            flex: 1,
+            minHeight: 44,
+          }}
+        >
+          {item.label}
+        </a>
+        {hasChildren && (
+          <button
+            type="button"
+            onClick={() => setExpanded((v) => !v)}
+            aria-label={expanded ? `Collapse ${item.label}` : `Expand ${item.label}`}
+            aria-expanded={expanded}
+            style={{
+              background: 'none',
+              border: 'none',
+              color: expanded ? '#da2233' : '#a4a2a2',
+              cursor: 'pointer',
+              padding: 12,
+              minWidth: 44,
+              minHeight: 44,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              transition: 'color 200ms ease',
+            }}
+          >
+            <ChevronDown
+              size={22}
+              style={{
+                transform: expanded ? 'rotate(180deg)' : 'rotate(0deg)',
+                transition: 'transform 250ms ease',
+              }}
+            />
+          </button>
+        )}
+      </div>
+
+      {hasChildren && (
+        <AnimatePresence initial={false}>
+          {expanded && (
+            <motion.div
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: 'auto', opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+              style={{ overflow: 'hidden' }}
+            >
+              <div
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  marginTop: 6,
+                  marginBottom: 10,
+                  paddingLeft: 16,
+                  gap: 4,
+                }}
+              >
+                {item.children!.map((child) => (
+                  <a
+                    key={child.href}
+                    href={child.href}
+                    onClick={closeMenu}
+                    style={{
+                      fontFamily: 'DM Sans, system-ui, sans-serif',
+                      fontSize: '14px',
+                      letterSpacing: '0.08em',
+                      textTransform: 'uppercase',
+                      color: '#a4a2a2',
+                      textDecoration: 'none',
+                      display: 'block',
+                      padding: '10px 0',
+                      minHeight: 44,
+                    }}
+                  >
+                    {child.label}
+                  </a>
+                ))}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      )}
+    </motion.div>
   )
 }
 

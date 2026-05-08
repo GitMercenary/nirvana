@@ -5,6 +5,7 @@ import Image from 'next/image'
 import { motion, useInView } from 'framer-motion'
 import { useIsMobile } from '@/hooks/useIsMobile'
 import { useFormContext } from '@/context/FormContext'
+import HeroBackdrop from '@/components/HeroBackdrop'
 
 /* ------------------------------------------------------------------ */
 /*  Estate data                                                        */
@@ -236,6 +237,7 @@ export default function EstatesPage() {
       {/* ============================================================ */}
       <section
         style={{
+          position: 'relative',
           backgroundColor: 'var(--cn-black)',
           minHeight: '50vh',
           display: 'flex',
@@ -243,14 +245,15 @@ export default function EstatesPage() {
           justifyContent: 'center',
           textAlign: 'center',
           padding: isMobile ? '80px 20px' : '100px 24px',
+          overflow: 'hidden',
         }}
       >
-        {/* CONTENT: Owner to provide */}
+        <HeroBackdrop src="/images/estate-zoya-hero.jpg" opacity={0.18} />
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: 'easeOut' }}
-          style={{ maxWidth: 720 }}
+          style={{ position: 'relative', zIndex: 1, maxWidth: 720 }}
         >
           <p
             style={{
@@ -311,7 +314,7 @@ export default function EstatesPage() {
           }}
         >
           {ESTATES.map((estate, i) => (
-            <EstateCard key={estate.name} estate={estate} index={i} />
+            <EstateCard key={i} estate={estate} index={i} />
           ))}
         </div>
       </section>

@@ -6,14 +6,22 @@ import { motion } from 'framer-motion'
 import { useIsMobile } from '@/hooks/useIsMobile'
 
 const PHOTOS = [
+  { src: '/images/gallery/award-illy-2020.jpg', caption: 'Ernesto Illy International Coffee Award, 2020' },
   { src: '/images/carousel/cherries-ripe.jpg', caption: 'Ripe coffee cherries at peak harvest' },
+  { src: '/images/gallery/cherries-drying-red.jpg', caption: 'Naturals at the drying beds' },
+  { src: '/images/gallery/canopy-coffee-shadegrown.jpg', caption: 'Shade-grown under native canopy' },
   { src: '/images/carousel/drying-cherries.jpg', caption: 'Natural process drying beds' },
-  { src: '/images/carousel/drying-beds.jpg', caption: 'Parchment drying at the washing station' },
-  { src: '/images/carousel/export-sack.jpg', caption: 'Caffeine Nirvana export-ready' },
-  { src: '/images/carousel/export-sack-2.jpg', caption: 'Produce of India' },
+  { src: '/images/gallery/parchment-yard.jpg', caption: 'Parchment drying yard at scale' },
   { src: '/images/carousel/cupping-lab.jpg', caption: 'Quality assessment in the cupping lab' },
+  { src: '/images/gallery/cherries-green-branch.jpg', caption: 'Coffee cherries developing on branch' },
+  { src: '/images/gallery/naturals-golden-hour.jpg', caption: 'Specialty naturals in golden-hour light' },
+  { src: '/images/carousel/export-sack.jpg', caption: 'Caffeine Nirvana export-ready' },
+  { src: '/images/gallery/jungle-canopy-coffee.jpg', caption: 'Polyculture in the Western Ghats' },
+  { src: '/images/carousel/drying-beds.jpg', caption: 'Parchment drying at the washing station' },
+  { src: '/images/gallery/cherries-tarp-harvest.jpg', caption: 'Fresh harvest at the estate' },
+  { src: '/images/carousel/export-sack-2.jpg', caption: 'Produce of India' },
+  { src: '/images/gallery/naturals-close.jpg', caption: 'Naturals close-up — black-honey character' },
   { src: '/images/carousel/bags-storage.jpg', caption: 'Lot storage and tracking' },
-  { src: '/images/carousel/beans-floor.jpg', caption: 'Processing at origin' },
 ]
 
 const DUPLICATED_PHOTOS = [...PHOTOS, ...PHOTOS]

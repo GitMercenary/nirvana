@@ -4,7 +4,7 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useForm } from 'react-hook-form'
-import { X } from 'lucide-react'
+import { X, Check } from 'lucide-react'
 import { submitToEmail } from '@/utils/submitForm'
 
 interface Props {
@@ -97,23 +97,38 @@ export default function LearnTheOriginForm({ isOpen, onClose }: Props) {
             }}
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Close */}
+            {/* Close — fixed to viewport so it stays visible when scrolling */}
             <button
               onClick={onClose}
+              aria-label="Close form"
               style={{
-                position: 'absolute',
-                top: '20px',
-                right: '24px',
-                background: 'none',
-                border: 'none',
-                color: '#a4a2a2',
+                position: 'fixed',
+                top: '16px',
+                right: '16px',
+                zIndex: 102,
+                background: 'rgba(10,10,10,0.6)',
+                border: '1px solid rgba(242,242,243,0.12)',
+                borderRadius: '999px',
+                color: '#f2f2f3',
                 cursor: 'pointer',
-                transition: 'color 200ms ease',
+                transition: 'background 200ms ease, border-color 200ms ease',
+                width: 44,
+                height: 44,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                backdropFilter: 'blur(8px)',
               }}
-              onMouseEnter={(e) => (e.currentTarget.style.color = '#f2f2f3')}
-              onMouseLeave={(e) => (e.currentTarget.style.color = '#a4a2a2')}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = 'rgba(218,34,51,0.18)'
+                e.currentTarget.style.borderColor = 'rgba(218,34,51,0.6)'
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = 'rgba(10,10,10,0.6)'
+                e.currentTarget.style.borderColor = 'rgba(242,242,243,0.12)'
+              }}
             >
-              <X size={18} />
+              <X size={20} />
             </button>
 
             <h2
@@ -140,18 +155,75 @@ export default function LearnTheOriginForm({ isOpen, onClose }: Props) {
             </p>
 
             {status === 'success' ? (
-              <p
-                style={{
-                  fontFamily: 'Playfair Display, Georgia, serif',
-                  fontWeight: 700,
-                  fontSize: '22px',
-                  color: '#f2f2f3',
-                  lineHeight: 1.4,
-                  padding: '40px 0',
-                }}
-              >
-                Your visit enquiry has reached Danish Ali directly. Expect a response within 24 hours.
-              </p>
+              <div style={{ textAlign: 'center', padding: '24px 0 12px' }}>
+                <div
+                  style={{
+                    width: 64,
+                    height: 64,
+                    borderRadius: '50%',
+                    background: 'rgba(218,34,51,0.15)',
+                    border: '1px solid rgba(218,34,51,0.4)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    margin: '0 auto 24px',
+                    color: '#da2233',
+                  }}
+                >
+                  <Check size={28} strokeWidth={2.5} />
+                </div>
+                <h3
+                  style={{
+                    fontFamily: 'Playfair Display, Georgia, serif',
+                    fontWeight: 700,
+                    fontSize: '26px',
+                    color: '#f2f2f3',
+                    marginBottom: '12px',
+                    lineHeight: 1.2,
+                  }}
+                >
+                  Thank you.
+                </h3>
+                <p
+                  style={{
+                    fontFamily: 'DM Sans, system-ui, sans-serif',
+                    fontSize: '15px',
+                    color: '#a4a2a2',
+                    lineHeight: 1.7,
+                    margin: '0 auto 28px',
+                  }}
+                >
+                  Your visit request has reached Danish at{' '}
+                  <span style={{ color: '#f2f2f3' }}>danish@caffeinenirvana.co</span>.
+                  Expect a personal response within 24 hours.
+                </p>
+                <button
+                  onClick={onClose}
+                  style={{
+                    background: 'transparent',
+                    border: '1px solid rgba(242,242,243,0.2)',
+                    color: '#a4a2a2',
+                    padding: '12px 32px',
+                    fontFamily: 'DM Sans, system-ui, sans-serif',
+                    fontSize: '13px',
+                    letterSpacing: '0.12em',
+                    textTransform: 'uppercase',
+                    cursor: 'pointer',
+                    borderRadius: 'var(--cn-radius-sm)',
+                    transition: 'color 200ms ease, border-color 200ms ease',
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.color = '#f2f2f3'
+                    e.currentTarget.style.borderColor = 'rgba(242,242,243,0.5)'
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.color = '#a4a2a2'
+                    e.currentTarget.style.borderColor = 'rgba(242,242,243,0.2)'
+                  }}
+                >
+                  Close
+                </button>
+              </div>
             ) : (
               <form onSubmit={handleSubmit(onSubmit)}>
                 {[

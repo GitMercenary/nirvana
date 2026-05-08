@@ -5,19 +5,26 @@ import { motion, useInView } from 'framer-motion'
 import { useIsMobile } from '@/hooks/useIsMobile'
 import { useFormContext } from '@/context/FormContext'
 import Image from 'next/image'
+import HeroBackdrop from '@/components/HeroBackdrop'
 
 const OFFERINGS = [
   {
     title: 'Single Origin Roasted Beans',
     description: 'Premium roasted coffee from our Chikmagalur estates, available in wholesale quantities for cafes and specialty retailers.',
+    image: '/images/gallery/naturals-golden-hour.jpg',
+    alt: 'Specialty coffee beans drying in golden-hour light',
   },
   {
     title: 'Custom Roast Profiles',
     description: 'Work with our team to develop roast profiles tailored to your menu and customer preferences.',
+    image: '/images/carousel/cupping-lab.jpg',
+    alt: 'Cupping table at the Caffeine Nirvana lab',
   },
   {
     title: 'White Label Solutions',
     description: 'Launch your own branded coffee line with our high-scoring single origin beans. Full packaging support available.',
+    image: '/images/carousel/export-sack.jpg',
+    alt: 'Caffeine Nirvana export-ready coffee sack',
   },
 ]
 
@@ -52,6 +59,7 @@ export default function RoastedSupplyPage() {
           overflow: 'hidden',
         }}
       >
+        <HeroBackdrop src="/images/estate-kardigandi.png" opacity={0.16} />
         <div
           style={{
             position: 'absolute',
@@ -175,34 +183,101 @@ export default function RoastedSupplyPage() {
                   background: 'rgba(255,255,255,0.03)',
                   border: '1px solid rgba(242,242,243,0.06)',
                   borderRadius: 'var(--cn-radius)',
-                  padding: '32px',
+                  overflow: 'hidden',
+                  display: 'flex',
+                  flexDirection: 'column',
                 }}
               >
-                {/* CONTENT: Owner to provide final copy */}
-                <h3
+                <div
                   style={{
-                    fontFamily: 'Zilla Slab, Georgia, serif',
-                    fontWeight: 600,
-                    fontSize: '20px',
-                    color: '#f2f2f3',
-                    marginBottom: '12px',
+                    position: 'relative',
+                    width: '100%',
+                    aspectRatio: '4 / 3',
+                    overflow: 'hidden',
+                    filter: 'saturate(0.85)',
                   }}
                 >
-                  {item.title}
-                </h3>
-                <p
-                  style={{
-                    fontFamily: 'DM Sans, system-ui, sans-serif',
-                    fontSize: '15px',
-                    lineHeight: 1.6,
-                    color: '#a4a2a2',
-                  }}
-                >
-                  {item.description}
-                </p>
+                  <Image
+                    src={item.image}
+                    alt={item.alt}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                    style={{ objectFit: 'cover' }}
+                  />
+                </div>
+                <div style={{ padding: '24px 28px 28px' }}>
+                  <h3
+                    style={{
+                      fontFamily: 'Zilla Slab, Georgia, serif',
+                      fontWeight: 600,
+                      fontSize: '20px',
+                      color: '#f2f2f3',
+                      marginBottom: '12px',
+                    }}
+                  >
+                    {item.title}
+                  </h3>
+                  <p
+                    style={{
+                      fontFamily: 'DM Sans, system-ui, sans-serif',
+                      fontSize: '15px',
+                      lineHeight: 1.6,
+                      color: '#a4a2a2',
+                    }}
+                  >
+                    {item.description}
+                  </p>
+                </div>
               </motion.div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Atmospheric image break */}
+      <section
+        style={{
+          position: 'relative',
+          width: '100%',
+          height: isMobile ? '320px' : '480px',
+          overflow: 'hidden',
+        }}
+      >
+        <Image
+          src="/images/gallery/parchment-yard.jpg"
+          alt="Parchment drying yard at scale, Caffeine Nirvana washing station"
+          fill
+          sizes="100vw"
+          style={{ objectFit: 'cover', filter: 'saturate(0.85)' }}
+        />
+        <div
+          style={{
+            position: 'absolute',
+            inset: 0,
+            background:
+              'linear-gradient(180deg, rgba(10,10,10,0.5) 0%, rgba(10,10,10,0.2) 50%, rgba(10,10,10,0.7) 100%)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: '24px',
+          }}
+        >
+          <p
+            style={{
+              fontFamily: 'Playfair Display, Georgia, serif',
+              fontWeight: 700,
+              fontStyle: 'italic',
+              fontSize: 'clamp(20px, 3vw, 32px)',
+              color: '#f2f2f3',
+              textAlign: 'center',
+              maxWidth: '720px',
+              margin: 0,
+              lineHeight: 1.35,
+              textShadow: '0 2px 12px rgba(0,0,0,0.6)',
+            }}
+          >
+            From cherry to cup — every batch is roasted to a profile we&rsquo;ve cupped, signed off, and stand behind.
+          </p>
         </div>
       </section>
 

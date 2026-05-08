@@ -65,7 +65,7 @@ export default function HumanContactSection() {
               marginBottom: '16px',
             }}
           >
-            Hailing from a family with over 250 years of coffee-growing heritage in
+            Hailing from a family with over 150 years of coffee-growing heritage in
             Chikmagalur, Danish Ali is a producer, exporter, and passionate coffee
             craftsman dedicated to elevating Indian specialty coffee on the global
             stage.

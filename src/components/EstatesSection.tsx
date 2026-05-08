@@ -236,7 +236,7 @@ export default function EstatesSection() {
           }}
         >
           {ESTATES.map((estate, i) => (
-            <EstateCard key={estate.name} estate={estate} index={i} />
+            <EstateCard key={i} estate={estate} index={i} />
           ))}
         </div>
       </div>

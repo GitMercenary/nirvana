@@ -4,6 +4,7 @@ import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 import { useIsMobile } from '@/hooks/useIsMobile'
 import CTABanner from '@/components/CTABanner'
+import HeroBackdrop from '@/components/HeroBackdrop'
 
 const ease = [0.16, 1, 0.3, 1] as const
 
@@ -61,15 +62,18 @@ export default function WhyUsPage() {
       <section
         ref={heroRef}
         style={{
+          position: 'relative',
           background: 'var(--cn-black, #0a0a0a)',
           minHeight: '60vh',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
           padding: isMobile ? '100px 20px 80px' : '120px 32px 100px',
+          overflow: 'hidden',
         }}
       >
-        <div style={{ maxWidth: '860px', textAlign: 'center' }}>
+        <HeroBackdrop src="/images/hero-bg-v2.png" opacity={0.22} />
+        <div style={{ position: 'relative', zIndex: 1, maxWidth: '860px', textAlign: 'center' }}>
           <motion.p
             initial={{ opacity: 0, y: 16 }}
             animate={heroInView ? { opacity: 1, y: 0 } : {}}

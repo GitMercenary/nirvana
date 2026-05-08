@@ -2,15 +2,29 @@
 
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
+import Image from 'next/image'
 import { useIsMobile } from '@/hooks/useIsMobile'
 import CTABanner from '@/components/CTABanner'
+import HeroBackdrop from '@/components/HeroBackdrop'
 
 const ease = [0.16, 1, 0.3, 1] as const
 
-const ESSAYS = [
+const ESSAYS: {
+  eyebrow: string
+  title: string
+  image: { src: string; alt: string }
+  pullQuote?: string
+  paragraphs: string[]
+}[] = [
   {
     eyebrow: 'Chapter One',
     title: 'Coffee as a Means of Life',
+    image: {
+      src: '/images/gallery/cherries-tarp-harvest.jpg',
+      alt: 'Fresh coffee cherries on the tarp at harvest time, Chikmagalur',
+    },
+    pullQuote:
+      'Coffee is not merely a crop; it is the heartbeat of their heritage and the architect of their community’s future.',
     paragraphs: [
       'To understand coffee as a means of life, one must look past the steam of a morning mug and into the interconnected rhythm of the hills where it begins. It is a cycle of existence that breathes life into the soil of Chikmagalur long before it ever reaches a kitchen.',
       'For the small-holder farmers who walk the steep inclines of the Western Ghats, coffee is not merely a crop; it is the heartbeat of their heritage and the primary architect of their community’s future. Their days are dictated by the slow, deliberate pace of the seasons — where the flowering of the trees signals hope and the arrival of the harvest represents the culmination of a year’s worth of physical and emotional investment.',
@@ -21,6 +35,12 @@ const ESSAYS = [
   {
     eyebrow: 'Chapter Two',
     title: 'Ethical Growth — Farmer to Consumer',
+    image: {
+      src: '/images/gallery/parchment-yard.jpg',
+      alt: 'Parchment drying yard at the Caffeine Nirvana washing station',
+    },
+    pullQuote:
+      'We spend our days in the hills not just as buyers, but as collaborators.',
     paragraphs: [
       'The story of your morning cup doesn’t begin with a roast or a grind; it begins in the quiet, mist-covered hills of Chikmagalur, where the roots of the first coffee trees in India took hold centuries ago. For us, sustaining coffee culture is about honouring this deep-rooted heritage while ensuring it has a vibrant, ethical future. It is a story of Radical Connection — moving from the soil of the mountain to the soul of the consumer.',
       'It starts with the land. In an era of mass production, we have chosen a different path — one that protects the delicate shade-grown forests of the Western Ghats. By supporting poly-culture farming, where coffee grows beneath a canopy of native jungle trees, we aren’t just sourcing beans; we are acting as stewards of biodiversity.',
@@ -32,6 +52,12 @@ const ESSAYS = [
   {
     eyebrow: 'Chapter Three',
     title: 'Coffee Longevity & Protection from Extinction',
+    image: {
+      src: '/images/gallery/jungle-canopy-coffee.jpg',
+      alt: 'Polyculture jungle canopy with coffee plants in the Western Ghats',
+    },
+    pullQuote:
+      'To lose the forest would be to lose the very character of the bean itself.',
     paragraphs: [
       'The story of coffee in the hills of Chikmagalur is a saga of survival — a delicate dance between an ancient heritage and the encroaching pressures of a changing world. To speak of coffee longevity is to recognise that we are at a critical crossroads where the traditions of the past must be fortified by the innovations of the future.',
       'Our commitment begins with the understanding that coffee is not an invincible resource; it is a sensitive inhabitant of a shifting climate, and protecting it from the threat of extinction requires a shield made of both science and soul. We view our role as guardians of this botanical legacy — ensuring that the specific varietals and unique forest-grown methods that define Indian coffee are not lost to industrial monoculture or environmental instability.',
@@ -87,25 +113,74 @@ function Essay({
         {essay.title}
       </motion.h2>
 
+      {/* Chapter image */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.97 }}
+        animate={inView ? { opacity: 1, scale: 1 } : {}}
+        transition={{ duration: 0.9, ease, delay: 0.12 }}
+        style={{
+          position: 'relative',
+          width: '100%',
+          aspectRatio: '16 / 9',
+          borderRadius: 'var(--cn-radius)',
+          overflow: 'hidden',
+          marginBottom: 36,
+          filter: 'saturate(0.85)',
+        }}
+      >
+        <Image
+          src={essay.image.src}
+          alt={essay.image.alt}
+          fill
+          sizes="(max-width: 768px) 100vw, 780px"
+          style={{ objectFit: 'cover' }}
+        />
+      </motion.div>
+
       <div style={{ display: 'flex', flexDirection: 'column', gap: 22 }}>
-        {essay.paragraphs.map((p, i) => (
-          <motion.p
-            key={i}
-            initial={{ opacity: 0, y: 16 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.7, ease, delay: 0.16 + i * 0.06 }}
-            style={{
-              fontFamily: 'Zilla Slab, Georgia, serif',
-              fontWeight: 400,
-              fontSize: 'clamp(17px, 2vw, 19px)',
-              lineHeight: 1.78,
-              color: 'var(--cn-cream, #f2f2f3)',
-              margin: 0,
-            }}
-          >
-            {p}
-          </motion.p>
-        ))}
+        {essay.paragraphs.map((p, i) => {
+          // Insert pull-quote between paragraph 2 and 3 if present
+          const showPullQuote = essay.pullQuote && i === 2
+          return (
+            <div key={i}>
+              {showPullQuote && (
+                <motion.blockquote
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={inView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.7, ease, delay: 0.16 + i * 0.06 }}
+                  style={{
+                    fontFamily: 'Playfair Display, Georgia, serif',
+                    fontWeight: 700,
+                    fontStyle: 'italic',
+                    fontSize: 'clamp(22px, 3vw, 32px)',
+                    lineHeight: 1.35,
+                    color: 'var(--cn-red-primary, #da2233)',
+                    borderLeft: '3px solid rgba(218,34,51,0.6)',
+                    padding: '8px 0 8px 24px',
+                    margin: '24px 0 32px',
+                  }}
+                >
+                  &ldquo;{essay.pullQuote}&rdquo;
+                </motion.blockquote>
+              )}
+              <motion.p
+                initial={{ opacity: 0, y: 16 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.7, ease, delay: 0.18 + i * 0.06 }}
+                style={{
+                  fontFamily: 'Zilla Slab, Georgia, serif',
+                  fontWeight: 400,
+                  fontSize: 'clamp(17px, 2vw, 19px)',
+                  lineHeight: 1.78,
+                  color: 'var(--cn-cream, #f2f2f3)',
+                  margin: 0,
+                }}
+              >
+                {p}
+              </motion.p>
+            </div>
+          )
+        })}
       </div>
 
       {index < ESSAYS.length - 1 && (
@@ -133,15 +208,18 @@ export default function Coffee101Page() {
       <section
         ref={heroRef}
         style={{
+          position: 'relative',
           background: 'var(--cn-black, #0a0a0a)',
           minHeight: '50vh',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
           padding: isMobile ? '100px 20px 64px' : '120px 32px 80px',
+          overflow: 'hidden',
         }}
       >
-        <div style={{ maxWidth: '860px', textAlign: 'center' }}>
+        <HeroBackdrop src="/images/landscape-chikmagalur.jpg" opacity={0.2} />
+        <div style={{ position: 'relative', zIndex: 1, maxWidth: '860px', textAlign: 'center' }}>
           <motion.p
             initial={{ opacity: 0, y: 16 }}
             animate={heroInView ? { opacity: 1, y: 0 } : {}}

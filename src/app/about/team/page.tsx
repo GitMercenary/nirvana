@@ -5,6 +5,7 @@ import { motion, useInView } from 'framer-motion'
 import Image from 'next/image'
 import { useIsMobile } from '@/hooks/useIsMobile'
 import CTABanner from '@/components/CTABanner'
+import HeroBackdrop from '@/components/HeroBackdrop'
 
 const ease = [0.16, 1, 0.3, 1] as const
 
@@ -13,9 +14,9 @@ const FOUNDERS = [
     name: 'Danish Ali',
     role: 'Founder',
     location: 'Chikmagalur, Karnataka',
-    image: '/images/estate-zoya-hero.jpg',
+    image: '/images/team/danish.jpg',
     paragraphs: [
-      'Born into a family whose roots in coffee cultivation stretch back over 250 years, Danish Ali represents a legacy deeply intertwined with the rich coffee-growing heritage of Chikmagalur. As a producer, exporter, and passionate coffee craftsman, he carries forward generations of knowledge while embracing a modern vision for specialty coffee.',
+      'Born into a family whose roots in coffee cultivation stretch back over 150 years, Danish Ali represents a legacy deeply intertwined with the rich coffee-growing heritage of Chikmagalur. As a producer, exporter, and passionate coffee craftsman, he carries forward generations of knowledge while embracing a modern vision for specialty coffee.',
       'At the heart of this legacy lies Zoya Estates, the family’s 150-year-old estate nestled in the lush highlands of Chikmagalur, where some of the finest Arabica coffees are cultivated under ideal climatic conditions. Raised amidst coffee blossoms, harvest seasons, and the art of careful processing, Danish inherited not just a business, but a lifelong devotion to coffee.',
       'An avid coffee alchemist and self-confessed javaphile, Danish learned the nuances of coffee production from his ancestors long before realising it had become his true calling. His approach combines traditional wisdom with relentless curiosity — from cultivation and fermentation to processing and cup quality — resulting in coffees that reflect both character and terroir.',
       'For Danish, coffee is more than a commodity — it is heritage, passion, and a story meant to be shared in every cup.',
@@ -25,7 +26,7 @@ const FOUNDERS = [
     name: 'Ayesha Naseer',
     role: 'Director',
     location: 'Bengaluru, Karnataka',
-    image: '/images/carousel/cupping-lab.jpg',
+    image: '/images/team/ayesha.jpg',
     paragraphs: [
       'Ayesha Naseer is a passionate coffee entrepreneur and hospitality professional based out of Bengaluru, with over a decade of experience in the food and beverage industry. As the driving force behind Café Azzure, a successful and well-recognised chain of cafés across Bengaluru, she has built a brand that resonates with the city’s vibrant and evolving coffee culture.',
       'An avid coffee enthusiast with a refined palate and deep appreciation for specialty coffee, Ayesha brings together operational expertise, sharp business acumen, and extensive regional knowledge of the coffee industry. Her journey in hospitality has been shaped by years of understanding consumer experiences, café culture, and the nuances that define exceptional coffee.',
@@ -37,7 +38,7 @@ const FOUNDERS = [
     name: 'Harsh Jain',
     role: 'Roasting Head',
     location: 'Chikmagalur → Gujarat',
-    image: '/images/carousel/beans-floor.jpg',
+    image: '/images/team/harsh.jpg',
     paragraphs: [
       'Born and raised in the renowned coffee-growing region of Chikmagalur and now headquartered in Gujarat, Harsh Jain brings deep-rooted coffee knowledge and extensive industry expertise to his role leading the roasting division at Caffeine Nirvana.',
       'As the head of the company’s roasted coffee division, Harsh plays a pivotal role in shaping meaningful partnerships with some of India’s leading specialty cafés and coffee brands. His work goes far beyond roasting — it is centred around understanding the unique identity, audience, and vision of every café he collaborates with.',
@@ -67,7 +68,6 @@ function FounderCard({
         aspectRatio: '4 / 5',
         borderRadius: 'var(--cn-radius)',
         overflow: 'hidden',
-        filter: 'saturate(0.85)',
       }}
     >
       <Image
@@ -182,15 +182,18 @@ export default function TeamPage() {
       <section
         ref={heroRef}
         style={{
+          position: 'relative',
           background: 'var(--cn-black, #0a0a0a)',
           minHeight: '50vh',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
           padding: isMobile ? '100px 20px 64px' : '120px 32px 80px',
+          overflow: 'hidden',
         }}
       >
-        <div style={{ maxWidth: '860px', textAlign: 'center' }}>
+        <HeroBackdrop src="/images/hero-bg.png" opacity={0.16} />
+        <div style={{ position: 'relative', zIndex: 1, maxWidth: '860px', textAlign: 'center' }}>
           <motion.p
             initial={{ opacity: 0, y: 16 }}
             animate={heroInView ? { opacity: 1, y: 0 } : {}}

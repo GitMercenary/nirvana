@@ -6,6 +6,7 @@ import Image from 'next/image'
 import { useIsMobile } from '@/hooks/useIsMobile'
 import { useFormContext } from '@/context/FormContext'
 import { submitToEmail } from '@/utils/submitForm'
+import HeroBackdrop from '@/components/HeroBackdrop'
 
 /* ─── animation helpers ─── */
 const fade = (delay = 0) => ({
@@ -175,9 +176,10 @@ export default function ContactPage() {
       {/* ── Section 1: Hero ── */}
       <Section
         bg="var(--cn-black)"
-        style={{ minHeight: '50vh', display: 'flex', alignItems: 'center' }}
+        style={{ position: 'relative', minHeight: '50vh', display: 'flex', alignItems: 'center', overflow: 'hidden' }}
       >
-        <div style={{ textAlign: 'center', maxWidth: 720, margin: '0 auto' }}>
+        <HeroBackdrop src="/images/hero-bg.png" opacity={0.14} />
+        <div style={{ position: 'relative', zIndex: 1, textAlign: 'center', maxWidth: 720, margin: '0 auto' }}>
           <motion.div {...fade(0)}>
             <Eyebrow>GET IN TOUCH</Eyebrow>
           </motion.div>
@@ -358,8 +360,8 @@ export default function ContactPage() {
           }}
         >
           <Image
-            src="/images/carousel/drying-beds.jpg"
-            alt="Drying beds at Keserke estate, Chikmagalur"
+            src="/images/landscape-chikmagalur.jpg"
+            alt="Sunrise over the misty hills of Chikmagalur, the Western Ghats"
             fill
             style={{ objectFit: 'cover' }}
             sizes="(max-width: 768px) 100vw, 1200px"

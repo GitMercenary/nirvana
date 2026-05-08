@@ -3,6 +3,7 @@
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 import { useIsMobile } from '@/hooks/useIsMobile'
+import HeroBackdrop from '@/components/HeroBackdrop'
 
 const ease = [0.16, 1, 0.3, 1] as const
 
@@ -83,15 +84,18 @@ export default function TermsPage() {
       <section
         ref={heroRef}
         style={{
+          position: 'relative',
           background: 'var(--cn-black, #0a0a0a)',
           minHeight: '40vh',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
           padding: isMobile ? '100px 20px 56px' : '120px 32px 72px',
+          overflow: 'hidden',
         }}
       >
-        <div style={{ maxWidth: '780px', textAlign: 'center' }}>
+        <HeroBackdrop src="/images/hero-bg.png" opacity={0.1} />
+        <div style={{ position: 'relative', zIndex: 1, maxWidth: '780px', textAlign: 'center' }}>
           <motion.p
             initial={{ opacity: 0, y: 16 }}
             animate={heroInView ? { opacity: 1, y: 0 } : {}}

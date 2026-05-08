@@ -53,6 +53,19 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Hide scrollbars site-wide while preserving scroll behaviour. */
+html, body, * {
+  scrollbar-width: none;          /* Firefox */
+  -ms-overflow-style: none;       /* IE / Edge legacy */
+}
+html::-webkit-scrollbar,
+body::-webkit-scrollbar,
+*::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  display: none;                  /* Chrome / Safari / Edge / Opera */
+}
+
 body {
   background: var(--cn-dark);
   color: var(--cn-cream);

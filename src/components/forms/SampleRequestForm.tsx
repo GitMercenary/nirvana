@@ -4,7 +4,7 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useForm } from 'react-hook-form'
-import { X } from 'lucide-react'
+import { X, Check } from 'lucide-react'
 import { submitToEmail } from '@/utils/submitForm'
 
 interface Props {
@@ -80,6 +80,7 @@ export default function SampleRequestForm({ lotName, onClose }: Props) {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.96 }}
             transition={{ duration: 0.4, ease: 'easeOut' }}
+            onClick={onClose}
             style={{
               position: 'fixed',
               inset: 0,
@@ -91,34 +92,51 @@ export default function SampleRequestForm({ lotName, onClose }: Props) {
               overflowY: 'auto',
             }}
           >
+            {/* Close — fixed to viewport so it stays visible when scrolling */}
+            <button
+              onClick={onClose}
+              aria-label="Close form"
+              style={{
+                position: 'fixed',
+                top: '16px',
+                right: '16px',
+                zIndex: 102,
+                background: 'rgba(10,10,10,0.6)',
+                border: '1px solid rgba(242,242,243,0.12)',
+                borderRadius: '999px',
+                color: '#f2f2f3',
+                cursor: 'pointer',
+                transition: 'background 200ms ease, border-color 200ms ease',
+                width: 44,
+                height: 44,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                backdropFilter: 'blur(8px)',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = 'rgba(218,34,51,0.18)'
+                e.currentTarget.style.borderColor = 'rgba(218,34,51,0.6)'
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = 'rgba(10,10,10,0.6)'
+                e.currentTarget.style.borderColor = 'rgba(242,242,243,0.12)'
+              }}
+            >
+              <X size={20} />
+            </button>
+
             <div
               style={{
                 width: '100%',
                 maxWidth: '480px',
                 position: 'relative',
-                padding: '60px 40px 40px',
+                padding: 'clamp(28px, 5vw, 56px) clamp(20px, 4vw, 40px)',
                 background: 'rgba(14,14,14,0.95)',
                 border: '1px solid rgba(242,242,243,0.08)',
               }}
               onClick={(e) => e.stopPropagation()}
             >
-              <button
-                onClick={onClose}
-                style={{
-                  position: 'absolute',
-                  top: '20px',
-                  right: '24px',
-                  background: 'none',
-                  border: 'none',
-                  color: '#a4a2a2',
-                  cursor: 'pointer',
-                  transition: 'color 200ms ease',
-                }}
-                onMouseEnter={(e) => (e.currentTarget.style.color = '#f2f2f3')}
-                onMouseLeave={(e) => (e.currentTarget.style.color = '#a4a2a2')}
-              >
-                <X size={18} />
-              </button>
 
               {/* Pre-filled lot name */}
               <p
@@ -135,18 +153,74 @@ export default function SampleRequestForm({ lotName, onClose }: Props) {
               </p>
 
               {status === 'success' ? (
-                <p
-                  style={{
-                    fontFamily: 'Playfair Display, Georgia, serif',
-                    fontWeight: 700,
-                    fontSize: '22px',
-                    color: '#f2f2f3',
-                    lineHeight: 1.4,
-                    padding: '20px 0',
-                  }}
-                >
-                  Sample request sent. Danish will be in touch within 24 hours.
-                </p>
+                <div style={{ textAlign: 'center', padding: '12px 0' }}>
+                  <div
+                    style={{
+                      width: 56,
+                      height: 56,
+                      borderRadius: '50%',
+                      background: 'rgba(218,34,51,0.15)',
+                      border: '1px solid rgba(218,34,51,0.4)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      margin: '0 auto 20px',
+                      color: '#da2233',
+                    }}
+                  >
+                    <Check size={24} strokeWidth={2.5} />
+                  </div>
+                  <h3
+                    style={{
+                      fontFamily: 'Playfair Display, Georgia, serif',
+                      fontWeight: 700,
+                      fontSize: '24px',
+                      color: '#f2f2f3',
+                      marginBottom: '12px',
+                      lineHeight: 1.2,
+                    }}
+                  >
+                    Sample request sent.
+                  </h3>
+                  <p
+                    style={{
+                      fontFamily: 'DM Sans, system-ui, sans-serif',
+                      fontSize: '14px',
+                      color: '#a4a2a2',
+                      lineHeight: 1.7,
+                      margin: '0 0 24px',
+                    }}
+                  >
+                    Danish will be in touch within 24 hours from{' '}
+                    <span style={{ color: '#f2f2f3' }}>danish@caffeinenirvana.co</span>.
+                  </p>
+                  <button
+                    onClick={onClose}
+                    style={{
+                      background: 'transparent',
+                      border: '1px solid rgba(242,242,243,0.2)',
+                      color: '#a4a2a2',
+                      padding: '12px 32px',
+                      fontFamily: 'DM Sans, system-ui, sans-serif',
+                      fontSize: '13px',
+                      letterSpacing: '0.12em',
+                      textTransform: 'uppercase',
+                      cursor: 'pointer',
+                      borderRadius: 'var(--cn-radius-sm)',
+                      transition: 'color 200ms ease, border-color 200ms ease',
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.color = '#f2f2f3'
+                      e.currentTarget.style.borderColor = 'rgba(242,242,243,0.5)'
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.color = '#a4a2a2'
+                      e.currentTarget.style.borderColor = 'rgba(242,242,243,0.2)'
+                    }}
+                  >
+                    Close
+                  </button>
+                </div>
               ) : (
                 <form onSubmit={handleSubmit(onSubmit)}>
                   {[

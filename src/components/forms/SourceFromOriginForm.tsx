@@ -4,7 +4,7 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useForm } from 'react-hook-form'
-import { X } from 'lucide-react'
+import { X, Check } from 'lucide-react'
 import { submitToEmail } from '@/utils/submitForm'
 
 interface Props {
@@ -25,22 +25,22 @@ const inputStyle: React.CSSProperties = {
   background: 'rgba(255,255,255,0.04)',
   border: '1px solid rgba(242,242,243,0.12)',
   color: '#f2f2f3',
-  padding: '14px 16px',
+  padding: '10px 12px',
   fontFamily: 'DM Sans, system-ui, sans-serif',
   fontSize: '14px',
   outline: 'none',
   transition: 'border-color 300ms ease',
-  marginBottom: '4px',
+  marginBottom: '2px',
 }
 
 const labelStyle: React.CSSProperties = {
   display: 'block',
   fontFamily: 'DM Sans, system-ui, sans-serif',
-  fontSize: '11px',
+  fontSize: '10px',
   letterSpacing: '0.15em',
   textTransform: 'uppercase',
   color: '#a4a2a2',
-  marginBottom: '6px',
+  marginBottom: '4px',
 }
 
 export default function SourceFromOriginForm({ isOpen, onClose }: Props) {
@@ -84,6 +84,7 @@ export default function SourceFromOriginForm({ isOpen, onClose }: Props) {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.96 }}
             transition={{ duration: 0.4, ease: 'easeOut' }}
+            onClick={onClose}
             style={{
               position: 'fixed',
               inset: 0,
@@ -95,49 +96,60 @@ export default function SourceFromOriginForm({ isOpen, onClose }: Props) {
               overflowY: 'auto',
             }}
           >
+            {/* Close — fixed to viewport so it stays visible when scrolling inside the form on mobile */}
+            <button
+              onClick={onClose}
+              aria-label="Close form"
+              style={{
+                position: 'fixed',
+                top: '16px',
+                right: '16px',
+                zIndex: 102,
+                background: 'rgba(10,10,10,0.6)',
+                border: '1px solid rgba(242,242,243,0.12)',
+                borderRadius: '999px',
+                color: '#f2f2f3',
+                cursor: 'pointer',
+                transition: 'background 200ms ease, border-color 200ms ease',
+                width: 44,
+                height: 44,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                backdropFilter: 'blur(8px)',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = 'rgba(218,34,51,0.18)'
+                e.currentTarget.style.borderColor = 'rgba(218,34,51,0.6)'
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = 'rgba(10,10,10,0.6)'
+                e.currentTarget.style.borderColor = 'rgba(242,242,243,0.12)'
+              }}
+            >
+              <X size={20} />
+            </button>
+
             <div
               style={{
                 width: '100%',
-                maxWidth: '600px',
+                maxWidth: '560px',
                 position: 'relative',
-                padding: '60px 48px 48px',
-                background: 'rgba(14,14,14,0.9)',
+                padding: 'clamp(24px, 4vw, 36px) clamp(20px, 3.5vw, 36px)',
+                background: 'rgba(14,14,14,0.92)',
                 border: '1px solid rgba(242,242,243,0.08)',
               }}
               onClick={(e) => e.stopPropagation()}
             >
-              {/* Close */}
-              <button
-                onClick={onClose}
-                style={{
-                  position: 'absolute',
-                  top: '20px',
-                  right: '24px',
-                  background: 'none',
-                  border: 'none',
-                  color: '#a4a2a2',
-                  cursor: 'pointer',
-                  transition: 'color 200ms ease',
-                  fontFamily: 'DM Sans, system-ui, sans-serif',
-                  fontSize: '14px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '6px',
-                }}
-                onMouseEnter={(e) => (e.currentTarget.style.color = '#f2f2f3')}
-                onMouseLeave={(e) => (e.currentTarget.style.color = '#a4a2a2')}
-              >
-                <X size={18} />
-              </button>
 
               {/* Header */}
               <h2
                 style={{
                   fontFamily: 'Playfair Display, Georgia, serif',
                   fontWeight: 700,
-                  fontSize: '28px',
+                  fontSize: '22px',
                   color: '#f2f2f3',
-                  marginBottom: '8px',
+                  marginBottom: '4px',
                 }}
               >
                 Source From Origin
@@ -145,31 +157,88 @@ export default function SourceFromOriginForm({ isOpen, onClose }: Props) {
               <p
                 style={{
                   fontFamily: 'DM Sans, system-ui, sans-serif',
-                  fontSize: '14px',
+                  fontSize: '13px',
                   color: '#a4a2a2',
-                  marginBottom: '40px',
+                  marginBottom: '20px',
                 }}
               >
-                Your enquiry reaches Danish Ali directly. Response within 24 hours.
+                Your enquiry reaches Danish directly. Response within 24 hours.
               </p>
 
               {status === 'success' ? (
-                <p
-                  style={{
-                    fontFamily: 'Playfair Display, Georgia, serif',
-                    fontWeight: 700,
-                    fontSize: '24px',
-                    color: '#f2f2f3',
-                    lineHeight: 1.4,
-                    textAlign: 'center',
-                    padding: '40px 0',
-                  }}
-                >
-                  Your enquiry has reached Danish Ali directly. Expect a response within 24 hours.
-                </p>
+                <div style={{ textAlign: 'center', padding: '24px 0 12px' }}>
+                  <div
+                    style={{
+                      width: 64,
+                      height: 64,
+                      borderRadius: '50%',
+                      background: 'rgba(218,34,51,0.15)',
+                      border: '1px solid rgba(218,34,51,0.4)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      margin: '0 auto 24px',
+                      color: '#da2233',
+                    }}
+                  >
+                    <Check size={28} strokeWidth={2.5} />
+                  </div>
+                  <h3
+                    style={{
+                      fontFamily: 'Playfair Display, Georgia, serif',
+                      fontWeight: 700,
+                      fontSize: '28px',
+                      color: '#f2f2f3',
+                      marginBottom: '12px',
+                      lineHeight: 1.2,
+                    }}
+                  >
+                    Thank you.
+                  </h3>
+                  <p
+                    style={{
+                      fontFamily: 'DM Sans, system-ui, sans-serif',
+                      fontSize: '15px',
+                      color: '#a4a2a2',
+                      lineHeight: 1.7,
+                      maxWidth: 420,
+                      margin: '0 auto 28px',
+                    }}
+                  >
+                    Your enquiry has reached Danish at{' '}
+                    <span style={{ color: '#f2f2f3' }}>danish@caffeinenirvana.co</span>.
+                    He&rsquo;ll personally respond within 24 hours.
+                  </p>
+                  <button
+                    onClick={onClose}
+                    style={{
+                      background: 'transparent',
+                      border: '1px solid rgba(242,242,243,0.2)',
+                      color: '#a4a2a2',
+                      padding: '12px 32px',
+                      fontFamily: 'DM Sans, system-ui, sans-serif',
+                      fontSize: '13px',
+                      letterSpacing: '0.12em',
+                      textTransform: 'uppercase',
+                      cursor: 'pointer',
+                      borderRadius: 'var(--cn-radius-sm)',
+                      transition: 'color 200ms ease, border-color 200ms ease',
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.color = '#f2f2f3'
+                      e.currentTarget.style.borderColor = 'rgba(242,242,243,0.5)'
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.color = '#a4a2a2'
+                      e.currentTarget.style.borderColor = 'rgba(242,242,243,0.2)'
+                    }}
+                  >
+                    Close
+                  </button>
+                </div>
               ) : (
                 <form onSubmit={handleSubmit(onSubmit)}>
-                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
                     <div>
                       <label style={labelStyle}>Full Name *</label>
                       <input
@@ -223,27 +292,28 @@ export default function SourceFromOriginForm({ isOpen, onClose }: Props) {
                   </div>
 
                   {/* Lots checkboxes */}
-                  <div style={{ marginTop: '16px', marginBottom: '16px' }}>
+                  <div style={{ marginTop: '12px', marginBottom: '12px' }}>
                     <label style={labelStyle}>Lots of Interest</label>
-                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
+                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '6px 10px' }}>
                       {LOTS_OPTIONS.map((lot) => (
                         <label
                           key={lot}
                           style={{
                             display: 'flex',
                             alignItems: 'center',
-                            gap: '8px',
+                            gap: '6px',
                             fontFamily: 'DM Sans, system-ui, sans-serif',
-                            fontSize: '13px',
+                            fontSize: '12px',
                             color: '#a4a2a2',
                             cursor: 'pointer',
+                            lineHeight: 1.3,
                           }}
                         >
                           <input
                             type="checkbox"
                             value={lot}
                             {...register('lots')}
-                            style={{ accentColor: '#da2233' }}
+                            style={{ accentColor: '#da2233', flexShrink: 0 }}
                           />
                           {lot}
                         </label>
@@ -252,7 +322,7 @@ export default function SourceFromOriginForm({ isOpen, onClose }: Props) {
                   </div>
 
                   {/* Monthly volume */}
-                  <div style={{ marginBottom: '16px' }}>
+                  <div style={{ marginBottom: '12px' }}>
                     <label style={labelStyle}>Monthly Volume</label>
                     <select
                       {...register('volume')}
@@ -273,11 +343,11 @@ export default function SourceFromOriginForm({ isOpen, onClose }: Props) {
                   </div>
 
                   {/* Message */}
-                  <div style={{ marginBottom: '24px' }}>
+                  <div style={{ marginBottom: '16px' }}>
                     <label style={labelStyle}>Message</label>
                     <textarea
                       {...register('message')}
-                      rows={4}
+                      rows={3}
                       placeholder="Tell us about your roastery and what you're looking for..."
                       style={{ ...inputStyle, resize: 'vertical' }}
                       onFocus={(e) => (e.currentTarget.style.borderColor = '#da2233')}
@@ -289,9 +359,9 @@ export default function SourceFromOriginForm({ isOpen, onClose }: Props) {
                     <p
                       style={{
                         fontFamily: 'DM Sans, system-ui, sans-serif',
-                        fontSize: '13px',
+                        fontSize: '12px',
                         color: '#da2233',
-                        marginBottom: '16px',
+                        marginBottom: '12px',
                       }}
                     >
                       Something went wrong. Please email danish@caffeinenirvana.co directly.
@@ -306,9 +376,9 @@ export default function SourceFromOriginForm({ isOpen, onClose }: Props) {
                       background: '#da2233',
                       color: '#f2f2f3',
                       border: 'none',
-                      padding: '18px',
+                      padding: '14px',
                       fontFamily: 'DM Sans, system-ui, sans-serif',
-                      fontSize: '14px',
+                      fontSize: '13px',
                       letterSpacing: '0.12em',
                       textTransform: 'uppercase',
                       cursor: status === 'submitting' ? 'not-allowed' : 'pointer',

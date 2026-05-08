@@ -5,6 +5,7 @@ import { motion, useInView } from 'framer-motion'
 import { LOTS } from '@/components/AtmosphereSelector'
 import { useIsMobile } from '@/hooks/useIsMobile'
 import { useFormContext } from '@/context/FormContext'
+import HeroBackdrop from '@/components/HeroBackdrop'
 
 /* ─── animation helpers ─── */
 const fadeUp = {
@@ -327,6 +328,7 @@ export default function OfferingsPage() {
       {/* ─── Section 1: Hero ─── */}
       <section
         style={{
+          position: 'relative',
           background: 'var(--cn-black)',
           minHeight: '50vh',
           display: 'flex',
@@ -335,12 +337,15 @@ export default function OfferingsPage() {
           alignItems: 'center',
           textAlign: 'center',
           padding: isMobile ? '100px 20px 60px' : '120px 40px 80px',
+          overflow: 'hidden',
         }}
       >
+        <HeroBackdrop src="/images/landscape-why-us.jpg" opacity={0.18} />
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
+          style={{ position: 'relative', zIndex: 1 }}
         >
           <div
             style={{

@@ -6,6 +6,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useFormContext } from '@/context/FormContext'
 import { useIsMobile } from '@/hooks/useIsMobile'
+import HeroBackdrop from '@/components/HeroBackdrop'
 
 const ease = [0.16, 1, 0.3, 1] as const
 
@@ -73,15 +74,18 @@ export default function AboutPage() {
       <section
         ref={heroRef}
         style={{
+          position: 'relative',
           background: 'var(--cn-black, #0a0a0a)',
           minHeight: '60vh',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
           padding: isMobile ? '100px 20px 80px' : '120px 32px 100px',
+          overflow: 'hidden',
         }}
       >
-        <div style={{ maxWidth: '860px', textAlign: 'center' }}>
+        <HeroBackdrop src="/images/hero-bg-v2.png" opacity={0.2} />
+        <div style={{ position: 'relative', zIndex: 1, maxWidth: '860px', textAlign: 'center' }}>
           {/* Eyebrow */}
           <motion.p
             initial={{ opacity: 0, y: 16 }}
@@ -318,7 +322,7 @@ export default function AboutPage() {
                 marginBottom: '20px',
               }}
             >
-              Hailing from a family with over 250 years of coffee-growing heritage in
+              Hailing from a family with over 150 years of coffee-growing heritage in
               Chikmagalur, Danish is a producer, exporter, and passionate coffee
               craftsman dedicated to elevating Indian specialty coffee on the global
               stage. He leads Caffeine Nirvana alongside Ayesha Naseer (Director) and

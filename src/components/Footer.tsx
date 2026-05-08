@@ -178,7 +178,7 @@ export default function Footer() {
           }}
         >
           <Image
-            src="/images/logo-bw.jpg"
+            src="/images/logo-bw.png"
             alt="Caffeine Nirvana"
             width={812}
             height={449}
