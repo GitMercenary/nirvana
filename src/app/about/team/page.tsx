@@ -26,7 +26,7 @@ const FOUNDERS = [
     name: 'Ayesha Naseer',
     role: 'Director',
     location: 'Bengaluru, Karnataka',
-    image: '/images/team/ayesha.png',
+    image: '/images/team/ayesha.jpg',
     paragraphs: [
       'Ayesha Naseer is a passionate coffee entrepreneur and hospitality professional based out of Bengaluru, with over a decade of experience in the food and beverage industry. As the driving force behind Café Azzure, a successful and well-recognised chain of cafés across Bengaluru, she has built a brand that resonates with the city’s vibrant and evolving coffee culture.',
       'An avid coffee enthusiast with a refined palate and deep appreciation for specialty coffee, Ayesha brings together operational expertise, sharp business acumen, and extensive regional knowledge of the coffee industry. Her journey in hospitality has been shaped by years of understanding consumer experiences, café culture, and the nuances that define exceptional coffee.',
