@@ -81,7 +81,7 @@ export default async function InsightArticle({
       <section
         className="insights-hero"
         style={{
-          backgroundImage: `linear-gradient(180deg, rgba(10,10,10,0.35) 0%, rgba(10,10,10,0.55) 45%, rgba(10,10,10,0.92) 100%), url(${post.heroImage})`,
+          backgroundImage: `linear-gradient(180deg, rgba(10,10,10,0.35) 0%, rgba(10,10,10,0.55) 45%, rgba(10,10,10,0.92) 100%), image-set(url(${post.heroImage.replace(/\.(png|jpe?g)$/i, '.webp')}) type('image/webp'), url(${post.heroImage}))`,
         }}
       >
         <div className="insights-hero__inner">
@@ -114,7 +114,7 @@ export default async function InsightArticle({
               <Link key={r.slug} href={`/insights/${r.slug}`} className="insights-related">
                 <span
                   className="insights-related__thumb"
-                  style={{ backgroundImage: `url(${r.heroImage})` }}
+                  style={{ backgroundImage: `image-set(url(${r.heroImage.replace(/\.(png|jpe?g)$/i, '.webp')}) type('image/webp'), url(${r.heroImage}))` }}
                 />
                 <span className="insights-related__body">
                   {r.tags[0] && <span className="insights-related__tag">{r.tags[0]}</span>}

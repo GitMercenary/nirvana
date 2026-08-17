@@ -49,7 +49,7 @@ export default function HeroSection() {
         style={{
           position: 'absolute',
           inset: 0,
-          backgroundImage: 'url(/images/hero-bg.png)',
+          backgroundImage: "image-set(url('/images/hero-bg.webp') type('image/webp'), url('/images/hero-bg.png'))",
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           opacity: 0.15,

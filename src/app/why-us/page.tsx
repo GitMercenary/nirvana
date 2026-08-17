@@ -123,7 +123,7 @@ export default function WhyUsPage() {
           style={{
             position: 'absolute',
             inset: 0,
-            backgroundImage: 'url(/images/landscape-why-us.jpg)',
+            backgroundImage: "image-set(url('/images/landscape-why-us.webp') type('image/webp'), url('/images/landscape-why-us.jpg'))",
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             opacity: 0.18,
@@ -358,7 +358,7 @@ export default function WhyUsPage() {
           style={{
             position: 'absolute',
             inset: 0,
-            backgroundImage: 'url(/images/cta-banner-bg.png)',
+            backgroundImage: "image-set(url('/images/cta-banner-bg.webp') type('image/webp'), url('/images/cta-banner-bg.png'))",
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             opacity: 0.07,

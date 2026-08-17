@@ -106,7 +106,7 @@ export default function InsightsIndex() {
                   style={{
                     display: 'block',
                     height: '178px',
-                    backgroundImage: `url(${post.heroImage})`,
+                    backgroundImage: `image-set(url(${post.heroImage.replace(/\.(png|jpe?g)$/i, '.webp')}) type('image/webp'), url(${post.heroImage}))`,
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
                   }}

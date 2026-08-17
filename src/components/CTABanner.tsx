@@ -27,7 +27,7 @@ export default function CTABanner() {
         style={{
           position: 'absolute',
           inset: 0,
-          backgroundImage: 'url(/images/cta-banner-bg.png)',
+          backgroundImage: "image-set(url('/images/cta-banner-bg.webp') type('image/webp'), url('/images/cta-banner-bg.png'))",
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           opacity: 0.07,

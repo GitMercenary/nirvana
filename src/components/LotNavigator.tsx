@@ -60,7 +60,7 @@ export default function LotNavigator() {
         style={{
           position: 'absolute',
           inset: 0,
-          backgroundImage: 'url(/images/bg-smoke.png)',
+          backgroundImage: "image-set(url('/images/bg-smoke.webp') type('image/webp'), url('/images/bg-smoke.png'))",
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           opacity: 0.18,

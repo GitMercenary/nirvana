@@ -119,7 +119,7 @@ export default function AtmosphereSelector() {
         style={{
           position: 'absolute',
           inset: 0,
-          backgroundImage: 'url(/images/bg-coffee-branch.png)',
+          backgroundImage: "image-set(url('/images/bg-coffee-branch.webp') type('image/webp'), url('/images/bg-coffee-branch.png'))",
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           opacity: 0.12,

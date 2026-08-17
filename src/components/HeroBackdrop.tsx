@@ -21,7 +21,7 @@ export default function HeroBackdrop({
         style={{
           position: 'absolute',
           inset: 0,
-          backgroundImage: `url(${src})`,
+          backgroundImage: `image-set(url(${src.replace(/\.(png|jpe?g)$/i, '.webp')}) type('image/webp'), url(${src}))`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           opacity,
