@@ -96,13 +96,30 @@ export default function InsightsIndex() {
                   background: 'var(--cn-black, #0a0a0a)',
                   border: '1px solid rgba(242,242,243,0.08)',
                   borderRadius: 'var(--cn-radius, 14px)',
-                  padding: '26px 24px',
+                  overflow: 'hidden',
                   height: '100%',
                   display: 'flex',
                   flexDirection: 'column',
-                  gap: '12px',
                 }}
               >
+                <span
+                  style={{
+                    display: 'block',
+                    height: '178px',
+                    backgroundImage: `url(${post.heroImage})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                  }}
+                />
+                <div
+                  style={{
+                    padding: '22px 22px 24px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '11px',
+                    flex: 1,
+                  }}
+                >
                 {post.tags[0] && (
                   <span
                     style={{
@@ -148,8 +165,9 @@ export default function InsightsIndex() {
                     color: 'var(--cn-cream, #f2f2f3)',
                   }}
                 >
-                  Read →
+                  {post.readingMinutes} min read →
                 </span>
+                </div>
               </article>
             </Link>
           ))}
