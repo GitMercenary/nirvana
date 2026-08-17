@@ -125,6 +125,12 @@ export default function Footer() {
             >
               Why Us
             </a>
+            <a href="/insights" style={linkStyle}
+              onMouseEnter={(e) => (e.currentTarget.style.color = '#f2f2f3')}
+              onMouseLeave={(e) => (e.currentTarget.style.color = '#a4a2a2')}
+            >
+              Insights
+            </a>
           </div>
 
           {/* Col 3: Office Hours */}

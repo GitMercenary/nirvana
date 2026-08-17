@@ -1,3 +1,9 @@
+// Structured data, split so each schema appears only where it belongs:
+//  - Organization: sitewide (rendered in the root layout)
+//  - ProductSchema: render ONLY on /offerings
+//  - FaqSchema:     render ONLY on the homepage
+// (Duplicating Product/FAQ on every page dilutes rich results, so they are scoped.)
+
 export default function StructuredData() {
   const organizationSchema = {
     '@context': 'https://schema.org',
@@ -6,7 +12,7 @@ export default function StructuredData() {
     url: 'https://caffeinenirvana.co',
     logo: 'https://caffeinenirvana.co/images/logo-full.jpg',
     description:
-      'Specialty green coffee exporter from Chikmagalur, India. Direct trade, traceable lots scoring 86-88 SCA.',
+      'Specialty green coffee exporter from Chikmagalur, India. Direct trade, traceable lots scoring 85.5–87.75 SCA.',
     address: {
       '@type': 'PostalAddress',
       addressLocality: 'Chikmagalur',
@@ -21,10 +27,21 @@ export default function StructuredData() {
     },
     sameAs: [
       'https://typica.coffee/en/producers/caffeine-nirvana',
-      // Add when active: 'https://www.instagram.com/caffeine_nirvana/'
+      'https://www.instagram.com/caffeine_nirvana/',
+      // LinkedIn: add here when the company page is active
     ],
   }
 
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+    />
+  )
+}
+
+// Render only on /offerings
+export function ProductSchema() {
   const productSchema = {
     '@context': 'https://schema.org',
     '@type': 'Product',
@@ -34,15 +51,20 @@ export default function StructuredData() {
       'High-scoring specialty green coffee lots (85.5–87.75 SCA) from Chikmagalur, India. Washed, natural, and experimental anaerobic processes.',
     category: 'Green Coffee Beans',
     countryOfOrigin: 'India',
-    offers: {
-      '@type': 'Offer',
-      availability: 'https://schema.org/InStock',
-      priceCurrency: 'USD',
-      eligibleRegion: 'Worldwide',
-    },
+    // Product image (swap for a dedicated green-coffee product render when available)
+    image: 'https://caffeinenirvana.co/images/estate-zoya-hero.png',
+    // 'offers' intentionally omitted — no public B2B price to state honestly.
   }
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
+    />
+  )
+}
 
-  // FAQ schema — surfaces directly in Google + AI answer engines (ChatGPT, Perplexity, Claude).
+// Render only on the homepage
+export function FaqSchema() {
   const faqSchema = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
@@ -103,21 +125,10 @@ export default function StructuredData() {
       },
     ],
   }
-
   return (
-    <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
-    </>
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+    />
   )
 }

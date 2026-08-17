@@ -6,6 +6,7 @@ import { LOTS } from '@/components/AtmosphereSelector'
 import { useIsMobile } from '@/hooks/useIsMobile'
 import { useFormContext } from '@/context/FormContext'
 import HeroBackdrop from '@/components/HeroBackdrop'
+import { ProductSchema } from '@/components/StructuredData'
 
 /* ─── animation helpers ─── */
 const fadeUp = {
@@ -301,6 +302,7 @@ export default function OfferingsPage() {
 
   return (
     <main>
+      <ProductSchema />
       {/* ─── Section 1: Hero ─── */}
       <section
         style={{

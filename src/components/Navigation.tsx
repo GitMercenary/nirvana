@@ -32,6 +32,7 @@ const NAV_ITEMS: NavItem[] = [
       { label: 'Mission & Vision', href: '/why-us/mission-vision' },
     ],
   },
+  { label: 'Insights', href: '/insights' },
   { label: 'Contact', href: '/contact' },
 ]
 

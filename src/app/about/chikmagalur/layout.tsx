@@ -1,9 +1,9 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Chikmagalur',
+  title: { absolute: 'Chikmagalur | Caffeine Nirvana' },
   description:
-    'Chikmagalur — the mist-covered hills of the Western Ghats where Indian coffee began. High-altitude terrain, dense shade canopy, and the terroir that shapes every Caffeine Nirvana lot.',
+    'Chikmagalur — the misty Western Ghats hills where Indian coffee began. High-altitude, shade-grown terroir behind every Caffeine Nirvana lot.',
   alternates: { canonical: 'https://caffeinenirvana.co/about/chikmagalur' },
   openGraph: {
     title: 'Chikmagalur — the birthplace of Indian coffee',

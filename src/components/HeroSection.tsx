@@ -115,8 +115,10 @@ export default function HeroSection() {
             marginBottom: '24px',
           }}
         >
+          {/* Real, crawlable heading text (visually hidden) — the animated version below is decorative */}
+          <span className="visually-hidden">{headline.join(' ')}</span>
           {headline.map((line, lineIdx) => (
-            <div key={lineIdx} style={{ overflow: 'hidden', display: 'block' }}>
+            <div key={lineIdx} aria-hidden="true" style={{ overflow: 'hidden', display: 'block' }}>
               {line.split(' ').map((word, wordIdx) => {
                 const globalIdx = headline
                   .slice(0, lineIdx)

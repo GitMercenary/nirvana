@@ -9,3 +9,24 @@ node_modules/
 # Source photos staged for curation — keep raw imports out of git
 Public/images/from-photos/
 Public/images/ai photos/
+
+# Build artifacts
+*.tsbuildinfo
+out/
+build/
+dist/
+
+# Local agent / editor config
+.claude/
+.vscode/
+.idea/
+
+# OS / misc junk
+Thumbs.db
+*.tmp
+
+# Internal notes & docs — keep the repo to shippable source only.
+# NOTE: blog content under content/blog IS site content and must stay tracked
+# (the /blog route reads it at build time), so it is explicitly re-included.
+*.md
+!content/blog/*.md

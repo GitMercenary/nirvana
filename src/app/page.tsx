@@ -11,10 +11,12 @@ import SustainabilitySection from '@/components/SustainabilitySection'
 import LotNavigator from '@/components/LotNavigator'
 import HumanContactSection from '@/components/HumanContactSection'
 import CTABanner from '@/components/CTABanner'
+import { FaqSchema } from '@/components/StructuredData'
 
 export default function HomePage() {
   return (
     <>
+      <FaqSchema />
       <HeroSection />
       <CredentialBar />
       <OurStorySection />
