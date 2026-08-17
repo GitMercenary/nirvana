@@ -3,7 +3,7 @@ import type { Metadata } from 'next'
 export const metadata: Metadata = {
   title: 'Specialty Coffee Offerings',
   description:
-    'Current Caffeine Nirvana lots: 5B Naturals (Zoya, SCA 86.75), Chandragiri Washed (Sheethal, SCA 85.5), Supernatural Process (Zoya, SCA 87.75), Lactic Sequential Naturals (CN Washing Station, SCA 87.0). FOB Mangalore. Direct trade.',
+    'Current Caffeine Nirvana green lots from Chikmagalur — SCA 85.5–87.75, natural, washed and experimental processes. FOB Mangalore, direct trade.',
   alternates: { canonical: 'https://caffeinenirvana.co/offerings' },
   openGraph: {
     title: 'Specialty Coffee Offerings | Caffeine Nirvana',
@@ -11,6 +11,7 @@ export const metadata: Metadata = {
       '4 current specialty lots from Chikmagalur. SCA scores 85.5–87.75. Sample requests open. FOB Mangalore.',
     url: 'https://caffeinenirvana.co/offerings',
     type: 'website',
+    images: [{ url: '/images/logo-full.jpg', width: 1200, height: 630 }],
   },
   keywords: [
     '5B Naturals coffee',

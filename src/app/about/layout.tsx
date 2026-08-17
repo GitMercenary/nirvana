@@ -11,6 +11,7 @@ export const metadata: Metadata = {
       'A 150-year coffee heritage in Chikmagalur. Meet Danish, Ayesha, and Harsh, and the philosophy that drives every lot we source.',
     url: 'https://caffeinenirvana.co/about',
     type: 'website',
+    images: [{ url: '/images/logo-full.jpg', width: 1200, height: 630 }],
   },
 }
 

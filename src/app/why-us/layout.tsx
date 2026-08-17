@@ -3,7 +3,7 @@ import type { Metadata } from 'next'
 export const metadata: Metadata = {
   title: 'Why Us',
   description:
-    'Soil. Soul. Science. The four practices that set Caffeine Nirvana apart — radical transparency, the pursuit of the “god shot”, sustainable balance, and precision roasting.',
+    'Soil, soul, science — Caffeine Nirvana’s practices: radical transparency, the pursuit of the god shot, sustainable balance and precision roasting.',
   alternates: { canonical: 'https://caffeinenirvana.co/why-us' },
   openGraph: {
     title: 'Why Us | Caffeine Nirvana',
@@ -11,6 +11,7 @@ export const metadata: Metadata = {
       'Soil, soul, science — the philosophy and the four practices behind every Caffeine Nirvana lot.',
     url: 'https://caffeinenirvana.co/why-us',
     type: 'website',
+    images: [{ url: '/images/logo-full.jpg', width: 1200, height: 630 }],
   },
 }
 

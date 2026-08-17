@@ -11,6 +11,7 @@ export const metadata: Metadata = {
       'Direct line to Danish at Caffeine Nirvana. Specialty green coffee enquiries, sample requests, and farm visits.',
     url: 'https://caffeinenirvana.co/contact',
     type: 'website',
+    images: [{ url: '/images/logo-full.jpg', width: 1200, height: 630 }],
   },
 }
 

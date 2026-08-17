@@ -3,7 +3,7 @@ import type { Metadata } from 'next'
 export const metadata: Metadata = {
   title: 'Estates',
   description:
-    'The Chikmagalur estates we partner with — Zoya (flagship, 4,180 ft, native fig canopy), Sheethal (lakeside, organic, Panchgavya), and Kardigandi (Aldur, Rainforest Alliance Certified).',
+    'Our Chikmagalur estate partners — Zoya (flagship, 4,180 ft), Sheethal (lakeside, organic) and Kardigandi (Aldur, Rainforest Alliance Certified).',
   alternates: { canonical: 'https://caffeinenirvana.co/estates' },
   openGraph: {
     title: 'Our Estates | Caffeine Nirvana',

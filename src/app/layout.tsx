@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     template: '%s | Caffeine Nirvana',
   },
   description:
-    'Source high-scoring specialty green coffee direct from Chikmagalur, India. 86-88 SCA cupping scores. Traceable lots from small farmers. Direct trade, no middlemen.',
+    'Source high-scoring specialty green coffee direct from Chikmagalur, India — 85.5–87.75 SCA, traceable lots, direct trade, no middlemen.',
   keywords: [
     'specialty green coffee India',
     'Indian specialty coffee exporter',
@@ -82,6 +82,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://api.web3forms.com" />
         <link rel="preload" as="image" href="/images/hero-bg.png" />
         <link rel="icon" href="/images/logo-enzo.png" type="image/png" />
         <link rel="apple-touch-icon" href="/images/logo-enzo.png" />
