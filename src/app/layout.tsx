@@ -4,6 +4,7 @@ import { FormProvider } from '@/context/FormContext'
 import Navigation from '@/components/Navigation'
 import Footer from '@/components/Footer'
 import StructuredData from '@/components/StructuredData'
+import MotionProvider from '@/components/MotionProvider'
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://caffeinenirvana.co'),
@@ -13,18 +14,6 @@ export const metadata: Metadata = {
   },
   description:
     'Source high-scoring specialty green coffee direct from Chikmagalur, India — 85.5–87.75 SCA, traceable lots, direct trade, no middlemen.',
-  keywords: [
-    'specialty green coffee India',
-    'Indian specialty coffee exporter',
-    'high scoring coffee lots India',
-    'SCA 86+ coffee India',
-    'direct trade coffee India',
-    'Chikmagalur specialty coffee',
-    'green coffee beans India',
-    'traceable coffee India origin',
-    'Indian coffee for roasters',
-    'single origin India coffee',
-  ],
   authors: [{ name: 'Caffeine Nirvana' }],
   openGraph: {
     type: 'website',
@@ -83,11 +72,13 @@ export default function RootLayout({
         <StructuredData />
       </head>
       <body>
-        <FormProvider>
-          <Navigation />
-          {children}
-          <Footer />
-        </FormProvider>
+        <MotionProvider>
+          <FormProvider>
+            <Navigation />
+            {children}
+            <Footer />
+          </FormProvider>
+        </MotionProvider>
       </body>
     </html>
   )

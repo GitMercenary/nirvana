@@ -397,8 +397,7 @@ export default function OfferingsPage() {
         <div style={{ maxWidth: 1100, margin: '0 auto', textAlign: 'center' }}>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
             <div
@@ -458,8 +457,7 @@ export default function OfferingsPage() {
       >
         <motion.div
           initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           style={{ maxWidth: 640, margin: '0 auto' }}
         >
