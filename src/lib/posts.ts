@@ -21,6 +21,22 @@ const HERO_IMAGES: Record<string, string> = {
 }
 const DEFAULT_HERO = '/images/hero-bg.png'
 
+// Publish dates — the content plan runs from June 2026 (~6/month for the first batch)
+const POST_DATES: Record<string, string> = {
+  'importing-indian-green-coffee-first-time-buyer-guide': '2026-06-03',
+  'why-chikmagalur-terroir-behind-indias-best-arabica': '2026-06-06',
+  'washed-natural-honey-processing-buyers-guide': '2026-06-11',
+  'why-source-indian-green-coffee-european-roastery': '2026-06-16',
+  'how-to-read-green-coffee-spec-sheet': '2026-06-20',
+  'indian-origin-north-american-coffee-menu': '2026-06-25',
+  'what-sca-cupping-scores-mean-for-roasteries': '2026-07-02',
+  'direct-trade-decoded-for-importers': '2026-07-08',
+  'protecting-green-coffee-quality-transit-storage': '2026-07-14',
+  'where-indian-green-coffee-fits-global-buyer-lineup': '2026-07-18',
+  'india-specialty-coffee-moment-global-roasters': '2026-07-23',
+  'how-caffeine-nirvana-sources-specialty-green-coffee': '2026-07-29',
+}
+
 export interface Post {
   slug: string
   title: string
@@ -29,7 +45,15 @@ export interface Post {
   tags: string[]
   heroImage: string
   readingMinutes: number
+  date: string // ISO (YYYY-MM-DD)
   content: string
+}
+
+export function formatDate(iso: string): string {
+  if (!iso) return ''
+  const [y, m, d] = iso.split('-').map(Number)
+  const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+  return `${d} ${months[m - 1]} ${y}`
 }
 
 export function getAllPostSlugs(): string[] {
@@ -54,6 +78,7 @@ export function getPost(slug: string): Post | null {
     tags: (data.tags as string[]) ?? [],
     heroImage: HERO_IMAGES[slug] ?? DEFAULT_HERO,
     readingMinutes: Math.max(1, Math.round(words / 200)),
+    date: (data.date as string) ?? POST_DATES[slug] ?? '2026-06-01',
     content,
   }
 }
@@ -62,7 +87,7 @@ export function getAllPosts(): Post[] {
   return getAllPostSlugs()
     .map(getPost)
     .filter((p): p is Post => Boolean(p))
-    .sort((a, b) => a.title.localeCompare(b.title))
+    .sort((a, b) => b.date.localeCompare(a.date)) // newest first
 }
 
 // Related posts: prefer shared tags, then fill with others.

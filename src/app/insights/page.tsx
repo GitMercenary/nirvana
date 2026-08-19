@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { getAllPosts } from '@/lib/posts'
+import { getAllPosts, formatDate } from '@/lib/posts'
 
 const DESC =
   'Guides and perspectives for green-coffee buyers: sourcing, cupping, processing, importing and the story of specialty coffee from Chikmagalur, India.'
@@ -165,7 +165,7 @@ export default function InsightsIndex() {
                     color: 'var(--cn-cream, #f2f2f3)',
                   }}
                 >
-                  {post.readingMinutes} min read →
+                  {formatDate(post.date)} · {post.readingMinutes} min read →
                 </span>
                 </div>
               </article>

@@ -57,15 +57,7 @@ export const metadata: Metadata = {
   alternates: {
     canonical: 'https://caffeinenirvana.co',
   },
-  // Geo-targeting meta + verification placeholders.
-  // Replace 'PASTE_GOOGLE_TOKEN_HERE' once Google Search Console gives you a token.
-  // Replace 'PASTE_BING_TOKEN_HERE' likewise from Bing Webmaster Tools.
-  verification: {
-    google: 'PASTE_GOOGLE_TOKEN_HERE',
-    other: {
-      'msvalidate.01': 'PASTE_BING_TOKEN_HERE',
-    },
-  },
+  // Search Console / Bing verified via domain (DNS) — no HTML meta tag needed.
   other: {
     'geo.region': 'IN-KA',
     'geo.placename': 'Chikmagalur, Karnataka',

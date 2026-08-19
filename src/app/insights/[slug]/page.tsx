@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { marked } from 'marked'
-import { getAllPostSlugs, getPost, getRelatedPosts } from '@/lib/posts'
+import { getAllPostSlugs, getPost, getRelatedPosts, formatDate } from '@/lib/posts'
 import InsightsReader from '@/components/InsightsReader'
 
 export function generateStaticParams() {
@@ -66,6 +66,8 @@ export default async function InsightArticle({
     url: `https://caffeinenirvana.co/insights/${slug}`,
     keywords: post.tags.join(', '),
     inLanguage: 'en',
+    datePublished: post.date,
+    dateModified: post.date,
     author: { '@type': 'Organization', name: 'Caffeine Nirvana' },
     publisher: {
       '@type': 'Organization',
@@ -88,7 +90,7 @@ export default async function InsightArticle({
           {post.tags[0] && <span className="insights-kicker">{post.tags[0]}</span>}
           <h1>{post.title}</h1>
           <p className="insights-hero__meta">
-            {post.readingMinutes} min read · Caffeine Nirvana
+            {formatDate(post.date)} · {post.readingMinutes} min read
           </p>
         </div>
       </section>
