@@ -65,7 +65,6 @@ export default function RootLayout({
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link rel="preconnect" href="https://api.web3forms.com" />
         <link rel="preload" as="image" href="/images/hero-bg.webp" type="image/webp" />
         <link rel="icon" href="/images/logo-enzo.png" type="image/png" />
         <link rel="apple-touch-icon" href="/images/logo-enzo.png" />

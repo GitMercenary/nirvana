@@ -275,7 +275,7 @@ export default function SampleRequestForm({ lotName, onClose }: Props) {
 
                   {status === 'error' && (
                     <p style={{ fontFamily: 'DM Sans, system-ui, sans-serif', fontSize: '12px', color: '#da2233', marginBottom: '12px' }}>
-                      Something went wrong. Please email danish@caffeinenirvana.co directly.
+                      Something went wrong. Please email hello@caffeinenirvana.co directly.
                     </p>
                   )}
 

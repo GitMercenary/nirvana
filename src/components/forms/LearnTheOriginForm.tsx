@@ -317,7 +317,7 @@ export default function LearnTheOriginForm({ isOpen, onClose }: Props) {
 
                 {status === 'error' && (
                   <p style={{ fontFamily: 'DM Sans, system-ui, sans-serif', fontSize: '13px', color: '#da2233', marginBottom: '16px' }}>
-                    Something went wrong. Please email danish@caffeinenirvana.co directly.
+                    Something went wrong. Please email hello@caffeinenirvana.co directly.
                   </p>
                 )}
 

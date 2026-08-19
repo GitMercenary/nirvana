@@ -1,31 +1,26 @@
 // /src/config/email.config.js
 // ─────────────────────────────────────────────────────────────────
-// CAFFEINE NIRVANA — EMAIL ROUTING CONFIGURATION
-// Change recipient addresses here ONLY. Do not hardcode emails
-// in any component. All forms import from this file.
+// CAFFEINE NIRVANA — LEAD EMAIL ROUTING
+// Used SERVER-SIDE ONLY (by /api/lead). No secrets live here — the
+// Resend API key comes from the RESEND_API_KEY environment variable.
+// Change recipient addresses and subjects here ONLY.
 // ─────────────────────────────────────────────────────────────────
 
 export const EMAIL_CONFIG = {
+  // Where every website lead is delivered
+  PRIMARY: 'hello@caffeinenirvana.co',
 
-  // Primary recipient — client inbox
-  PRIMARY: 'danish@caffeinenirvana.co',
-
-  // CC recipient — admin inbox monitoring all leads
-  CC: 'admin@caffeinenirvana.co',
-
-  // Web3Forms access key — get free key at https://web3forms.com
-  // Replace the placeholder below with the real key before going live
-  WEB3FORMS_ACCESS_KEY: 'a1dfb1cf-ea8e-46f0-b79c-500f449facdf',
+  // Optional CC (e.g. an admin/monitoring inbox). Leave '' for none.
+  CC: '',
 
   // Form subjects — one per form type
   SUBJECTS: {
-    SOURCE_FROM_ORIGIN:  'New Sourcing Enquiry — Caffeine Nirvana',
-    LEARN_THE_ORIGIN:    'Farm Visit Enquiry — Caffeine Nirvana',
-    FOOTER_QUICK:        'Quick Contact — Caffeine Nirvana',
-    SAMPLE_REQUEST:      'Sample Request — Caffeine Nirvana',
+    SOURCE_FROM_ORIGIN: 'New Sourcing Enquiry — Caffeine Nirvana',
+    LEARN_THE_ORIGIN: 'Farm Visit Enquiry — Caffeine Nirvana',
+    FOOTER_QUICK: 'Quick Contact — Caffeine Nirvana',
+    SAMPLE_REQUEST: 'Sample Request — Caffeine Nirvana',
   },
 
-  // Reply-to: always set to the enquirer's email
-  // so Danish can reply directly from his inbox
+  // The field on the form that holds the enquirer's email (used as reply-to)
   REPLY_TO_FIELD: 'email',
 }

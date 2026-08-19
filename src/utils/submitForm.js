@@ -1,24 +1,23 @@
-// Email routing — see /src/config/email.config.js to change recipients
-import { EMAIL_CONFIG } from '../config/email.config'
+// Lead submission — posts to the server route /api/lead, which sends the
+// email via Resend. Recipients/subjects live in /src/config/email.config.js.
+// The Resend API key stays server-side (RESEND_API_KEY) — never in the browser.
 
 export async function submitToEmail(formData, formType) {
-  const payload = {
-    access_key: EMAIL_CONFIG.WEB3FORMS_ACCESS_KEY,
-    subject: EMAIL_CONFIG.SUBJECTS[formType],
-    from_name: 'Caffeine Nirvana Website',
-    to: EMAIL_CONFIG.PRIMARY,
-    cc: EMAIL_CONFIG.CC,
-    replyto: formData[EMAIL_CONFIG.REPLY_TO_FIELD] || '',
-    ...formData,
-  }
-
-  const response = await fetch('https://api.web3forms.com/submit', {
+  const response = await fetch('/api/lead', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-    body: JSON.stringify(payload),
+    body: JSON.stringify({ formType, ...formData }),
   })
 
-  const result = await response.json()
-  if (!result.success) throw new Error(result.message || 'Submission failed')
+  let result = {}
+  try {
+    result = await response.json()
+  } catch {
+    // non-JSON error response
+  }
+
+  if (!response.ok || !result.success) {
+    throw new Error(result.message || 'Submission failed')
+  }
   return result
 }

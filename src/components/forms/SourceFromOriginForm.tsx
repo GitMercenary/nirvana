@@ -365,7 +365,7 @@ export default function SourceFromOriginForm({ isOpen, onClose }: Props) {
                         marginBottom: '12px',
                       }}
                     >
-                      Something went wrong. Please email danish@caffeinenirvana.co directly.
+                      Something went wrong. Please email hello@caffeinenirvana.co directly.
                     </p>
                   )}
 
